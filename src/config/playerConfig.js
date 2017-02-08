@@ -1,4 +1,4 @@
-function getCss(){return 'color:'+this.name.toLowerCase();}
+function getCss(){return {'borderColor':this.name.toLowerCase()};}
 
 export const colors = [
 	{name: 'Yellow', 	css: getCss},

@@ -31,7 +31,7 @@ class PlayerRow extends Component {
                     (<option 
                             key={i} 
                             value={colors[i].name.toLowerCase()} 
-                            selected={this.props.players.length && colors[i].name.toLowerCase() == this.props.players[this.props.index].color.name.toLowerCase()}    
+                            /*selected={this.props.players.length && colors[i].name.toLowerCase() == this.props.players[this.props.index].color.name.toLowerCase()}*/    
                         >
                             {colors[i].name}
                     </option>)
@@ -42,7 +42,7 @@ class PlayerRow extends Component {
                     (<option 
                             key={i} 
                             value={player_types[i].type} 
-                            selected={this.props.players.length && player_types[i].type == this.props.players[this.props.index].type}    
+                            /*selected={this.props.players.length && player_types[i].type == this.props.players[this.props.index].type}*/    
                         >
                             {player_types[i].name}
                     </option>)
@@ -62,14 +62,14 @@ class PlayerRow extends Component {
                 </div>
                 <div className="col-md-4">
                     Color
-                    <FormControl componentClass="select" placeholder="" onChange={this.handleColorChange}>
+                    <FormControl componentClass="select" value={this.props.players[this.props.index].color.name.toLowerCase()} onChange={this.handleColorChange}>
                         {color_options}
                     </FormControl>
 
                 </div>
                 <div className="col-md-4">
                     Type
-                    <FormControl componentClass="select" placeholder="" onChange={this.handleTypeChange}>
+                    <FormControl componentClass="select" value={this.props.players[this.props.index].type} onChange={this.handleTypeChange}>
                         {type_options}
                     </FormControl>
                 </div>

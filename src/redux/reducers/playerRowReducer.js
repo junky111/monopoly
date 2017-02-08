@@ -4,9 +4,10 @@ import {colors} from 'config/playerConfig';
 const initialState = { players:[] };
 
 function Player(name, color, type){
-	this.name=name;
-	this.color=color;
-	this.type=type;
+	this.name 	=	name;
+	this.color 	= 	color;
+	this.type 	= 	type;
+	this.money	=	0;
 }
 
 function changePlayerNumber(players, number){

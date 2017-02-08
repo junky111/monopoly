@@ -1,5 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import Player from './Player';
+import { connect } from 'react-redux';
+import MoneyBar from './MoneyBar';
+import Board from './Board';
+
+
 
 class Game extends Component {
 
@@ -8,18 +12,22 @@ class Game extends Component {
     }
 
     render() {
-
-        let players=[];
-        //@todo refactor
-        for(let i=0; i<8; i++) players.push(<Player number={i}/>);
-        
-
         return (
             <div>
-                {players}
+                <MoneyBar/>
+                <Board/>
             </div>
         );
     }
 }
 
-export default Game;
+
+
+
+
+function mapStateToProps(state) {
+    return {playersConfig: state.playersConfig};
+}
+
+//connect component with global state
+export default connect(mapStateToProps)(Game);
