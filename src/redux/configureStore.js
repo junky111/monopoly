@@ -6,10 +6,12 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import counterReducer from './reducers/counterReducer';
+import setupReducer from './reducers/setupReducer';
 
 export default function (initialState = {}) {
     const rootReducer = combineReducers({
-        counter: counterReducer
+        counter: counterReducer,
+        setup: setupReducer
     });
 
     return createStore(rootReducer, initialState, applyMiddleware(thunk));
