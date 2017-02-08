@@ -6,8 +6,6 @@ const initialState = { playersNumber : 4 , minPNumber: 2, maxPNumber: 8};
 export default function(state=initialState, action){
 	switch (action.type) {
 		case SET_PLAYERS_NUMBER:
-
-			console.log(Object.assign( {...state, playersNumber: action.number }));
 			return Object.assign({...state, playersNumber: action.number });
 		default:
 			return state;

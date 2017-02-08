@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-
+// import { colors } from './config';
 
 class Player extends Component {
 
@@ -8,6 +8,8 @@ class Player extends Component {
     }
 
     render() {
+
+    	// console.log(colors);
         return (
             <div>{'Player'+this.props.number}</div>
         );

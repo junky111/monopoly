@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
-
-//Redux sample
+import React, { Component, PropTypes } from 'react';
 import ReduxSetup from './ReduxSetup';
 
 class Setup extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
-               <div>
-                  <ReduxSetup />
-               </div>
-         );
+            <ReduxSetup/>
+        );
     }
 }
 
