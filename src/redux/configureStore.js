@@ -8,12 +8,14 @@ import thunk from 'redux-thunk';
 import counterReducer from './reducers/counterReducer';
 import setupReducer from './reducers/setupReducer';
 import playerRowReducer from './reducers/playerRowReducer';
+import squareReducer from './reducers/squareReducer';
 
 export default function (initialState = {}) {
     const rootReducer = combineReducers({
         counter: counterReducer,
         setup: setupReducer,
-        playersConfig: playerRowReducer
+        playersConfig: playerRowReducer, 
+        squareConfig: squareReducer
     });
 
     return createStore(rootReducer, initialState, applyMiddleware(thunk));
