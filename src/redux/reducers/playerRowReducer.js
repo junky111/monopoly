@@ -1,14 +1,9 @@
 
 import { SET_COLOR, SET_NAME, SET_TYPE, CHANGE_PLAYERS_NUMBER } from '../actions/playerRowActions';
 import {colors} from 'config/playerConfig';
+import {Player} from './entities/Player';
 const initialState = { players:[] };
 
-function Player(name, color, type){
-	this.name 	=	name;
-	this.color 	= 	color;
-	this.type 	= 	type;
-	this.money	=	0;
-}
 
 function changePlayerNumber(players, number){
 	if(players.length < Number(number)){

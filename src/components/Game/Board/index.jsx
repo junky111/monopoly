@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Square from './Square';
-
+import ControlBoard from './ControlBoard';
 
 
 class Board extends Component {
@@ -30,8 +30,7 @@ class Board extends Component {
                 )
         }
         bottom=bottom.reverse();
-        console.log(bottom);
-
+        
         let top=[];
         for(let i=this.props.squareConfig.squares.length/2;i<(this.props.squareConfig.squares.length/4)+(this.props.squareConfig.squares.length/2)+1; i++){
             let sq=this.props.squareConfig.squares[i];
@@ -78,9 +77,11 @@ class Board extends Component {
                         <tbody>
                             <tr>{top}</tr>
                             {middle}
+                           
                             <tr>{bottom}</tr>
                         </tbody>
                     </table>
+                     <ControlBoard/>
             </div>
         );
     }

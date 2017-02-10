@@ -10,8 +10,8 @@ class MoneyBar extends Component {
 
     render() {
 
-        console.log(this.props);
 
+        
         let players=[];
         //@todo refactor
         for(let i in this.props.playersConfig.players)

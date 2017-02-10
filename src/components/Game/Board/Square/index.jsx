@@ -21,6 +21,7 @@ class Square extends Component {
         );
 
 
+
         return (
                 <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={cardData}>
                     <p>{this.props.name}</p>

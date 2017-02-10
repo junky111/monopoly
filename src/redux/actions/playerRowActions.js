@@ -13,7 +13,7 @@ export function setName({player, name}){
 }
 
 export function setType({player,type}){
-	return {type: SET_TYPE, player: player, type:type};
+	return {type: SET_TYPE, player: player, type:type}; 
 }
 
 export function changePlayersCount(number){
