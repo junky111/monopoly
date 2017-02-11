@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Square from './Square';
 import ControlBoard from './ControlBoard';
 
+//don't import - need to be recutting
+//import '../monopoly.css';
 
 class Board extends Component {
 
@@ -81,7 +83,9 @@ class Board extends Component {
                             <tr>{bottom}</tr>
                         </tbody>
                     </table>
+                <div id="control">
                      <ControlBoard/>
+                </div>
             </div>
         );
     }

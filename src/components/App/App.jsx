@@ -25,17 +25,17 @@ class App extends Component {
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <Link to='/'>Hello World</Link>
+                            <Link to='/'>1</Link>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav navbar>
-                            <LinkContainer to='/time'>
-                                <NavItem>Время</NavItem>
+                            <LinkContainer to='/'>
+                                <NavItem>2</NavItem>
                             </LinkContainer>
-                            <LinkContainer to='/counters'>
-                                <NavItem>Счетчики</NavItem>
+                            <LinkContainer to='/'>
+                                <NavItem>3</NavItem>
                             </LinkContainer>
                         </Nav>
                     </Navbar.Collapse>

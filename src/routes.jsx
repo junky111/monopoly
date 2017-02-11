@@ -15,19 +15,16 @@ import React from 'react';
 import { IndexRoute, Route }  from 'react-router';
 
 import App from 'components/App';
-import CounterPage from 'components/CounterPage';
-import HelloWorldPage from 'components/HelloWorldPage';
-import TimePage from 'components/TimePage';
 import Game from 'components/Game';
 import Setup from 'components/Game/Setup';
 
 
 export default (
     <Route component={App} path='/'>
-        <IndexRoute component={HelloWorldPage} />
-        <Route component={CounterPage} path='counters' />
-        <Route component={TimePage} path='time' />
-        <Route component={Game} path='monopoly'/>
-        <Route component={Setup} path='setup' />
+        <IndexRoute component={Setup} />
+            <Route component={Game} path='monopoly'/>
+        {/*<Route component={CounterPage} path='counters' />
+            <Route component={TimePage} path='time' />
+            <Route component={Setup} path='setup' />*/}
     </Route>
 );

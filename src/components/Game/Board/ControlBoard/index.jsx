@@ -29,7 +29,14 @@ class ControlBoard extends Component {
         return { first, second };
     }
 
-    rollDice=()=>{
+    /**
+     * Call notify window with bootstrap modal window
+     */
+    addAlert(){
+
+    }
+
+    rollDice = () =>{
         let dice=this.rollDiceAction();
         this.props.dispatch(gameActions.rollDice(dice));
         

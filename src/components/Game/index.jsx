@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import MoneyBar from './MoneyBar';
 import Board from './Board';
 
-
-
 class Game extends Component {
 
     constructor(props) {
