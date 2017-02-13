@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Dice from '../Dice';
 import {Player} from 'components/Game/Player';
 
+import Alert from '../Alert';
 
 
 class ControlBoard extends Component {
@@ -29,16 +30,12 @@ class ControlBoard extends Component {
         return { first, second };
     }
 
-    /**
-     * Call notify window with bootstrap modal window
-     */
-    addAlert(){
-
-    }
-
     rollDice = () =>{
-        let dice=this.rollDiceAction();
+        let dice = this.rollDiceAction();
         this.props.dispatch(gameActions.rollDice(dice));
+
+        //add alert function
+        let addAlert= (alert) => this.props.dispatch(gameActions.addAlert(alert));
         
         let config = this.state;
      
@@ -159,7 +156,8 @@ class ControlBoard extends Component {
     render() {
 
         return (
-            <div>   
+            <div>
+                <Alert />
                 <Dice diceNumber={this.props.game.dice.first}/>
                 <Dice diceNumber={this.props.game.dice.second}/>
                 <table>

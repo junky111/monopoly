@@ -5,6 +5,7 @@ import ControlBoard from './ControlBoard';
 
 //don't import - need to be recutting
 //import '../monopoly.css';
+import '../monopoly2.css';
 
 class Board extends Component {
 
