@@ -2,7 +2,7 @@
 import { SET_COLOR, SET_NAME, SET_TYPE, CHANGE_PLAYERS_NUMBER } from '../actions/playerRowActions';
 import {colors} from 'config/playerConfig';
 import {Player} from './entities/Player';
-const initialState = { players:[] };
+const initialState = { players: changePlayerNumber([], 4) };
 
 
 function changePlayerNumber(players, number){
@@ -17,7 +17,7 @@ function changePlayerNumber(players, number){
 
 	return players;
 }
-
+	
 
 export default function(state=initialState, action){
 	switch (action.type) {

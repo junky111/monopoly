@@ -6,7 +6,6 @@ export function rollDice(dice){
 	return {type: ROLL_DICE, dice:dice};
 }
 
-export function addAlert(alert) {
-	console.log('alert',alert);
-	return {type: ADD_ALERT, gameLog:alert};
+export function addAlert(message) {
+	return {type: ADD_ALERT, message:message};
 }

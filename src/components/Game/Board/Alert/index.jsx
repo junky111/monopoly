@@ -4,34 +4,17 @@ import {Button, Modal} from 'react-bootstrap';
 
 class Alert extends Component{
     constructor(props) {
-        super(props);
-
-        this.state = {
-            data: {}
-        }
+        super(props);   
     }
-
-    componentWillReceiveProps(newProps) {
-        console.log('newProps', newProps);
-        if(this.props != newProps) {
-
-        }
-    }
-
 
     render() {
-        console.log('alert props', this.props);
-        let data = this.props.gameLog || [];
-        let lines = data.map((e) => "<div>" + e + "<\div>");
-
-        return <div>
-            {lines}
-        </div>
+        let lines = this.props.gameLog.map((e) => (<div>{e}</div>));
+        return <div>{lines}</div>
     }
 }
 
 function mapStateToProps(state) {
-    return {gameLog: state.gameLog};
+    return {...state.gameFunctionality};
 }
 
 //connect component with global state

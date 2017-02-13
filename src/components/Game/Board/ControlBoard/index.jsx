@@ -14,12 +14,15 @@ class ControlBoard extends Component {
         super(props);
 
         this.state={
-            doublecount:    0,
-            option:         false, 
-            buy:            false,
-            manage:         false,
-            landed:         false,
-            nextButton:     {}
+            doublecount:        0,
+            option:             false, 
+            buy:                false,
+            manage:             false,
+            landed:             {},
+            nextButton:         {},
+            showResignbutton:   false, 
+            showNextbutton:     false,
+            showLanded:         false
         }
     }
 
@@ -30,12 +33,23 @@ class ControlBoard extends Component {
         return { first, second };
     }
 
+
+    addAlert = (message) => this.props.dispatch(gameActions.addAlert(message));
+
+    updateMoney  = () => {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+        if(p.money < 0 )    this.setState({showResignbutton: true, showNextbutton: false});
+        else                this.setState({showResignbutton: false, showNextbutton: true});
+
+        if(this.state.landed.data == "") this.setState({showLanded: false});
+    }
+
     rollDice = () =>{
+
+   
         let dice = this.rollDiceAction();
         this.props.dispatch(gameActions.rollDice(dice));
 
-        //add alert function
-        let addAlert= (alert) => this.props.dispatch(gameActions.addAlert(alert));
         
         let config = this.state;
      
@@ -50,13 +64,13 @@ class ControlBoard extends Component {
         config.doublecount++;
 
         if (die1 == die2) {
-            addAlert(p.name + " rolled " + (die1 + die2) + " - doubles.");
+            this.addAlert(p.name + " rolled " + (die1 + die2) + " - doubles.");
         } else {
-            addAlert(p.name + " rolled " + (die1 + die2) + ".");
+            this.addAlert(p.name + " rolled " + (die1 + die2) + ".");
         }
 
         if (die1 == die2 && !p.jail) {
-            updateDice(die1, die2);
+            // updateDice(die1, die2);
 
             if (config.doublecount < 3) {
                 config.nextButton.value = "Roll again";
@@ -66,8 +80,8 @@ class ControlBoard extends Component {
             } else if (config.doublecount === 3) {
                 p.jail = true;
                 config.doublecount = 0;
-                addAlert(p.name + " rolled doubles three times in a row.");
-                updateMoney();
+                this.addAlert(p.name + " rolled doubles three times in a row.");
+                this.updateMoney();
 
 
                 if (p.human) {
@@ -91,7 +105,7 @@ class ControlBoard extends Component {
         if (p.jail === true) {
             p.jailroll++;
 
-            updateDice(die1, die2);
+            // updateDice(die1, die2);
             if (die1 == die2) {
                 // document.getElementById("jail").style.border = "1px solid black";
                 // document.getElementById("cell11").style.border = "2px solid " + p.color;
@@ -103,7 +117,7 @@ class ControlBoard extends Component {
                 p.position = 10 + die1 + die2;
                 config.doublecount = 0;
 
-                addAlert(p.name + " rolled doubles to get out of jail.");
+                this.addAlert(p.name + " rolled doubles to get out of jail.");
 
                 land();
             } else {
@@ -134,7 +148,7 @@ class ControlBoard extends Component {
 
 
         } else {
-            updateDice(die1, die2);
+            // updateDice(die1, die2);
 
             // Move player
             p.position += die1 + die2;
@@ -143,7 +157,7 @@ class ControlBoard extends Component {
             if (p.position >= 40) {
                 p.position -= 40;
                 p.money += 200;
-                addAlert(p.name + " collected a $200 salary for passing GO.");
+                this.addAlert(p.name + " collected a $200 salary for passing GO.");
             }
 
             land();
