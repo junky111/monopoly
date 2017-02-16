@@ -56,8 +56,6 @@ export default function(state=initialState, action){
 			    		Object.assign({}, action.playerToSquare)
   					]
 				});
-		
->>>>>>> a873f22c060b3114e36805195dd6e7532a6c5538
 		default:
 			return state;
 	}
