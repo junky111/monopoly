@@ -13,7 +13,7 @@ export default function(state=initialState, action){
 				dice: action.dice
 			});
 		case ADD_ALERT:
-				state.gameLog.push(action.message);
+				state.gameLog.unshift(action.message);
 				return Object.assign({},{...state});
 		default:
 			return state;
