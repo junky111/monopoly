@@ -59,7 +59,7 @@ class ControlBoard extends Component {
 
     updateCurrentPlayer = () => {
         //get current player
-        let currentPlayer =
+        let currentPlayer = 1;
         //get number of players
         this.props.dispatch(
             squareActions.updateSquare(
