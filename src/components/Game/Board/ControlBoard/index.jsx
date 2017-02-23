@@ -58,13 +58,14 @@ class ControlBoard extends Component {
     }
 
     updateCurrentPlayer = () => {
-        //get current player
         let currentPlayer = this.props.game.currentPlayer;
-        //get number of players
-        let numberPlayers = this.props.setup.playersNumber;
         currentPlayer++;
-        if(currentPlayer > numberPlayers) currentPlayer = 0;
+        if(currentPlayer >= this.props.setup.playersNumber) currentPlayer = 0;
+
         this.props.dispatch(gameActions.updatePlayerCurrent(currentPlayer));
+        let nextButton={};
+        nextButton.show = false;
+        this.props.dispatch(gameActions.setNextButton(nextButton));
 
         // this.props.dispatch(
         //     squareActions.updateSquare(
@@ -79,7 +80,7 @@ class ControlBoard extends Component {
 
     updateOwned = () => {
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
-        console.log(this.props);
+        //console.log(this.props);
         // var checkedproperty = getCheckedProperty();
         // $("#option").show();
         // $("#owned").show();
@@ -250,7 +251,6 @@ class ControlBoard extends Component {
 
         //берем отсюда текущего игрока
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
-        console.log('this.props.game.',this.props.game);
 
         let die1 = dice.first;
         let die2 = dice.second;
@@ -269,6 +269,8 @@ class ControlBoard extends Component {
         if (die1 == die2 && !p.jail) {
             //@view обновление костей
             // updateDice(die1, die2);
+            let dice = this.rollDiceAction();
+            this.props.dispatch(gameActions.rollDice(dice));
 
             if (config.doublecount < 3) {
                 nextButton.text = "Roll again";
@@ -300,8 +302,6 @@ class ControlBoard extends Component {
             config.doublecount = 0;
         }
 
-        //@view обновление позиции на
-        this.updatePosition();
         //@view обновление денег визуально
         this.updateMoney();
         //окно обновления имущества игрока
@@ -374,6 +374,10 @@ class ControlBoard extends Component {
 
             // this.land();
         }
+
+        //обновление позиции чувака
+        this.updatePosition();
+
         this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
 
 
@@ -383,7 +387,6 @@ class ControlBoard extends Component {
 
 
     render() {
-
         let landed;
         if(this.props.game.landed.show)
             landed = (
@@ -394,20 +397,22 @@ class ControlBoard extends Component {
 
         let nextButton;
 
-        console.log(this.props.game)
-        console.log('nextButton', this.props.game.nextButton)
         if(this.props.game.nextButton.show)
             nextButton = (
                 <Button title={this.props.game.nextButton.title} onClick={()=>this.updateCurrentPlayer()}>
                     {this.props.game.nextButton.text}
                 </Button>
             );
+        else
+            nextButton = (
+                <Button type="button" className="btn btn-info" onClick={this.rollDice}>Roll dice</Button>
+            );
 
         return (
             <div>
                 <Alert />
                 {landed}
-                {nextButton}
+                {/*nextButton*/}
                 <Dice diceNumber={this.props.game.dice.first}/>
                 <Dice diceNumber={this.props.game.dice.second}/>
                 <table>
@@ -419,7 +424,7 @@ class ControlBoard extends Component {
                     </tbody>
                 </table>
                 <Popup />
-                <Button type="button" className="btn btn-info" onClick={this.rollDice}>Roll dice</Button>
+                {nextButton}
             </div>
         );
     }

@@ -25,6 +25,8 @@ class Square extends Component {
                 return (<p key={index}>{item.player}</p>)
             });
 
+
+
         return (
                 <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={cardData}>
                     <div>
