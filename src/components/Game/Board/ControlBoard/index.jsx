@@ -59,19 +59,23 @@ class ControlBoard extends Component {
 
     updateCurrentPlayer = () => {
         //get current player
-        let currentPlayer = 1;
+        let currentPlayer = this.props.game.currentPlayer;
         //get number of players
-        this.props.dispatch(
-            squareActions.updateSquare(
-                this.props.playersConfig.players[this.props.game.currentPlayer].position, 
-                {owner:this.props.game.currentPlayer}
-            )
-        );
+        let numberPlayers = this.props.setup.playersNumber;
+        currentPlayer++;
+        if(currentPlayer > numberPlayers) currentPlayer = 0;
+        this.props.dispatch(gameActions.updatePlayerCurrent(currentPlayer));
+
+        // this.props.dispatch(
+        //     squareActions.updateSquare(
+        //         this.props.playersConfig.players[this.props.game.currentPlayer].position,
+        //         {owner:this.props.game.currentPlayer}
+        //     )
+        // );
 
         //
-        //this.props.dispatch(gameActions.)
-    }
 
+    }
 
     updateOwned = () => {
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
@@ -246,6 +250,8 @@ class ControlBoard extends Component {
 
         //берем отсюда текущего игрока
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+        console.log('this.props.game.',this.props.game);
+
         let die1 = dice.first;
         let die2 = dice.second;
 
@@ -389,9 +395,10 @@ class ControlBoard extends Component {
         let nextButton;
 
         console.log(this.props.game)
+        console.log('nextButton', this.props.game.nextButton)
         if(this.props.game.nextButton.show)
             nextButton = (
-                <Button title={this.props.game.nextButton.title} onClick={function(){console.log('clicked');}}>
+                <Button title={this.props.game.nextButton.title} onClick={()=>this.updateCurrentPlayer()}>
                     {this.props.game.nextButton.text}
                 </Button>
             );
@@ -427,7 +434,8 @@ function mapStateToProps(state) {
                 playersConfig   : state.playersConfig,
                 squareConfig    : state.squareConfig,
                 game            : state.gameFunctionality,
-                popupConfig     : state.popupConfig
+                popupConfig     : state.popupConfig,
+                setup           : state.setup
     };
 }
 

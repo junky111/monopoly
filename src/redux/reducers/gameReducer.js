@@ -33,10 +33,9 @@ export default function(state=initialState, action){
 			 	landed: action.landed
 			})
 		case UPDATE_P_C:
-			return Object.assign({}, {
-				...state,
-				currentPlayer: action.currentPlayer
-			})
+			console.log(' action.currentPlayer', action.currentPlayer);
+            state.currentPlayer = action.currentPlayer;
+			return Object.assign({}, {...state})
 		case UPDATE_P_S: 
 			let playerToSquare = state.playerToSquare;
 			let index=-1;
