@@ -69,7 +69,7 @@ class ControlBoard extends Component {
         );
 
         //
-        this.props.dispatch(gameActions.)
+        //this.props.dispatch(gameActions.)
     }
 
 
