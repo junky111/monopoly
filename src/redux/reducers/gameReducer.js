@@ -3,6 +3,8 @@ import { ROLL_DICE, ADD_ALERT, SET_NEXT_BUTTON, SET_LANDED, UPDATE_P_S, UPDATE_P
 
 const initialState = { 
 	playerToSquare: [],
+	//@todo rewrite
+	playerToOwned: [{player: 0, owned:[3,5,12]}],
 	currentPlayer: 0,
 	dice: {},
 	gameLog:[],

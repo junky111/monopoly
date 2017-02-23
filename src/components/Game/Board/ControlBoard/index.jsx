@@ -4,12 +4,13 @@ import  * as playerActions  from 'redux/actions/playerRowActions';
 import  * as gameActions  from 'redux/actions/gameActions';
 import  * as popupActions  from 'redux/actions/popupActions';
 import  * as squareActions from 'redux/actions/squareActions';
+import  * as tradeActions from 'redux/actions/tradeActions';
 import { connect } from 'react-redux';
 import Dice from '../Dice';
 import {Player} from 'components/Game/Player';
 import Popup from '../Popup';
 import Alert from '../Alert';
-
+import TradeModal from '../TradeModal';
 
 class ControlBoard extends Component {
 
@@ -388,7 +389,7 @@ class ControlBoard extends Component {
 
         let nextButton;
 
-        console.log(this.props.game)
+        console.log(this.props.playersConfig)
         if(this.props.game.nextButton.show)
             nextButton = (
                 <Button title={this.props.game.nextButton.title} onClick={function(){console.log('clicked');}}>
@@ -398,7 +399,9 @@ class ControlBoard extends Component {
 
         return (
             <div>
+                <Button onClick={()=>this.props.dispatch(tradeActions.showWindow())}>Trade</Button>
                 <Alert />
+                <TradeModal/>
                 {landed}
                 {nextButton}
                 <Dice diceNumber={this.props.game.dice.first}/>
@@ -427,7 +430,8 @@ function mapStateToProps(state) {
                 playersConfig   : state.playersConfig,
                 squareConfig    : state.squareConfig,
                 game            : state.gameFunctionality,
-                popupConfig     : state.popupConfig
+                popupConfig     : state.popupConfig,
+                trade           : state.trade
     };
 }
 
