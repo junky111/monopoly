@@ -1,13 +1,13 @@
-import { ROLL_DICE, ADD_ALERT, SET_NEXT_BUTTON, SET_LANDED, UPDATE_P_S } from '../actions/gameActions';
+import { ROLL_DICE, ADD_ALERT, SET_NEXT_BUTTON, SET_LANDED, UPDATE_P_S, UPDATE_P_C } from '../actions/gameActions';
 
 
 const initialState = { 
-						playerToSquare: [], 
-						currentPlayer: 0, 
-						dice: {}, 
-						gameLog:[], 
-						nextButton:{title:'', text:'', show: false},
-						landed: {text:'', show: false}
+	playerToSquare: [],
+	currentPlayer: 0,
+	dice: {},
+	gameLog:[],
+	nextButton:{title:'', text:'', show: false},
+	landed: {text:'', show: false}
 };
 
 
@@ -31,6 +31,11 @@ export default function(state=initialState, action){
 			return Object.assign({}, {
 				...state,
 			 	landed: action.landed
+			})
+		case UPDATE_P_C:
+			return Object.assign({}, {
+				...state,
+				currentPlayer: action.currentPlayer
 			})
 		case UPDATE_P_S: 
 			let playerToSquare = state.playerToSquare;

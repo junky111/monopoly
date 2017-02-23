@@ -50,92 +50,19 @@ class ControlBoard extends Component {
     }
 
     updatePosition = () => {
-
         this.props.dispatch(gameActions.updatePlayerToSquare({
             player: this.props.game.currentPlayer,
             square: this.props.playersConfig.players[this.props.game.currentPlayer].position
         }));
+    }
 
-        // Reset borders
-        // document.getElementById("jail").style.border = "1px solid black";
-        // document.getElementById("jailpositionholder").innerHTML = "";
-        // for (var i = 0; i < 40; i++) {
-        //     document.getElementById("cell" + i).style.border = "1px solid black";
-        //     document.getElementById("cell" + i + "positionholder").innerHTML = "";
+    updateCurrentPlayer = () => {
+        //get current player
+        let currentPlayer =
+        //get number of players
 
-        // }
-
-        // var sq, left, top;
-
-        // for (var x = 0; x < 40; x++) {
-        //     sq = square[x];
-        //     left = 0;
-        //     top = 0;
-
-        //     for (var y = turn; y <= pcount; y++) {
-
-        //         if (player[y].position == x && !player[y].jail) {
-
-        //             document.getElementById("cell" + x + "positionholder").innerHTML += "<div class='cell-position' title='" + player[y].name + "' style='background-color: " + player[y].color + "; left: " + left + "px; top: " + top + "px;'></div>";
-        //             if (left == 36) {
-        //                 left = 0;
-        //                 top = 12;
-        //             } else
-        //                 left += 12;
-        //         }
-        //     }
-
-        //     for (var y = 1; y < turn; y++) {
-
-        //         if (player[y].position == x && !player[y].jail) {
-        //             document.getElementById("cell" + x + "positionholder").innerHTML += "<div class='cell-position' title='" + player[y].name + "' style='background-color: " + player[y].color + "; left: " + left + "px; top: " + top + "px;'></div>";
-        //             if (left == 36) {
-        //                 left = 0;
-        //                 top = 12;
-        //             } else
-        //                 left += 12;
-        //         }
-        //     }
-        // }
-
-        // left = 0;
-        // top = 53;
-        // for (var i = turn; i <= pcount; i++) {
-        //     if (player[i].jail) {
-        //         document.getElementById("jailpositionholder").innerHTML += "<div class='cell-position' title='" + player[i].name + "' style='background-color: " + player[i].color + "; left: " + left + "px; top: " + top + "px;'></div>";
-
-        //         if (left === 36) {
-        //             left = 0;
-        //             top = 41;
-        //         } else {
-        //             left += 12;
-        //         }
-        //     }
-        // }
-
-        // for (var i = 1; i < turn; i++) {
-        //     if (player[i].jail) {
-        //         document.getElementById("jailpositionholder").innerHTML += "<div class='cell-position' title='" + player[i].name + "' style='background-color: " + player[i].color + "; left: " + left + "px; top: " + top + "px;'></div>";
-        //         if (left === 36) {
-        //             left = 0;
-        //             top = 41;
-        //         } else
-        //             left += 12;
-        //     }
-        // }
-
-        // p = player[turn];
-
-        // if (p.jail) {
-        //     document.getElementById("jail").style.border = "1px solid " + p.color;
-        // } else {
-        //     document.getElementById("cell" + p.position).style.border = "1px solid " + p.color;
-        // }
-
-        // // for (var i=1; i <= pcount; i++) {
-        // // document.getElementById("enlarge"+player[i].position+"token").innerHTML+="<img src='"+tokenArray[i].src+"' height='30' width='30' />";
-        // // }
-
+        //
+        this.props.dispatch(gameActions.)
     }
 
 
@@ -193,19 +120,17 @@ class ControlBoard extends Component {
     }
 
 
-    rollDice = () =>{
-
-   
+    rollDice = () => {
         let dice = this.rollDiceAction();
         this.props.dispatch(gameActions.rollDice(dice));
 
-        
         let config = this.state;
      
         config.hide     = false;
         config.buy      = true;
         config.manage   = false;
-     
+
+        //берем отсюда текущего игрока
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
         let die1 = dice.first;
         let die2 = dice.second;
@@ -222,6 +147,7 @@ class ControlBoard extends Component {
         }
 
         if (die1 == die2 && !p.jail) {
+            //@view обновление костей
             // updateDice(die1, die2);
 
             if (config.doublecount < 3) {
@@ -254,13 +180,17 @@ class ControlBoard extends Component {
             config.doublecount = 0;
         }
 
+        //@view обновление позиции на
         this.updatePosition();
+        //@view обновление денег визуально
         this.updateMoney();
+        //окно обновления имущества игрока
         this.updateOwned();
 
         if (p.jail === true) {
             p.jailroll++;
 
+            //@view обновление костей
             // updateDice(die1, die2);
             if (die1 == die2) {
                 // document.getElementById("jail").style.border = "1px solid black";
