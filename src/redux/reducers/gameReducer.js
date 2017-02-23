@@ -25,7 +25,7 @@ export default function(state=initialState, action){
 		case SET_NEXT_BUTTON: 
 			return Object.assign({}, {
 				...state,
-			 	nextButton: action.nextButton
+			 	nextButton: Object.assign({},{...state.nextButton, ...action.nextButton})
 			})
 		case SET_LANDED: 
 			return Object.assign({}, {

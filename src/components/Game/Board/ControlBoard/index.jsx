@@ -3,6 +3,7 @@ import {Button} from 'react-bootstrap';
 import  * as playerActions  from 'redux/actions/playerRowActions';
 import  * as gameActions  from 'redux/actions/gameActions';
 import  * as popupActions  from 'redux/actions/popupActions';
+import  * as squareActions from 'redux/actions/squareActions';
 import { connect } from 'react-redux';
 import Dice from '../Dice';
 import {Player} from 'components/Game/Player';
@@ -38,11 +39,11 @@ class ControlBoard extends Component {
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
         if(p.money < 0 ) {   
             this.setState({showResignbutton: true});
-            let nextButton={...this.props.game.nextButton, show:false};
+            let nextButton={show:false};
             this.props.dispatch(gameActions.setNextButton(nextButton)); 
         } else {                
             this.setState({showResignbutton: false});
-            let nextButton={...this.props.game.nextButton, show:true};
+            let nextButton={show:true};
             this.props.dispatch(gameActions.setNextButton(nextButton));  
         }
 
@@ -60,6 +61,12 @@ class ControlBoard extends Component {
         //get current player
         let currentPlayer =
         //get number of players
+        this.props.dispatch(
+            squareActions.updateSquare(
+                this.props.playersConfig.players[this.props.game.currentPlayer].position, 
+                {owner:this.props.game.currentPlayer}
+            )
+        );
 
         //
         this.props.dispatch(gameActions.)
@@ -67,7 +74,114 @@ class ControlBoard extends Component {
 
 
     updateOwned = () => {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+        console.log(this.props);
+        // var checkedproperty = getCheckedProperty();
+        // $("#option").show();
+        // $("#owned").show();
 
+        // var HTML = "",
+        // firstproperty = -1;
+
+        // var mortgagetext = "",
+        // housetext = "";
+        // var sq;
+
+        // for (var i = 0; i < 40; i++){
+        //     sq = square[i];
+        //     if (sq.groupNumber && sq.owner === 0) {
+        //         $("#cell" + i + "owner").hide();
+        //     } else if (sq.groupNumber && sq.owner > 0) {
+        //         var currentCellOwner = document.getElementById("cell" + i + "owner");
+
+        //         currentCellOwner.style.display = "block";
+        //         currentCellOwner.style.backgroundColor = player[sq.owner].color;
+        //         currentCellOwner.title = player[sq.owner].name;
+        //     }
+        // }
+
+        // for (var i = 0; i < 40; i++) {
+        //     sq = square[i];
+        //     if (sq.owner == turn) {
+
+        //         mortgagetext = "";
+        //         if (sq.mortgage) {
+        //             mortgagetext = "title='Mortgaged' style='color: grey;'";
+        //         }
+
+        //         housetext = "";
+        //         if (sq.house >= 1 && sq.house <= 4) {
+        //             for (var x = 1; x <= sq.house; x++) {
+        //                 housetext += "<img src='images/house.png' alt='' title='House' class='house' />";
+        //             }
+        //         } else if (sq.hotel) {
+        //             housetext += "<img src='images/hotel.png' alt='' title='Hotel' class='hotel' />";
+        //         }
+
+        //         if (HTML === "") {
+        //             HTML += "<table>";
+        //             firstproperty = i;
+        //         }
+
+        //         HTML += "<tr class='property-cell-row'><td class='propertycellcheckbox'><input type='checkbox' id='propertycheckbox" + i + "' /></td><td class='propertycellcolor' style='background: " + sq.color + ";";
+
+        //         if (sq.groupNumber == 1 || sq.groupNumber == 2) {
+        //             HTML += " border: 1px solid grey; width: 18px;";
+        //         }
+
+        //         HTML += "' onmouseover='showdeed(" + i + ");' onmouseout='hidedeed();'></td><td class='propertycellname' " + mortgagetext + ">" + sq.name + housetext + "</td></tr>";
+        //     }
+        // }
+
+        // if (p.communityChestJailCard) {
+        //     if (HTML === "") {
+        //         firstproperty = 40;
+        //         HTML += "<table>";
+        //     }
+        //     HTML += "<tr class='property-cell-row'><td class='propertycellcheckbox'><input type='checkbox' id='propertycheckbox40' /></td><td class='propertycellcolor' style='background: white;'></td><td class='propertycellname'>Get Out of Jail Free Card</td></tr>";
+
+        // }
+        // if (p.chanceJailCard) {
+        //     if (HTML === "") {
+        //         firstproperty = 41;
+        //         HTML += "<table>";
+        //     }
+        //     HTML += "<tr class='property-cell-row'><td class='propertycellcheckbox'><input type='checkbox' id='propertycheckbox41' /></td><td class='propertycellcolor' style='background: white;'></td><td class='propertycellname'>Get Out of Jail Free Card</td></tr>";
+        // }
+
+        // if (HTML === "") {
+        //     HTML = p.name + ", you don't have any properties.";
+        //     $("#option").hide();
+        // } else {
+        //     HTML += "</table>";
+        // }
+
+        // document.getElementById("owned").innerHTML = HTML;
+
+        // // Select previously selected property.
+        // if (checkedproperty > -1 && document.getElementById("propertycheckbox" + checkedproperty)) {
+        //     document.getElementById("propertycheckbox" + checkedproperty).checked = true;
+        // } else if (firstproperty > -1) {
+        //     document.getElementById("propertycheckbox" + firstproperty).checked = true;
+        // }
+        // $(".property-cell-row").click(function() {
+        //     var row = this;
+
+        //     // Toggle check the current checkbox.
+        //     $(this).find(".propertycellcheckbox > input").prop("checked", function(index, val) {
+        //         return !val;
+        //     });
+
+        //     // Set all other checkboxes to false.
+        //     $(".propertycellcheckbox > input").prop("checked", function(index, val) {
+        //         if (!$.contains(row, this)) {
+        //             return false;
+        //         }
+        //     });
+
+        //     updateOption();
+        // });
+        // updateOption();
     }
 
 
@@ -271,10 +385,22 @@ class ControlBoard extends Component {
                     {this.props.game.landed.text}    
                 </div>
             );
+
+        let nextButton;
+
+        console.log(this.props.game)
+        if(this.props.game.nextButton.show)
+            nextButton = (
+                <Button title={this.props.game.nextButton.title} onClick={function(){console.log('clicked');}}>
+                    {this.props.game.nextButton.text}
+                </Button>
+            );
+
         return (
             <div>
                 <Alert />
                 {landed}
+                {nextButton}
                 <Dice diceNumber={this.props.game.dice.first}/>
                 <Dice diceNumber={this.props.game.dice.second}/>
                 <table>
