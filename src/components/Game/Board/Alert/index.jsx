@@ -9,7 +9,9 @@ class Alert extends Component{
 
     render() {
         let lines = this.props.gameLog.map((e) => (<div>{e}</div>));
-        return <div>{lines}</div>
+        return <div id="alert">
+            {lines}
+            </div>
     }
 }
 

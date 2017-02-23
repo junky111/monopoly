@@ -20,8 +20,8 @@ export default function(state=initialState, action){
 				dice: action.dice
 			});
 		case ADD_ALERT:
-			state.gameLog.push(action.message);
-			return Object.assign({},{...state});
+				state.gameLog.unshift(action.message);
+				return Object.assign({},{...state});
 		case SET_NEXT_BUTTON: 
 			return Object.assign({}, {
 				...state,
@@ -56,7 +56,6 @@ export default function(state=initialState, action){
 			    		Object.assign({}, action.playerToSquare)
   					]
 				});
-		
 		default:
 			return state;
 	}
