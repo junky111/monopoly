@@ -241,7 +241,26 @@ class ControlBoard extends Component {
     }
 
     buy = () => {
+        console.log('buy')
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+        let s = this.props.squareConfig.squares[p.position];
+        let cost = s.price;
 
+        if (p.money >= cost) {
+            p.pay(cost, 0);
+
+            s.owner = this.props.game.currentPlayer;
+            this.updateMoney();
+            this.addAlert(p.name + " bought " + s.name + " for " + s.pricetext + ".");
+
+            this.updateOwned();
+
+            this.props.dispatch(gameActions.setLanded({text:"",show:false}));
+            this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+
+        } else {
+            this.popup("<p>" + p.name + ", you need $" + (s.price - p.money) + " more to buy " + s.name + ".</p>");
+        }
     }
 
     land = (increasedRent) => {
@@ -273,7 +292,7 @@ class ControlBoard extends Component {
                     linkValue:s.name,
                     value:"Buy ($" + s.price + ")",
                     title:'Buy " + s.name + " for " + s.pricetext + ".',
-                    onclick:()=>this.buy(),
+                    onclick:()=>this.buy,
                     component:true
                 }));
             }

@@ -10,12 +10,10 @@ class Landed extends Component {
     }
 
     render() {
-console.log('Landed props', this.props);
-
         let result;
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
         let s = this.props.squareConfig.squares[p.position];
-        console.log('p', p);
+
         if(!this.props.component) {
             result = <div>{this.props.text}</div>
         } else {
