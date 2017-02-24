@@ -59,24 +59,29 @@ class ControlBoard extends Component {
     }
 
     updateCurrentPlayer = () => {
-        //get current player
-        let currentPlayer = 1;
-        //get number of players
-        this.props.dispatch(
-            squareActions.updateSquare(
-                this.props.playersConfig.players[this.props.game.currentPlayer].position, 
-                {owner:this.props.game.currentPlayer}
-            )
-        );
+        let currentPlayer = this.props.game.currentPlayer;
+        currentPlayer++;
+        if(currentPlayer >= this.props.setup.playersNumber) currentPlayer = 0;
+
+        this.props.dispatch(gameActions.updatePlayerCurrent(currentPlayer));
+        let nextButton={};
+        nextButton.show = false;
+        this.props.dispatch(gameActions.setNextButton(nextButton));
+
+        // this.props.dispatch(
+        //     squareActions.updateSquare(
+        //         this.props.playersConfig.players[this.props.game.currentPlayer].position,
+        //         {owner:this.props.game.currentPlayer}
+        //     )
+        // );
 
         //
-        //this.props.dispatch(gameActions.)
-    }
 
+    }
 
     updateOwned = () => {
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
-        console.log(this.props);
+        //console.log(this.props);
         // var checkedproperty = getCheckedProperty();
         // $("#option").show();
         // $("#owned").show();
@@ -234,6 +239,141 @@ class ControlBoard extends Component {
         }
     }
 
+    land = (increasedRent) => {
+        increasedRent = !!increasedRent; // Cast increasedRent to a boolean value. It is used for the ADVANCE TO THE NEAREST RAILROAD/UTILITY Chance cards.
+
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+        let s = this.props.squareConfig.squares[p.position];
+
+        console.log('this.props.squareConfig',this.props.squareConfig);
+
+        let dice = this.props.game.dice;
+        let die1 = dice.first;
+        let die2 = dice.second;
+
+        this.props.dispatch(gameActions.setLanded({text:"You landed on " + s.name + ".", show:true}));
+        this.addAlert(p.name + " landed on " + s.name + ".");
+
+        // Allow player to buy the property on which he landed.
+        if (s.price !== 0 && s.owner === 0) {
+
+            if (!p.human) {
+
+               /* if (p.AI.buyProperty(p.position)) {
+                    buy();
+                }*/
+            } else {
+                document.getElementById("landed").innerHTML = "<div>You landed on <a href='javascript:void(0);' onmouseover='showdeed(" + p.position + ");' onmouseout='hidedeed();' class='statscellcolor'>" + s.name + "</a>.<input type='button' onclick='buy();' value='Buy ($" + s.price + ")' title='Buy " + s.name + " for " + s.pricetext + ".'/></div>";
+            }
+
+
+            game.addPropertyToAuctionQueue(p.position);
+        }
+
+        // Collect rent
+        if (s.owner !== 0 && s.owner != turn && !s.mortgage) {
+            var groupowned = true;
+            var rent;
+
+            // Railroads
+            if (p.position == 5 || p.position == 15 || p.position == 25 || p.position == 35) {
+                if (increasedRent) {
+                    rent = 25;
+                } else {
+                    rent = 12.5;
+                }
+
+                if (s.owner == square[5].owner) {
+                    rent *= 2;
+                }
+                if (s.owner == square[15].owner) {
+                    rent *= 2;
+                }
+                if (s.owner == square[25].owner) {
+                    rent *= 2;
+                }
+                if (s.owner == square[35].owner) {
+                    rent *= 2;
+                }
+
+            } else if (p.position === 12) {
+                if (increasedRent || square[28].owner == s.owner) {
+                    rent = (die1 + die2) * 10;
+                } else {
+                    rent = (die1 + die2) * 4;
+                }
+
+            } else if (p.position === 28) {
+                if (increasedRent || square[12].owner == s.owner) {
+                    rent = (die1 + die2) * 10;
+                } else {
+                    rent = (die1 + die2) * 4;
+                }
+
+            } else {
+
+                for (var i = 0; i < 40; i++) {
+                    sq = square[i];
+                    if (sq.groupNumber == s.groupNumber && sq.owner != s.owner) {
+                        groupowned = false;
+                    }
+                }
+
+                if (!groupowned) {
+                    rent = s.baserent;
+                } else {
+                    if (s.house === 0) {
+                        rent = s.baserent * 2;
+                    } else {
+                        rent = s["rent" + s.house];
+                    }
+                }
+            }
+
+            this.addAlert(p.name + " paid $" + rent + " rent to " + player[s.owner].name + ".");
+            p.pay(rent, s.owner);
+            player[s.owner].money += rent;
+
+            document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + player[s.owner].name + " collected $" + rent + " rent.";
+        } else if (s.owner > 0 && s.owner != turn && s.mortgage) {
+            document.getElementById("landed").innerHTML = "You landed on " + s.name + ". Property is mortgaged; no rent was collected.";
+        }
+
+        // City Tax
+        if (p.position === 4) {
+            this.citytax();
+        }
+
+        // Go to jail. Go directly to Jail. Do not pass GO. Do not collect $200.
+        if (p.position === 30) {
+            this.updateMoney();
+            this.updatePosition();
+
+            if (p.human) {
+                this.popup("<div>Go to jail. Go directly to Jail. Do not pass GO. Do not collect $200.</div>", goToJail);
+            } else {
+                this.gotojail();
+            }
+
+            return;
+        }
+
+        // Luxury Tax
+        if (p.position === 38) {
+            this.luxurytax();
+        }
+
+        this.updateMoney();
+        this.updatePosition();
+        this.updateOwned();
+
+        if (!p.human) {
+            //popup(p.AI.alertList, chanceCommunityChest);
+            //p.AI.alertList = "";
+        } else {
+            chanceCommunityChest();
+        }
+    }
 
     rollDice = () => {
         let dice = this.rollDiceAction();
@@ -247,6 +387,7 @@ class ControlBoard extends Component {
 
         //берем отсюда текущего игрока
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+
         let die1 = dice.first;
         let die2 = dice.second;
 
@@ -264,6 +405,8 @@ class ControlBoard extends Component {
         if (die1 == die2 && !p.jail) {
             //@view обновление костей
             // updateDice(die1, die2);
+            let dice = this.rollDiceAction();
+            this.props.dispatch(gameActions.rollDice(dice));
 
             if (config.doublecount < 3) {
                 nextButton.text = "Roll again";
@@ -295,8 +438,6 @@ class ControlBoard extends Component {
             config.doublecount = 0;
         }
 
-        //@view обновление позиции на
-        this.updatePosition();
         //@view обновление денег визуально
         this.updateMoney();
         //окно обновления имущества игрока
@@ -321,7 +462,7 @@ class ControlBoard extends Component {
 
                 this.addAlert(p.name + " rolled doubles to get out of jail.");
 
-                land();
+                this.land();
             } else {
                 if (p.jailroll === 3) {
 
@@ -367,8 +508,12 @@ class ControlBoard extends Component {
                 this.addAlert(p.name + " collected a $200 salary for passing GO.");
             }
 
-            // this.land();
+            this.land();
         }
+
+        //обновление позиции чувака
+        this.updatePosition();
+
         this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
 
 
@@ -378,7 +523,6 @@ class ControlBoard extends Component {
 
 
     render() {
-
         let landed;
         if(this.props.game.landed.show)
             landed = (
@@ -388,13 +532,15 @@ class ControlBoard extends Component {
             );
 
         let nextButton;
-
-        console.log(this.props.playersConfig)
         if(this.props.game.nextButton.show)
             nextButton = (
-                <Button title={this.props.game.nextButton.title} onClick={function(){console.log('clicked');}}>
+                <Button title={this.props.game.nextButton.title} onClick={()=>this.updateCurrentPlayer()}>
                     {this.props.game.nextButton.text}
                 </Button>
+            );
+        else
+            nextButton = (
+                <Button type="button" className="btn btn-info" onClick={this.rollDice}>Roll dice</Button>
             );
 
         return (
@@ -403,7 +549,7 @@ class ControlBoard extends Component {
                 <Alert />
                 <TradeModal/>
                 {landed}
-                {nextButton}
+                {/*nextButton*/}
                 <Dice diceNumber={this.props.game.dice.first}/>
                 <Dice diceNumber={this.props.game.dice.second}/>
                 <table>
@@ -415,7 +561,7 @@ class ControlBoard extends Component {
                     </tbody>
                 </table>
                 <Popup />
-                <Button type="button" className="btn btn-info" onClick={this.rollDice}>Roll dice</Button>
+                {nextButton}
             </div>
         );
     }
@@ -432,6 +578,7 @@ function mapStateToProps(state) {
                 game            : state.gameFunctionality,
                 popupConfig     : state.popupConfig,
                 trade           : state.trade
+                setup           : state.setup
     };
 }
 

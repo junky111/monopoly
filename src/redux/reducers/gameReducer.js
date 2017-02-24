@@ -1,4 +1,4 @@
-import { ROLL_DICE, ADD_ALERT, SET_NEXT_BUTTON, SET_LANDED, UPDATE_P_S, UPDATE_P_C } from '../actions/gameActions';
+import { ROLL_DICE, ADD_ALERT, SET_NEXT_BUTTON, SET_LANDED, UPDATE_P_S, UPDATE_P_C, SET_P_S } from '../actions/gameActions';
 
 
 const initialState = { 
@@ -35,31 +35,56 @@ export default function(state=initialState, action){
 			 	landed: action.landed
 			})
 		case UPDATE_P_C:
-			return Object.assign({}, {
-				...state,
-				currentPlayer: action.currentPlayer
-			})
+            state.currentPlayer = action.currentPlayer;
+			return Object.assign({}, {...state})
+		case SET_P_S:
+			if(state.playerToSquare.length < 1) {
+                let players = [];
+                for (let i = 0; i < action.playerToSquare.players.length; i++) {
+                    players.push({
+                        player: i,
+                        square: 0
+                    })
+                }
+                return Object.assign({}, {
+                    ...state,
+                    playerToSquare: players
+                })
+            }
+            return state;
 		case UPDATE_P_S: 
 			let playerToSquare = state.playerToSquare;
 			let index=-1;
-			for(let i in playerToSquare){
-				if(playerToSquare[i].player==action.playerToSquare.player)
-					index=i;
+			let arr = [];
+			for(let i in playerToSquare) {
+
+				if(playerToSquare[i].player == action.playerToSquare.player) {
+                    index = i;
+                    arr[i] = Object.assign({},action.playerToSquare)
+                } else {
+                    arr[i] = Object.assign({},playerToSquare[i])
+                }
 			}
-			if(index < playerToSquare.length-1)
+
+            if(index == -1) {
+                state.playerToSquare.push(action.playerToSquare);
+                return Object.assign({}, {...state});
+			} else if(index < playerToSquare.length-1) {
+                //let lastPart = state.playerToSquare.slice(index + 1);
+
+                return Object.assign({}, {
+                    ...state,
+                    playerToSquare: Object.assign([], arr)
+                        /*...state.playerToSquare.slice(0, index),
+                        Object.assign({}, action.playerToSquare),
+                        ...lastPart*/
+                    //]
+                });
+            } else
 				return  Object.assign({},{
 					...state,
-					playerToSquare:[	
-						...state.playerToSquare.slice(0, index-1),
-			    		Object.assign({}, action.playerToSquare),
-			    		...state.playerToSquare.slice(index + 1)
-  					]
-				});
-			else 
-				return  Object.assign({},{
-					...state,
-					playerToSquare:[	
-						...state.playerToSquare.slice(0, index-1),
+					playerToSquare:[
+						...state.playerToSquare.slice(0, index),
 			    		Object.assign({}, action.playerToSquare)
   					]
 				});
