@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import {Button} from 'react-bootstrap';
+import {Button, Col, Row, Tabs, Tab} from 'react-bootstrap';
 import  * as playerActions  from 'redux/actions/playerRowActions';
 import  * as gameActions  from 'redux/actions/gameActions';
 import  * as popupActions  from 'redux/actions/popupActions';
@@ -587,6 +587,10 @@ class ControlBoard extends Component {
         this.setState(config);
     }   
 
+    //select tab function
+    handleSelect = (key) => {
+        if(key === 3) this.props.dispatch(tradeActions.showWindow())
+    }
 
     render() {
         let landed;
@@ -613,23 +617,38 @@ class ControlBoard extends Component {
             );
 
         return (
-            <div>
-                <Button onClick={()=>this.props.dispatch(tradeActions.showWindow())}>Trade</Button>
-                <Alert />
-                {/*<TradeModal/>*/}
-                {landed}
-                {/*nextButton*/}
-                <Dice diceNumber={this.props.game.dice.first}/>
-                <Dice diceNumber={this.props.game.dice.second}/>
-                <table>
-                    <tbody>  
-                        <Player 
-                            index={this.props.game.currentPlayer} 
-                            player={this.props.playersConfig.players[this.props.game.currentPlayer]}
-                        />
-                    </tbody>
-                </table>
-                <Popup />
+            <div className="container" style={{maxWidth:"460px"}}>
+                <Row>
+                    <Col md={9}>
+                        <Tabs id="controller-tabs" activeKey={this.state.key} onSelect={this.handleSelect}>
+                            <Tab eventKey={1} title="Buy">
+                                <Alert />
+                                {/*<TradeModal/>*/}
+                                {landed}
+                            </Tab>
+                            <Tab eventKey={2} title="Manage">
+                                Manage
+                            </Tab>
+                            <Tab eventKey={3} title="Trade"  onEnter={()=>this.props.dispatch(tradeActions.showWindow())}>
+                                <TradeModal/>
+                            </Tab>
+                            {/*nextButton*/}
+                        </Tabs>
+                    </Col>
+                    <Col md={3}>
+                        <table>
+                            <tbody>
+                                <Player
+                                    index={this.props.game.currentPlayer}
+                                    player={this.props.playersConfig.players[this.props.game.currentPlayer]}
+                                />
+                            </tbody>
+                        </table>
+                        <Dice diceNumber={this.props.game.dice.first}/>
+                        <Dice diceNumber={this.props.game.dice.second}/>
+                        <Popup />
+                    </Col>
+                </Row>
                 {nextButton}
             </div>
         );

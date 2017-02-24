@@ -9,6 +9,7 @@ export const SET_ACCEPT_MODE 	= 'SET_ACCEPT_MODE';
 
 
 export function showWindow(){
+	console.log('show trade window');
 	return { type: SHOW_WINDOW }
 }
 

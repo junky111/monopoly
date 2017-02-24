@@ -43,11 +43,13 @@ class TradeModal extends Component{
                 )
     	}
 
-    	let playerToOwned = this.props.game.playerToOwned.filter(item=>item.player==this.props.game.currentPlayer);
-    	if(playerToOwned.length>0) playerToOwned=playerToOwned[0];
+        let cardForTrade = [];
+    	if(this.props.game.playerToOwned) {
+            let playerToOwned = this.props.game.playerToOwned.filter(item => item.player == this.props.game.currentPlayer);
+            if (playerToOwned.length > 0) playerToOwned = playerToOwned[0];
 
-    	let cardForTrade = [];
-    	cardForTrade=playerToOwned.owned.map(owned=>this.props.squareConfig.squares[owned]);
+            cardForTrade = playerToOwned.owned.map(owned => this.props.squareConfig.squares[owned]);
+        }
 
     	let cardUI=cardForTrade.map(card => 
     		(
