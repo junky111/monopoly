@@ -265,6 +265,23 @@ class ControlBoard extends Component {
         }
     }
 
+    //@todo version
+    citytax() {
+        this.addAlert(this.props.playersConfig.players[this.props.game.currentPlayer].name + " paid $200 for landing on City Tax.");
+        this.props.playersConfig.players[this.props.game.currentPlayer].pay(200, 0);
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: this.props.playersConfig.players[this.props.game.currentPlayer]}));
+
+        this.props.dispatch(gameActions.setLanded({text:"You landed on City Tax. Pay $200.", show:true}));
+    }
+
+    //@todo version
+    luxurytax() {
+        this.addAlert(this.props.playersConfig.players[this.props.game.currentPlayer].name + " paid $100 for landing on Luxury Tax.");
+        this.props.playersConfig.players[this.props.game.currentPlayer].pay(100, 0);
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: this.props.playersConfig.players[this.props.game.currentPlayer]}));
+        this.props.dispatch(gameActions.setLanded({text:"You landed on Luxury Tax. Pay $100.", show:true}));
+    }
+
     land = (increasedRent) => {
         increasedRent = !!increasedRent; // Cast increasedRent to a boolean value. It is used for the ADVANCE TO THE NEAREST RAILROAD/UTILITY Chance cards.
 
@@ -275,9 +292,9 @@ class ControlBoard extends Component {
         // console.log('Players',this.props.playersConfig.players);
         //bougth squares
         //@debug
-        for (let sqc in this.props.squareConfig.squares) {
-            if(this.props.squareConfig.squares[sqc].owner >-1) console.log('Square Own', this.props.squareConfig.squares[sqc]);
-        }
+        // for (let sqc in this.props.squareConfig.squares) {
+        //     if(this.props.squareConfig.squares[sqc].owner >-1) console.log('Square Own', this.props.squareConfig.squares[sqc]);
+        // }
 
         // console.log('land p',p);
         // console.log('land s',s);
@@ -382,14 +399,14 @@ class ControlBoard extends Component {
                 text:"You landed on " + s.name + ". " +this.props.playersConfig.players[s.owner].name + " collected $" + rent + " rent.", show:true,
             }));
         } else if (s.owner == -1 && s.owner != this.props.game.currentPlayer && s.mortgage) {
-            //@todo
-            //document.getElementById("landed").innerHTML = "You landed on " + s.name + ". Property is mortgaged; no rent was collected.";
+            this.props.dispatch(gameActions.setLanded({
+                text:"You landed on " + s.name + ". Property is mortgaged; no rent was collected.", show:true,
+            }));
         }
 
         // City Tax
         if (p.position === 4) {
-            //@todo
-            //this.citytax();
+            this.citytax();
         }
 
         // Go to jail. Go directly to Jail. Do not pass GO. Do not collect $200.
@@ -408,8 +425,7 @@ class ControlBoard extends Component {
 
         // Luxury Tax
         if (p.position === 38) {
-            //@todo
-            // this.luxurytax();
+            this.luxurytax();
         }
 
         this.updateMoney();

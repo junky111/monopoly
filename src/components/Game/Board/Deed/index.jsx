@@ -10,10 +10,12 @@ class Deed extends Component {
     }
 
     //different monopoly versions
+    //@todo version
     utiltext() {
         return '    If one "Utility" is owned rent is 4 times amount shown on dice.<br /><br />    If both "Utilitys" are owned rent is 10 times amount shown on dice.';
     }
 
+    //@todo version
     transtext() {
         return 	'<div style={{fontSize: "14px", line-height: "1.5"}}>Rent<span style={{float: "right"}}>$25.</span><br />If 2 Railroads are owned<span style={{float: "right"}}>50.</span><br />If 3     "     "     "<span style={{float: "right"}}>100.</span><br />If 4     "     "     "<span style={{float: "right"}}>200.</span></div>';
     }
@@ -22,7 +24,7 @@ class Deed extends Component {
         // console.log('Deed props', this.props);
 
         const cardData = (
-            <Popover title="">
+            <Popover id="popover-deed">
                 <div id="deed" style={{display: "none;", top: "426px;", left: "467px;"}}>
                     {(() => { if(!this.props.square.mortgage && this.props.square.groupNumber >=3) { return <div id="deed-normal" style={{display: "block;"}}>
                         <div id="deed-header" style={{backgroundColor: this.props.square.color}}>
