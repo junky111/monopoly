@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ecd7e3c4-a123-4eee-ad1d-a075346d3dc6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx" afterPath="$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/Board/Landed/index.jsx" afterPath="$PROJECT_DIR$/src/components/Game/Board/Landed/index.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/redux/reducers/entities/Player.js" afterPath="$PROJECT_DIR$/src/redux/reducers/entities/Player.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -57,8 +55,8 @@
       <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="258" column="124" lean-forward="false" selection-start-line="258" selection-start-column="124" selection-end-line="258" selection-end-column="124" />
+            <state relative-caret-position="347">
+              <caret line="297" column="20" lean-forward="true" selection-start-line="297" selection-start-column="20" selection-end-line="297" selection-end-column="20" />
               <folding>
                 <element signature="e#0#52#0" expanded="true" />
                 <element signature="e#2817#7458#0" expanded="false" />
@@ -603,12 +601,12 @@
       <workItem from="1487843034773" duration="29008000" />
       <workItem from="1487918470962" duration="47000" />
       <workItem from="1487925913930" duration="2018000" />
-      <workItem from="1487920830455" duration="9467000" />
+      <workItem from="1487920830455" duration="9934000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56206000" />
+    <option name="totallyTimeSpent" value="56673000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1333" y="52" width="1040" height="998" extended-state="0" />
@@ -1034,8 +1032,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="258" column="124" lean-forward="false" selection-start-line="258" selection-start-column="124" selection-end-line="258" selection-end-column="124" />
+        <state relative-caret-position="347">
+          <caret line="297" column="20" lean-forward="true" selection-start-line="297" selection-start-column="20" selection-end-line="297" selection-end-column="20" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
             <element signature="e#2817#7458#0" expanded="false" />

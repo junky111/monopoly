@@ -267,7 +267,8 @@ class ControlBoard extends Component {
         increasedRent = !!increasedRent; // Cast increasedRent to a boolean value. It is used for the ADVANCE TO THE NEAREST RAILROAD/UTILITY Chance cards.
 
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
-        let s = this.props.squareConfig.squares[p.position];
+        let square = this.props.squareConfig.squares;
+        let s = square[p.position];
 
         console.log('this.props.squareConfig',this.props.squareConfig);
 
@@ -297,14 +298,14 @@ class ControlBoard extends Component {
                 }));
             }
 
-//@todo
+//@todo auction - later
             //game.addPropertyToAuctionQueue(p.position);
         }
 
         // Collect rent
         if (s.owner !== 0 && s.owner != turn && !s.mortgage) {
-            var groupowned = true;
-            var rent;
+            let groupowned = true;
+            let rent;
 
             // Railroads
             if (p.position == 5 || p.position == 15 || p.position == 25 || p.position == 35) {
