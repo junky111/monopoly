@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import {Popover, OverlayTrigger, Button} from 'react-bootstrap';
-import { Link } from 'react-router';
 import Deed from '../Deed';
 
 class Landed extends Component {

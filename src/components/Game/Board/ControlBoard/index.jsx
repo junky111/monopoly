@@ -6,12 +6,14 @@ import  * as popupActions  from 'redux/actions/popupActions';
 import  * as squareActions from 'redux/actions/squareActions';
 import  * as tradeActions from 'redux/actions/tradeActions';
 import { connect } from 'react-redux';
+
 import Dice from '../Dice';
 import {Player} from 'components/Game/Player';
 import Popup from '../Popup';
 import Alert from '../Alert';
 import TradeModal from '../TradeModal';
-import Landed from '../Landed'
+import Landed from '../Landed';
+import Manage from '../Manage';
 
 class ControlBoard extends Component {
 
@@ -589,7 +591,8 @@ class ControlBoard extends Component {
 
     //select tab function
     handleSelect = (key) => {
-        if(key === 3) this.props.dispatch(tradeActions.showWindow())
+        if(key === 3) this.props.dispatch(tradeActions.showWindow());
+        this.setState({key:key})
     }
 
     render() {
@@ -607,13 +610,13 @@ class ControlBoard extends Component {
         let nextButton;
         if(this.props.game.nextButton.show)
             nextButton = (
-                <Button title={this.props.game.nextButton.title} onClick={()=>this.updateCurrentPlayer()}>
+                <Button title={this.props.game.nextButton.title} onClick={()=>{this.updateCurrentPlayer();this.setState({key:1})}}>
                     {this.props.game.nextButton.text}
                 </Button>
             );
         else
             nextButton = (
-                <Button type="button" className="btn btn-info" onClick={this.rollDice}>Roll dice</Button>
+                <Button className="btn btn-info" onClick={()=>{this.rollDice();this.setState({key:1});}}>Roll dice</Button>
             );
 
         return (
@@ -627,7 +630,7 @@ class ControlBoard extends Component {
                                 {landed}
                             </Tab>
                             <Tab eventKey={2} title="Manage">
-                                Manage
+                                <Manage popup={this.popup}/>
                             </Tab>
                             <Tab eventKey={3} title="Trade"  onEnter={()=>this.props.dispatch(tradeActions.showWindow())}>
                                 <TradeModal/>

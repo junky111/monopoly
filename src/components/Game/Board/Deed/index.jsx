@@ -21,7 +21,7 @@ class Deed extends Component {
     }
 
     render() {
-        // console.log('Deed props', this.props);
+        console.log('Deed props', this.props);
 
         const cardData = (
             <Popover id="popover-deed">
