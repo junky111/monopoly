@@ -11,6 +11,7 @@ import {Player} from 'components/Game/Player';
 import Popup from '../Popup';
 import Alert from '../Alert';
 import TradeModal from '../TradeModal';
+import Landed from '../Landed'
 
 class ControlBoard extends Component {
 
@@ -239,6 +240,10 @@ class ControlBoard extends Component {
         }
     }
 
+    buy = () => {
+
+    }
+
     land = (increasedRent) => {
         increasedRent = !!increasedRent; // Cast increasedRent to a boolean value. It is used for the ADVANCE TO THE NEAREST RAILROAD/UTILITY Chance cards.
 
@@ -263,7 +268,14 @@ class ControlBoard extends Component {
                     buy();
                 }*/
             } else {
-                document.getElementById("landed").innerHTML = "<div>You landed on <a href='javascript:void(0);' onmouseover='showdeed(" + p.position + ");' onmouseout='hidedeed();' class='statscellcolor'>" + s.name + "</a>.<input type='button' onclick='buy();' value='Buy ($" + s.price + ")' title='Buy " + s.name + " for " + s.pricetext + ".'/></div>";
+                this.props.dispatch(gameActions.setLanded({
+                    text:"You landed on ", show:true,
+                    linkValue:s.name,
+                    value:"Buy ($" + s.price + ")",
+                    title:'Buy " + s.name + " for " + s.pricetext + ".',
+                    onclick:()=>this.buy(),
+                    component:true
+                }));
             }
 
 
@@ -526,9 +538,12 @@ class ControlBoard extends Component {
         let landed;
         if(this.props.game.landed.show)
             landed = (
-                <div id="landed" title={this.props.game.landed.title}>
+                <Landed
+                    {...this.props.game.landed}
+                />
+                /*<div id="landed" title={this.props.game.landed.title}>
                     {this.props.game.landed.text}    
-                </div>
+                </div>*/
             );
 
         let nextButton;
@@ -547,7 +562,7 @@ class ControlBoard extends Component {
             <div>
                 <Button onClick={()=>this.props.dispatch(tradeActions.showWindow())}>Trade</Button>
                 <Alert />
-                <TradeModal/>
+                {/*<TradeModal/>*/}
                 {landed}
                 {/*nextButton*/}
                 <Dice diceNumber={this.props.game.dice.first}/>
@@ -577,7 +592,7 @@ function mapStateToProps(state) {
                 squareConfig    : state.squareConfig,
                 game            : state.gameFunctionality,
                 popupConfig     : state.popupConfig,
-                trade           : state.trade
+                trade           : state.trade,
                 setup           : state.setup
     };
 }

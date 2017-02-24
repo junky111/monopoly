@@ -4,12 +4,13 @@ import { ROLL_DICE, ADD_ALERT, SET_NEXT_BUTTON, SET_LANDED, UPDATE_P_S, UPDATE_P
 const initialState = { 
 	playerToSquare: [],
 	//@todo rewrite
-	playerToOwned: [{player: 0, owned:[3,5,12]}],
+	// playerToOwned: [{player: 0, owned:[3,5,12]}],
+    // playerToOwned: [],
 	currentPlayer: 0,
 	dice: {},
 	gameLog:[],
 	nextButton:{title:'', text:'', show: false},
-	landed: {text:'', show: false}
+	landed: {text:'', show: false, component: false, linkValue:"", onclick:()=>null, value:"", title:""}
 };
 
 
