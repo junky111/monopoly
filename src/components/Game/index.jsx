@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import {Col} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import MoneyBar from './MoneyBar';
 import Board from './Board';
@@ -17,8 +18,12 @@ class Game extends Component {
     render() {
         return (
             <div>
-                <MoneyBar/>
-                <Board/>
+                <Col xs={11} md={10} style={{minWidth:"600px"}}>
+                    <Board/>
+                </Col>
+                <Col xs={1} md={2}>
+                    <MoneyBar/>
+                </Col>
             </div>
         );
     }

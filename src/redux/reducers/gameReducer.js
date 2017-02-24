@@ -53,24 +53,32 @@ export default function(state=initialState, action){
 		case UPDATE_P_S: 
 			let playerToSquare = state.playerToSquare;
 			let index=-1;
-			for(let i in playerToSquare){
-				if(playerToSquare[i].player==action.playerToSquare.player)
-					index=i;
+			let arr = [];
+			for(let i in playerToSquare) {
+
+				if(playerToSquare[i].player == action.playerToSquare.player) {
+                    index = i;
+                    arr[i] = Object.assign({},action.playerToSquare)
+                } else {
+                    arr[i] = Object.assign({},playerToSquare[i])
+                }
 			}
 
             if(index == -1) {
                 state.playerToSquare.push(action.playerToSquare);
                 return Object.assign({}, {...state});
-			} else if(index < playerToSquare.length-1)
-				return  Object.assign({},{
-					...state,
-					playerToSquare:[	
-						...state.playerToSquare.slice(0, index),
-			    		Object.assign({}, action.playerToSquare),
-			    		...state.playerToSquare.slice(index + 1)
-  					]
-				});
-			else 
+			} else if(index < playerToSquare.length-1) {
+                //let lastPart = state.playerToSquare.slice(index + 1);
+
+                return Object.assign({}, {
+                    ...state,
+                    playerToSquare: Object.assign([], arr)
+                        /*...state.playerToSquare.slice(0, index),
+                        Object.assign({}, action.playerToSquare),
+                        ...lastPart*/
+                    //]
+                });
+            } else
 				return  Object.assign({},{
 					...state,
 					playerToSquare:[
