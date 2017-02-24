@@ -104,8 +104,8 @@ class Board extends Component {
                         <Square {...sqRight}
                                 class="cell board-right"
                                 playerToSquare={playerToSquare1}  
-                                index={this.props.squareConfig.squares.length-i} 
-                                key={this.props.squareConfig.squares.length-i}/>
+                                index={this.props.squareConfig.squares.length-i+this.props.squareConfig.squares.length/4}
+                                key={this.props.squareConfig.squares.length-i+this.props.squareConfig.squares.length/4}/>
                 </tr>
             )
         }

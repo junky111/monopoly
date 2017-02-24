@@ -78,6 +78,41 @@ p {
     left: 0px;
     display: inline-block;
 }
+.cell-owner {
+    background-size: cover;
+    display: none;
+    position: absolute;
+}
+
+.board-top .cell-owner {
+    height: 15px;
+    left: 0px;
+    top: -25px;
+    width: 72px;
+
+}
+
+.board-bottom .cell-owner {
+    bottom: -25px;
+    height: 15px;
+    left: 0px;
+    width: 72px;
+}
+
+.board-left .cell-owner {
+    height: 68px;
+    left: -25px;
+    top: 0px;
+    width: 15px;
+
+}
+
+.board-right .cell-owner {
+    height: 68px;
+    right: -25px;
+    top: 0px;
+    width: 15px;
+}
 
 /*center control */
 #control {

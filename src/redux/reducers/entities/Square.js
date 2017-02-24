@@ -4,7 +4,7 @@ class Square {
 		this.name = name;
 		this.pricetext = pricetext;
 		this.color = color;
-		this.owner = 0;
+		this.owner = -1;
 		this.mortgage = false;
 		this.house = 0;
 		this.hotel = 0;

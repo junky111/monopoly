@@ -20,6 +20,34 @@ class PlayerSquare extends Component {
     }
 }
 
+class PlayerSquareOwner extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    componentWillReciveProps(newProps) {
+        if(this.props == newProps) {
+            console.log('update')
+            return false;
+        }
+    }
+
+    render() {
+        let s = this.props.squareConfig.squares[this.props.index];
+        let result = <div></div>;
+        if(s.owner > -1) {
+            console.log('owner',s,this.props.index);
+            result =  <div
+                id={"cell" + s.owner + "owner"}
+                className="cell-owner"
+                style={{display: "block", backgroundColor: this.props.playersConfig.players[s.owner].color.name.toLowerCase()}}
+                title={"Player " + s.owner}></div>
+        }
+
+        return result;
+    }
+}
+
 class Square extends Component {
 
     constructor(props) {
@@ -49,6 +77,7 @@ class Square extends Component {
                         <div>
                             {players}
                             <p>{this.props.name}</p>
+                            <PlayerSquareOwner  squareConfig={this.props.squareConfig} playersConfig={this.props.playersConfig} index={this.props.index}/>
                         </div>
                     </td>
                 </OverlayTrigger>
@@ -58,7 +87,8 @@ class Square extends Component {
 
 function mapStateToProps(state) {
     return {
-        playersConfig: state.playersConfig
+        playersConfig   : state.playersConfig,
+        squareConfig    : state.squareConfig,
     };
 }
 

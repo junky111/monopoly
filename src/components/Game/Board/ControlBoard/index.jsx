@@ -257,6 +257,8 @@ class ControlBoard extends Component {
 
             this.props.dispatch(gameActions.setLanded({text:"",show:false}));
             this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+            this.props.dispatch(squareActions.updateSquare(p.position, s)
+            );
 
         } else {
             this.popup("<p>" + p.name + ", you need $" + (s.price - p.money) + " more to buy " + s.name + ".</p>");
@@ -270,7 +272,15 @@ class ControlBoard extends Component {
         let square = this.props.squareConfig.squares;
         let s = square[p.position];
 
-        console.log('this.props.squareConfig',this.props.squareConfig);
+        // console.log('Players',this.props.playersConfig.players);
+        //bougth squares
+        //@debug
+        for (let sqc in this.props.squareConfig.squares) {
+            if(this.props.squareConfig.squares[sqc].owner >-1) console.log('Square Own', this.props.squareConfig.squares[sqc]);
+        }
+
+        // console.log('land p',p);
+        // console.log('land s',s);
 
         let dice = this.props.game.dice;
         let die1 = dice.first;
@@ -280,7 +290,7 @@ class ControlBoard extends Component {
         this.addAlert(p.name + " landed on " + s.name + ".");
 
         // Allow player to buy the property on which he landed.
-        if (s.price !== 0 && s.owner === 0) {
+        if (s.price !== 0 && s.owner === -1) {
 
             if (!p.human) {
 
@@ -303,7 +313,7 @@ class ControlBoard extends Component {
         }
 
         // Collect rent
-        if (s.owner !== 0 && s.owner != turn && !s.mortgage) {
+        if (s.owner > -1 && s.owner != this.props.game.currentPlayer && !s.mortgage) {
             let groupowned = true;
             let rent;
 
@@ -344,8 +354,8 @@ class ControlBoard extends Component {
 
             } else {
 
-                for (var i = 0; i < 40; i++) {
-                    sq = square[i];
+                for (let i = 0; i < 40; i++) {
+                    let sq = square[i];
                     if (sq.groupNumber == s.groupNumber && sq.owner != s.owner) {
                         groupowned = false;
                     }
@@ -362,14 +372,16 @@ class ControlBoard extends Component {
                 }
             }
 
-            this.addAlert(p.name + " paid $" + rent + " rent to " + player[s.owner].name + ".");
+            this.addAlert(p.name + " paid $" + rent + " rent to " + this.props.playersConfig.players[s.owner].name + ".");
             p.pay(rent, s.owner);
 
             ////@todo dispatch
-            //player[s.owner].money += rent;
-//@todo
-            //document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + player[s.owner].name + " collected $" + rent + " rent.";
-        } else if (s.owner > 0 && s.owner != turn && s.mortgage) {
+            this.props.playersConfig.players[s.owner].money += rent;
+            this.props.dispatch(playerActions.updatePlayer({playerNumber: s.owner, playerEntity: this.props.playersConfig.players[s.owner]}));
+            this.props.dispatch(gameActions.setLanded({
+                text:"You landed on " + s.name + ". " +this.props.playersConfig.players[s.owner].name + " collected $" + rent + " rent.", show:true,
+            }));
+        } else if (s.owner == -1 && s.owner != this.props.game.currentPlayer && s.mortgage) {
             //@todo
             //document.getElementById("landed").innerHTML = "You landed on " + s.name + ". Property is mortgaged; no rent was collected.";
         }

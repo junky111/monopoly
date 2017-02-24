@@ -8,7 +8,7 @@ const initialState = { squares: squares.map(square => new Square(square) ) };
 
 export default function(state=initialState, action){
 	switch (action.type) {
-		case UPDATE_SQUARE: 
+		case UPDATE_SQUARE:
 			return Object.assign({},{
 					...state,
 					squares:[	
