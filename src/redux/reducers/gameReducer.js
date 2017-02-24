@@ -30,7 +30,8 @@ export default function(state=initialState, action){
 				...state,
 			 	nextButton: Object.assign({},{...state.nextButton, ...action.nextButton})
 			})
-		case SET_LANDED: 
+		case SET_LANDED:
+			if(!action.landed.component) action.landed.component = false;
 			return Object.assign({}, {
 				...state,
 			 	landed: action.landed

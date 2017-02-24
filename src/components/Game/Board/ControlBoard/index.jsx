@@ -278,8 +278,8 @@ class ControlBoard extends Component {
                 }));
             }
 
-
-            game.addPropertyToAuctionQueue(p.position);
+//@todo
+            //game.addPropertyToAuctionQueue(p.position);
         }
 
         // Collect rent
@@ -344,16 +344,20 @@ class ControlBoard extends Component {
 
             this.addAlert(p.name + " paid $" + rent + " rent to " + player[s.owner].name + ".");
             p.pay(rent, s.owner);
-            player[s.owner].money += rent;
 
-            document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + player[s.owner].name + " collected $" + rent + " rent.";
+            ////@todo dispatch
+            //player[s.owner].money += rent;
+//@todo
+            //document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + player[s.owner].name + " collected $" + rent + " rent.";
         } else if (s.owner > 0 && s.owner != turn && s.mortgage) {
-            document.getElementById("landed").innerHTML = "You landed on " + s.name + ". Property is mortgaged; no rent was collected.";
+            //@todo
+            //document.getElementById("landed").innerHTML = "You landed on " + s.name + ". Property is mortgaged; no rent was collected.";
         }
 
         // City Tax
         if (p.position === 4) {
-            this.citytax();
+            //@todo
+            //this.citytax();
         }
 
         // Go to jail. Go directly to Jail. Do not pass GO. Do not collect $200.
@@ -372,7 +376,8 @@ class ControlBoard extends Component {
 
         // Luxury Tax
         if (p.position === 38) {
-            this.luxurytax();
+            //@todo
+            // this.luxurytax();
         }
 
         this.updateMoney();
@@ -383,7 +388,8 @@ class ControlBoard extends Component {
             //popup(p.AI.alertList, chanceCommunityChest);
             //p.AI.alertList = "";
         } else {
-            chanceCommunityChest();
+            //@todo
+            // chanceCommunityChest();
         }
     }
 

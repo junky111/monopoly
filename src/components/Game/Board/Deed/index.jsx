@@ -11,11 +11,11 @@ class Deed extends Component {
 
     //different monopoly versions
     utiltext() {
-        return '&nbsp;&nbsp;&nbsp;&nbsp;If one "Utility" is owned rent is 4 times amount shown on dice.<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;If both "Utilitys" are owned rent is 10 times amount shown on dice.';
+        return '    If one "Utility" is owned rent is 4 times amount shown on dice.<br /><br />    If both "Utilitys" are owned rent is 10 times amount shown on dice.';
     }
 
     transtext() {
-        return 	'<div style={{fontSize: "14px", line-height: "1.5"}}>Rent<span style={{float: "right"}}>$25.</span><br />If 2 Railroads are owned<span style={{float: "right"}}>50.</span><br />If 3 &nbsp; &nbsp; " &nbsp; &nbsp; " &nbsp; &nbsp; "<span style={{float: "right"}}>100.</span><br />If 4 &nbsp; &nbsp; " &nbsp; &nbsp; " &nbsp; &nbsp; "<span style={{float: "right"}}>200.</span></div>';
+        return 	'<div style={{fontSize: "14px", line-height: "1.5"}}>Rent<span style={{float: "right"}}>$25.</span><br />If 2 Railroads are owned<span style={{float: "right"}}>50.</span><br />If 3     "     "     "<span style={{float: "right"}}>100.</span><br />If 4     "     "     "<span style={{float: "right"}}>200.</span></div>';
     }
 
     render() {
@@ -24,20 +24,20 @@ class Deed extends Component {
         const cardData = (
             <Popover title="">
                 <div id="deed" style={{display: "none;", top: "426px;", left: "467px;"}}>
-                    <div id="deed-normal" style={{display: "block;"}}>
-                        <div id="deed-header" style={{backgroundColor: "rgb(139, 69, 19)"}}>
-                            <div style={{margin: "5px", fontSize: "11px"}}>T I T L E&nbsp;&nbsp;D E E D</div>
+                    {(() => { if(!this.props.square.mortgage && this.props.square.groupNumber >=3) { return <div id="deed-normal" style={{display: "block;"}}>
+                        <div id="deed-header" style={{backgroundColor: this.props.square.color}}>
+                            <div style={{margin: "5px", fontSize: "11px"}}>T I T L E  D E E D</div>
                             <div id="deed-name">{this.props.square.name}</div>
                         </div>
                         <table id="deed-table">
                             <tbody><tr>
                                 <td colspan="2">
-                                    RENT&nbsp;$<span id="deed-baserent">{this.props.square.baserent}</span>.
+                                    RENT $<span id="deed-baserent">{this.props.square.baserent}</span>.
                                 </td>
                             </tr>
                             <tr>
                                 <td style={{textAlign: "left"}}>With 1 House</td>
-                                <td style={{textAlign: "right"}}>$&nbsp;&nbsp;&nbsp;
+                                <td style={{textAlign: "right"}}>$   
                                     <span id="deed-rent1">{this.props.square.rent1}</span>.</td>
                             </tr>
                             <tr>
@@ -62,32 +62,32 @@ class Deed extends Component {
                                 </td>
                             </tr>
                             </tbody></table>
-                    </div>
-                    {() => { if(s.mortgage) return<div id="deed-mortgaged">
+                    </div>}})()}
+                    {(() => { if(this.props.square.mortgage) return<div id="deed-mortgaged">
                         <div id="deed-mortgaged-name">{this.props.square.name}</div>
                         <p>•</p>
                         <div>MORTGAGED</div>
                         <div> for $<span id="deed-mortgaged-mortgage">{this.props.square.price/2}</span></div>
                         <p>•</p>
                         <div style={{fontStyle: "italic", fontSize: "13px", margin: "10px"}}>Card must be turned this side up if property is mortgaged</div>
-                    </div>}}
+                    </div>})()}
 
-                    {() => { if(s.special) {
-                        let text = s.groupNumber == 2 ? this.utiltext() : '';
-                        text = s.groupNumber == 1 ? this.transtext() : text;
+                    {(() => { if(!this.props.square.mortgage && (this.props.square.groupNumber == 2 || this.props.square.groupNumber == 1)) {
+                        let text = this.props.square.groupNumber == 2 ? this.utiltext() : '';
+                        text = this.props.square.groupNumber == 1 ? this.transtext() : text;
                         return(<div id="deed-special">
                         <div id="deed-special-name">{this.props.square.name}</div>
-                        <div id="deed-special-text"><div style={{fontSize: "14px", lineHeight: "1.5"}}>{{text}}
+                        <div id="deed-special-text"><div style={{fontSize: "14px", lineHeight: "1.5"}}>{text}
                             <span style={{float: "right"}}>$25.
-                            </span><br/>If 2 Railroads are owned<span style="float: right;">50.
-                            </span><br/>If 3 &nbsp; &nbsp; " &nbsp; &nbsp; " &nbsp; &nbsp; "<span style={{float: "right"}}>100.
-                            </span><br/>If 4 &nbsp; &nbsp; " &nbsp; &nbsp; " &nbsp; &nbsp; "<span style={{float: "right"}}>200.
+                            </span><br/>If 2 Railroads are owned<span style={{float: "right"}}>50.
+                            </span><br/>If 3     "     "     "<span style={{float: "right"}}>100.
+                            </span><br/>If 4     "     "     "<span style={{float: "right"}}>200.
                             </span></div></div>
                         <div id="deed-special-footer">
                             Mortgage Value
                             <span style={{float: "right"}}>$<span id="deed-special-mortgage">{this.props.square.price/2}</span>.</span>
                         </div>
-                    </div>)}}}
+                    </div>)}})()}
                 </div>
             </Popover>
         );
