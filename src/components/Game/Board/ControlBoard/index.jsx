@@ -636,7 +636,10 @@ class ControlBoard extends Component {
                                     updateMoney={this.updateMoney}/>
                             </Tab>
                             <Tab eventKey={3} title="Trade"  onEnter={()=>this.props.dispatch(tradeActions.showWindow())}>
-                                <TradeModal/>
+                                <TradeModal
+                                    popup={this.popup}
+                                    addAlert={this.addAlert}
+                                />
                             </Tab>
                             {/*nextButton*/}
                         </Tabs>

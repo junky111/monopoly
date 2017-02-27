@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07df4cf0-88d4-4ca2-a149-c7e3fb0a99d5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/Board/Manage/index.jsx" afterPath="$PROJECT_DIR$/src/components/Game/Board/Manage/index.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx" afterPath="$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/Board/Square/index.jsx" afterPath="$PROJECT_DIR$/src/components/Game/Board/Square/index.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/Board/TradeModal/index.jsx" afterPath="$PROJECT_DIR$/src/components/Game/Board/TradeModal/index.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/squareConfig.js" afterPath="$PROJECT_DIR$/src/config/squareConfig.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/redux/actions/tradeActions.js" afterPath="$PROJECT_DIR$/src/redux/actions/tradeActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/redux/reducers/tradeReducer.js" afterPath="$PROJECT_DIR$/src/redux/reducers/tradeReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/redux/reducers/gameReducer.js" afterPath="$PROJECT_DIR$/src/redux/reducers/gameReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/redux/reducers/playerRowReducer.js" afterPath="$PROJECT_DIR$/src/redux/reducers/playerRowReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/redux/reducers/squareReducer.js" afterPath="$PROJECT_DIR$/src/redux/reducers/squareReducer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,15 +24,13 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1536">
-              <caret line="594" column="5" lean-forward="false" selection-start-line="594" selection-start-column="5" selection-end-line="594" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#52#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="435">
+              <caret line="628" column="40" lean-forward="true" selection-start-line="628" selection-start-column="40" selection-end-line="628" selection-end-column="40" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -40,8 +38,8 @@
       <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Game/Board/TradeModal/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="112" column="27" lean-forward="true" selection-start-line="112" selection-start-column="27" selection-end-line="112" selection-end-column="27" />
+            <state relative-caret-position="420">
+              <caret line="156" column="39" lean-forward="true" selection-start-line="156" selection-start-column="39" selection-end-line="156" selection-end-column="39" />
               <folding>
                 <element signature="e#0#52#0" expanded="true" />
                 <element signature="n#!!block;n#getData#0;n#TradeModal#0" expanded="false" />
@@ -50,11 +48,35 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Square/index.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="31" column="66" lean-forward="false" selection-start-line="31" selection-start-column="66" selection-end-line="31" selection-end-column="66" />
+              <folding>
+                <element signature="e#0#52#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="squareReducer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/redux/reducers/squareReducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="tradeActions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/redux/actions/tradeActions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" column="35" lean-forward="false" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="35" />
+            <state relative-caret-position="480">
+              <caret line="32" column="29" lean-forward="false" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -75,8 +97,8 @@
       <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Manage/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="711">
-              <caret line="307" column="24" lean-forward="true" selection-start-line="307" selection-start-column="8" selection-end-line="307" selection-end-column="24" />
+            <state relative-caret-position="480">
+              <caret line="189" column="5" lean-forward="true" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
               <folding>
                 <element signature="e#0#52#0" expanded="true" />
                 <element signature="n#!!block;n#componentWillReceiveProps#0;n#Manage#0" expanded="false" />
@@ -84,11 +106,6 @@
                 <element signature="e#1203#1240#0" expanded="false" />
                 <element signature="e#1809#2499#0" expanded="false" />
                 <element signature="e#2042#2079#0" expanded="false" />
-                <element signature="e#2526#3979#0" expanded="false" />
-                <element signature="e#2721#2860#0" expanded="false" />
-                <element signature="e#2754#2799#0" expanded="false" />
-                <element signature="e#2805#2850#0" expanded="false" />
-                <element signature="e#2866#3973#0" expanded="false" />
                 <element signature="e#2909#3143#0" expanded="false" />
                 <element signature="e#2979#3030#0" expanded="false" />
                 <element signature="e#3036#3129#0" expanded="false" />
@@ -139,11 +156,6 @@
                 <element signature="e#11730#12076#0" expanded="false" />
                 <element signature="e#12426#12536#0" expanded="false" />
                 <element signature="e#12462#12526#0" expanded="false" />
-                <element signature="e#12832#13343#0" expanded="false" />
-                <element signature="e#12885#13258#0" expanded="false" />
-                <element signature="e#12914#13240#0" expanded="false" />
-                <element signature="e#12954#13203#0" expanded="false" />
-                <element signature="e#13264#13329#0" expanded="false" />
                 <element signature="e#13388#13403#0" expanded="false" />
                 <element signature="e#14196#14347#0" expanded="false" />
               </folding>
@@ -173,6 +185,7 @@
       <find>handleBidOneChange</find>
       <find>buttons</find>
       <find>cardUI</find>
+      <find>money</find>
     </findStrings>
     <replaceStrings>
       <replace>let</replace>
@@ -191,14 +204,17 @@
         <option value="$PROJECT_DIR$/src/components/Game/Board/Popup/index.jsx" />
         <option value="$PROJECT_DIR$/src/redux/reducers/entities/Player.js" />
         <option value="$PROJECT_DIR$/src/components/Game/Board/Deed/index.jsx" />
-        <option value="$PROJECT_DIR$/src/redux/reducers/squareReducer.js" />
         <option value="$PROJECT_DIR$/src/redux/reducers/entities/Square.js" />
         <option value="$PROJECT_DIR$/src/components/Game/Board/Manage/index.jsx" />
         <option value="$PROJECT_DIR$/src/config/squareConfig.js" />
-        <option value="$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx" />
         <option value="$PROJECT_DIR$/src/redux/actions/tradeActions.js" />
         <option value="$PROJECT_DIR$/src/redux/reducers/tradeReducer.js" />
+        <option value="$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Game/Board/Square/index.jsx" />
         <option value="$PROJECT_DIR$/src/components/Game/Board/TradeModal/index.jsx" />
+        <option value="$PROJECT_DIR$/src/redux/reducers/gameReducer.js" />
+        <option value="$PROJECT_DIR$/src/redux/reducers/playerRowReducer.js" />
+        <option value="$PROJECT_DIR$/src/redux/reducers/squareReducer.js" />
       </list>
     </option>
   </component>
@@ -234,8 +250,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -464,6 +478,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Square" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monopoly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monopoly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Board" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Manage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -560,6 +604,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -606,6 +652,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -640,11 +692,12 @@
       <option name="presentableId" value="Default" />
       <updated>1488183192173</updated>
       <workItem from="1488183197377" duration="26637000" />
+      <workItem from="1488222117801" duration="4325000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26637000" />
+    <option name="totallyTimeSpent" value="30962000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1333" y="24" width="1867" height="1056" extended-state="6" />
@@ -652,20 +705,20 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17407605" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959828" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959828" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925585" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -680,241 +733,21 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/redux/actions/popupActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Popup/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="64" column="18" lean-forward="true" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#52#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/playerConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/reducers/popupReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/chanceCardConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/reducers/entities/Player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/actions/gameActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/squareConfigMain.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Square/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-405">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/Setup/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/bundle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="30" column="5960" lean-forward="false" selection-start-line="30" selection-start-column="5960" selection-end-line="30" selection-end-column="5960" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="48" lean-forward="true" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/reducers/setupReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/reducers/entities/Square.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/reducers/squareReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="68" lean-forward="false" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/Setup/ReduxSetup.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/actions/playerRowActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="34" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/reducers/playerRowReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="53" column="34" lean-forward="false" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/configureStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/reducers/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="7" lean-forward="false" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="20" column="30" lean-forward="false" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/reducers/gameReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-90">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/squareConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="72" lean-forward="false" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Deed/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="22" column="14" lean-forward="false" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-            <marker date="1488189103123" expanded="true" signature="616:627" ph="..." />
-            <marker date="1488189103123" expanded="true" signature="673:681" ph="..." />
-            <marker date="1488189103123" expanded="true" signature="745:753" ph="..." />
-            <marker date="1488189103123" expanded="true" signature="814:822" ph="..." />
-            <marker date="1488189103123" expanded="true" signature="884:892" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Landed/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/actions/squareActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1536">
+        <state relative-caret-position="8910">
           <caret line="594" column="5" lean-forward="false" selection-start-line="594" selection-start-column="5" selection-end-line="594" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/TradeModal/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
+            <element signature="n#!!block;n#getData#0;n#TradeModal#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -929,7 +762,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/redux/reducers/tradeReducer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
+        <state relative-caret-position="480">
           <caret line="36" column="54" lean-forward="false" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="54" />
           <folding>
             <element signature="e#0#211#0" expanded="true" />
@@ -939,7 +772,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Manage/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="711">
+        <state relative-caret-position="885">
           <caret line="307" column="24" lean-forward="true" selection-start-line="307" selection-start-column="8" selection-end-line="307" selection-end-column="24" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
@@ -948,11 +781,6 @@
             <element signature="e#1203#1240#0" expanded="false" />
             <element signature="e#1809#2499#0" expanded="false" />
             <element signature="e#2042#2079#0" expanded="false" />
-            <element signature="e#2526#3979#0" expanded="false" />
-            <element signature="e#2721#2860#0" expanded="false" />
-            <element signature="e#2754#2799#0" expanded="false" />
-            <element signature="e#2805#2850#0" expanded="false" />
-            <element signature="e#2866#3973#0" expanded="false" />
             <element signature="e#2909#3143#0" expanded="false" />
             <element signature="e#2979#3030#0" expanded="false" />
             <element signature="e#3036#3129#0" expanded="false" />
@@ -1003,21 +831,310 @@
             <element signature="e#11730#12076#0" expanded="false" />
             <element signature="e#12426#12536#0" expanded="false" />
             <element signature="e#12462#12526#0" expanded="false" />
-            <element signature="e#12832#13343#0" expanded="false" />
-            <element signature="e#12885#13258#0" expanded="false" />
-            <element signature="e#12914#13240#0" expanded="false" />
-            <element signature="e#12954#13203#0" expanded="false" />
-            <element signature="e#13264#13329#0" expanded="false" />
             <element signature="e#13388#13403#0" expanded="false" />
             <element signature="e#14196#14347#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/popupActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Popup/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="64" column="18" lean-forward="true" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/playerConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/popupReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/chanceCardConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/entities/Player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/gameActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/squareConfigMain.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Setup/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/bundle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="30" column="5960" lean-forward="false" selection-start-line="30" selection-start-column="5960" selection-end-line="30" selection-end-column="5960" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="48" lean-forward="true" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/setupReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/entities/Square.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Setup/ReduxSetup.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/configureStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="7" lean-forward="false" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="20" column="30" lean-forward="false" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/squareConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="72" lean-forward="false" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Deed/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="22" column="14" lean-forward="false" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Landed/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="628" column="40" lean-forward="true" selection-start-line="628" selection-start-column="40" selection-end-line="628" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/tradeActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="29" lean-forward="false" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/tradeReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="54" lean-forward="false" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#211#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Manage/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="189" column="5" lean-forward="true" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+            <element signature="n#!!block;n#componentWillReceiveProps#0;n#Manage#0" expanded="false" />
+            <element signature="e#1083#1782#0" expanded="false" />
+            <element signature="e#1203#1240#0" expanded="false" />
+            <element signature="e#1809#2499#0" expanded="false" />
+            <element signature="e#2042#2079#0" expanded="false" />
+            <element signature="e#2909#3143#0" expanded="false" />
+            <element signature="e#2979#3030#0" expanded="false" />
+            <element signature="e#3036#3129#0" expanded="false" />
+            <element signature="e#3175#3426#0" expanded="false" />
+            <element signature="e#3213#3266#0" expanded="false" />
+            <element signature="e#3272#3412#0" expanded="false" />
+            <element signature="e#3432#3659#0" expanded="false" />
+            <element signature="e#3469#3645#0" expanded="false" />
+            <element signature="e#4003#4669#0" expanded="false" />
+            <element signature="e#4133#4277#0" expanded="false" />
+            <element signature="e#4283#4397#0" expanded="false" />
+            <element signature="e#4697#5881#0" expanded="false" />
+            <element signature="e#4885#5266#0" expanded="false" />
+            <element signature="e#4918#5084#0" expanded="false" />
+            <element signature="e#5090#5256#0" expanded="false" />
+            <element signature="e#5305#5515#0" expanded="false" />
+            <element signature="e#5371#5414#0" expanded="false" />
+            <element signature="e#5420#5505#0" expanded="false" />
+            <element signature="e#5560#5679#0" expanded="false" />
+            <element signature="e#5722#5841#0" expanded="false" />
+            <element signature="e#5910#5943#0" expanded="false" />
+            <element signature="e#5971#6757#0" expanded="false" />
+            <element signature="e#6120#6553#0" expanded="false" />
+            <element signature="e#6179#6333#0" expanded="false" />
+            <element signature="e#6339#6543#0" expanded="false" />
+            <element signature="e#6559#6751#0" expanded="false" />
+            <element signature="e#7052#11100#0" expanded="false" />
+            <element signature="e#7570#7738#0" expanded="false" />
+            <element signature="e#7770#8003#0" expanded="false" />
+            <element signature="e#8161#8347#0" expanded="false" />
+            <element signature="e#8239#8333#0" expanded="false" />
+            <element signature="e#8391#9150#0" expanded="false" />
+            <element signature="e#8506#8757#0" expanded="false" />
+            <element signature="e#8763#9136#0" expanded="false" />
+            <element signature="e#9190#9383#0" expanded="false" />
+            <element signature="e#9457#10083#0" expanded="false" />
+            <element signature="e#9542#9707#0" expanded="false" />
+            <element signature="e#9732#9890#0" expanded="false" />
+            <element signature="e#9896#10069#0" expanded="false" />
+            <element signature="e#10121#10561#0" expanded="false" />
+            <element signature="e#10207#10366#0" expanded="false" />
+            <element signature="e#10372#10547#0" expanded="false" />
+            <element signature="e#10613#10674#0" expanded="false" />
+            <element signature="e#10680#10741#0" expanded="false" />
+            <element signature="e#10894#11090#0" expanded="false" />
+            <element signature="e#11185#11393#0" expanded="false" />
+            <element signature="e#11455#11669#0" expanded="false" />
+            <element signature="e#11730#12076#0" expanded="false" />
+            <element signature="e#12426#12536#0" expanded="false" />
+            <element signature="e#12462#12526#0" expanded="false" />
+            <element signature="e#13388#13403#0" expanded="false" />
+            <element signature="e#14196#14347#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/squareActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Square/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="66" lean-forward="false" selection-start-line="31" selection-start-column="66" selection-end-line="31" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/playerRowActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="34" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/gameReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="50" column="42" lean-forward="true" selection-start-line="50" selection-start-column="42" selection-end-line="50" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/playerRowReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="60" column="41" lean-forward="true" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/squareReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Game/Board/TradeModal/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="112" column="27" lean-forward="true" selection-start-line="112" selection-start-column="27" selection-end-line="112" selection-end-column="27" />
+        <state relative-caret-position="420">
+          <caret line="156" column="39" lean-forward="true" selection-start-line="156" selection-start-column="39" selection-end-line="156" selection-end-column="39" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
             <element signature="n#!!block;n#getData#0;n#TradeModal#0" expanded="false" />

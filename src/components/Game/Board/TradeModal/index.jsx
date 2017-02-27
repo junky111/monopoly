@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import  * as tradeActions  from 'redux/actions/tradeActions';
+import  * as squareActions from 'redux/actions/squareActions';
+import  * as playerActions  from 'redux/actions/playerRowActions';
 import { connect } from 'react-redux';
 import { Button, Modal, FormControl, FormGroup, ControlLabel, Col, Row, ButtonToolbar } from 'react-bootstrap';
 import BootstrapTable from 'reactjs-bootstrap-table';
@@ -54,16 +56,72 @@ class TradeModal extends Component{
     onClickProposeTrade = () => {
     	//@todo add validation
     	console.log('this.props', this.props)
-		if(this.props.trade.selectionOne > 0) {
+		if(Object.keys(this.props.trade.selectionOne).length > 0 || Object.keys(this.props.trade.selectionTwo).length > 0) {
+            let player = this.props.playersConfig.players[this.props.game.currentPlayer];
+            let recipient = this.props.playersConfig.players[this.props.trade.secondPlayer];
 
-		} else if(this.props.trade.selectionTwo > 0) {
+            let money = this.props.trade.bidOne - this.props.trade.bidTwo;
+            if (money > 0 && money > player.money) {
+                this.props.popup(player.name + " does not have $" + money + ".");
+                return false;
+            } else if (money < 0 && -money > player.money) {
+                this.props.popup(recipient.name + " does not have $" + (-money) + ".");
+                return false;
+            }
 
+            this.props.dispatch(tradeActions.setAcceptMode())
+		} else {
+			this.props.popup("<p>One or more properties must be selected in order to trade.</p>");
 		}
 	}
 
     onClickAcceptTrade = () => {
         //@todo add validation
-    	console.log('this.props', this.props)
+    	console.log('this.props', this.props);
+
+        if(Object.keys(this.props.trade.selectionOne).length > 0 || Object.keys(this.props.trade.selectionTwo).length > 0) {
+            let player = this.props.playersConfig.players[this.props.game.currentPlayer];
+            let recipient = this.props.playersConfig.players[this.props.trade.secondPlayer];
+
+            // Exchange properties
+            for(let i in this.props.trade.selectionTwo) {
+                this.props.trade.selectionTwo[i].owner = this.props.game.currentPlayer;
+                this.props.dispatch(squareActions.updateSquare(this.props.trade.selectionTwo[i].id, this.props.trade.selectionTwo[i]));
+			}
+            for(let i in this.props.trade.selectionOne) {
+                this.props.trade.selectionOne[i].owner =  this.props.trade.secondPlayer;
+                this.props.dispatch(squareActions.updateSquare(this.props.trade.selectionOne[i].id, this.props.trade.selectionOne[i]));
+            }
+
+            let money = this.props.trade.bidOne - this.props.trade.bidTwo;
+			// Exchange money.
+            if (money > 0) {
+                player.pay(money, this.props.trade.secondPlayer);
+                recipient.money += money;
+                this.props.addAlert(recipient.name + " received $" + money + " from " + player.name + ".");
+
+                this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: player}));
+                this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.trade.secondPlayer, playerEntity: recipient}));
+            } else if (money < 0) {
+                money = -money;
+                player.pay(money, this.props.game.currentPlayer);
+                player.money += money;
+                this.props.addAlert(player.name + " received $" + money + " from " + recipient.name + ".");
+
+                this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: player}));
+                this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.trade.secondPlayer, playerEntity: recipient}));
+            }
+
+            //@todo AI
+            // if (!player[turn].human) {
+            //     player[turn].AI.alertList = "";
+            //     game.next();
+            // }
+
+			this.onHide();
+        } else {
+            this.props.popup("<p>One or more properties must be selected in order to trade.</p>");
+        }
 	}
 
     //get square data for player by id
@@ -124,14 +182,14 @@ class TradeModal extends Component{
 		const modalInstance = (
 			<Modal show={this.props.trade.show} onHide={()=>this.onHide()}>
 			    <Modal.Body>
-			        <Row>
+					{this.props.trade.proposeMode && <Row>
 						<Col md={6}>{currentPlayer.name}</Col>
 						<Col md={6}>
-							{this.props.trade.proposeMode && <FormControl componentClass="select" value={this.props.trade.secondPlayer} onChange={this.handlePlayerChange}>
+							<FormControl componentClass="select" value={this.props.trade.secondPlayer} onChange={this.handlePlayerChange}>
 		                        {playersSelect}
-		                    </FormControl>}
+		                    </FormControl>
 		                </Col>
-		            </Row>
+		            </Row>}
 		            <Row className="row">
 						<Col md={6}>
 
