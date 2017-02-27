@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import  * as tradeActions  from 'redux/actions/tradeActions';
+import  * as playerActions  from 'redux/actions/playerRowActions';
+import  * as squareActions from 'redux/actions/squareActions';
 import { connect } from 'react-redux';
 import BootstrapTable from 'reactjs-bootstrap-table';
 import { Button, Modal, FormControl, Col, Row, ButtonToolbar } from 'react-bootstrap';
@@ -29,18 +30,54 @@ class Manage extends Component {
         </div>
     }
 
-    mortgage = (s) => {
-        console.log('mortage',s)
+    mortgage = (sq) => {
+        let p = this.props.playersConfig.players[sq.owner];
+
+        if (sq.house > 0 || sq.hotel > 0 || sq.mortgage) {
+            return false;
+        }
+
+        let mortgagePrice = Math.round(sq.price * 0.5);
+        let unmortgagePrice = Math.round(sq.price * 0.6);
+
+        sq.mortgage = true;
+        p.money += mortgagePrice;
+
+        this.props.addAlert(p.name + " mortgaged " + sq.name + " for $" + mortgagePrice + ".");
+
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+        this.props.dispatch(squareActions.updateSquare(p.position, sq));
+
+        //this.props.updateOwned();
+        //this.props.updateMoney();
     }
 
-    unmortgage = (s) => {
-        console.log('unmortgage',s)
+    unmortgage = (sq) => {
+        let p = this.props.playersConfig.players[sq.owner];
+
+        let unmortgagePrice = Math.round(sq.price * 0.6);
+        let mortgagePrice = Math.round(sq.price * 0.5);
+
+        if (unmortgagePrice > p.money || !sq.mortgage) {
+            return false;
+        }
+
+        p.pay(unmortgagePrice, 0);
+        sq.mortgage = false;
+
+        this.props.addAlert(p.name + " unmortgaged " + sq.name + " for $" + unmortgagePrice + ".");
+
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+        this.props.dispatch(squareActions.updateSquare(p.position, s));
+
+        //this.props.updateOwned();
+        return true;
     }
 
     mortgageClick = () => {
         let s = this.props.squareConfig.squares[this.props.playersConfig.players[this.props.game.currentPlayer].position];
         let owner = this.props.playersConfig.players[this.props.game.currentPlayer];
-console.log('mortgageClick',owner)
+    console.log('mortgageClick',owner)
         if (s.mortgage) {
             if (owner.money < Math.round(s.price * 0.6)) {
                 this.props.popup("<p>You need $" + (Math.round(s.price * 0.6) - owner.money) + " more to unmortgage " + s.name + ".</p>");
@@ -82,7 +119,10 @@ console.log('mortgageClick',owner)
         let buttons = ()=> {console.log('button',this.state.selection);
             if(this.state.selection && this.state.selection.price) {
                 if (this.state.selection.mortgage) {
-
+                    return <ButtonToolbar>
+                        <Button onClick={this.mortgageClick} title={"Unmortgage " + this.state.selection.name + " for $" + Math.round(this.state.selection.price * 0.6) + "."}>Mortgage
+                            Unmortgage (${Math.round(this.state.selection.price * 0.6)})</Button>
+                    </ButtonToolbar>
                 } else {
                     return <ButtonToolbar>
                         <Button disabled={true}>By House (${this.state.selection.houseprice})</Button>
