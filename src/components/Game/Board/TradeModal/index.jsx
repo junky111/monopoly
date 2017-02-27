@@ -14,15 +14,16 @@ class TradeModal extends Component{
         this.state={selection: {}, selection2: {}};
     }
 
-    componentDidMount() {
-        for( let i in this.props.playersConfig.players ) {
-            if (i != this.props.game.currentPlayer) {
-                this.props.dispatch(tradeActions.setSecondPlayer(i));
-                break;
+    componentWillReceiveProps(newProps) {
+    	if(this.props.trade.secondPlayer < 0) {
+            for (let i in this.props.playersConfig.players) {
+                if (i != this.props.game.currentPlayer) {
+                    this.props.dispatch(tradeActions.setSecondPlayer(i));
+                    break;
+                }
             }
         }
-    }
-
+	}
 
     onChange = (newSelection, second) => {
     	if(second) {
@@ -224,7 +225,7 @@ class TradeModal extends Component{
         let columns = [
             {name:"color", display: "Color", renderer: this.myRenderer},
         ];
-        let CurrentPlayerData = this.getData(this.props.game.currentPlayer);
+        let CurrentPlayerData = this.getData(this.props.game.currentPlayer) ;
         let PlayerData = this.props.trade.secondPlayer >= 0 ? this.getData(this.props.trade.secondPlayer) : [];
 
     	if(this.props.trade.proposeMode) {
