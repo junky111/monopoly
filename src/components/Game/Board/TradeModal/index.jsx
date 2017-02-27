@@ -164,6 +164,7 @@ class TradeModal extends Component{
     render() {
     	let currentPlayer = this.props.playersConfig.players[this.props.game.currentPlayer];
     	let playersSelect = [];
+    	let selected = true;
 
     	for( let i in this.props.playersConfig.players ) {
     		if(i!=this.props.game.currentPlayer) {
@@ -171,11 +172,12 @@ class TradeModal extends Component{
 					<option
 						key={i}
 						value={i}
-						/*selected={this.props.players.length && player_types[i].type == this.props.players[this.props.index].type}*/
+						selected={selected}
 					>
                         {this.props.playersConfig.players[i].name}
 					</option>
                 )
+                selected = false;
             }
     	}
 

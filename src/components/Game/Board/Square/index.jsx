@@ -29,7 +29,6 @@ class PlayerSquareOwner extends Component {
         let s = this.props.squareConfig.squares[this.props.index];
         let result = <div></div>;
         if(s.owner > -1) {
-            console.log('s.owner',this.props.playersConfig.players)
             result =  <div
                 id={"cell" + s.owner + "owner"}
                 className="cell-owner"
