@@ -13,7 +13,6 @@ class Manage extends Component {
     }
 
     onChange = (newSelection) => {
-        console.log('newSelection',newSelection)
         let sel = newSelection[Object.keys(newSelection)[0]];
         this.setState({selection: sel});
     }
@@ -23,7 +22,6 @@ class Manage extends Component {
     }
 
     myRenderer(row) {
-        console.log('row',row)
         return <div style={{display:"flex"}}>
                 <span><div style={{backgroundColor:row.color, height:"15px", width:"15px"}}></div></span>
                 <span style={{width:"100px", textAlign:"center"}}><Deed square={row} linkValue={row.name}/></span>
@@ -32,7 +30,6 @@ class Manage extends Component {
 
     mortgage = (sq) => {
         let p = this.props.playersConfig.players[sq.owner];
-        console.log('sq.owner',sq)
 
         if (sq.house > 0 || sq.hotel > 0 || sq.mortgage) {
             return false;
@@ -196,7 +193,7 @@ class Manage extends Component {
         let sq = this.state.selection;
         let allGroupUninproved = true, allGroupUnmortgaged = true;
         let buyhousebutton = {disabled:true,show:true}, sellhousebutton = {disabled:true, show:false}, mortgagebutton = {show:true};
-        console.log('sq',sq)
+
         if (sq.groupNumber >= 3) {
 
             buyhousebutton.show = true;
@@ -288,10 +285,6 @@ class Manage extends Component {
             }
         }
 
-        console.log('buyhousebutton',buyhousebutton)
-        console.log('sellhousebutton',sellhousebutton)
-        console.log('mortgagebutton',mortgagebutton)
-
         let buttons = [];
         if(buyhousebutton.show)
             buttons.push(<Button onClick={this.buyHouseClick}
@@ -323,7 +316,6 @@ class Manage extends Component {
         let squareOwner = [];
 
         square.map((sq,i) => {
-            if(sq.name == 'Virginia Avenue') console.log('sq',sq)
             if(sq.owner == index) {
                 squareOwner.push({id:i, ...sq});
             }
