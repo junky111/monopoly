@@ -14,6 +14,16 @@ class TradeModal extends Component{
         this.state={selection: {}, selection2: {}};
     }
 
+    componentDidMount() {
+        for( let i in this.props.playersConfig.players ) {
+            if (i != this.props.game.currentPlayer) {
+                this.props.dispatch(tradeActions.setSecondPlayer(i));
+                break;
+            }
+        }
+    }
+
+
     onChange = (newSelection, second) => {
     	if(second) {
             this.setState({selection2: newSelection});
@@ -172,7 +182,7 @@ class TradeModal extends Component{
 					<option
 						key={i}
 						value={i}
-						selected={selected}
+						defaultValue={selected ? i : null}
 					>
                         {this.props.playersConfig.players[i].name}
 					</option>
