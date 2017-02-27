@@ -1,3 +1,4 @@
+//@todo test multiplicity for Buy/sell House/Hotel - comment after test
 export const squares = [
 	{name:'GO',pricetext:'COLLECT $200 SALARY AS YOU PASS.',color:'#FFFFFF'},
 	{name:'Mediterranean Avenue',pricetext:'$60',color:'#8B4513',groupNumber:'3',price:'60',baserent:'2',rent1:'10',rent2:'30',rent3:'90',rent4:'160',rent5:'250'},
@@ -10,10 +11,10 @@ export const squares = [
 	{name:'Vermont Avenue',pricetext:'$100',color:'#87CEEB',groupNumber:'4',price:'100',baserent:'6',rent1:'30',rent2:'90',rent3:'270',rent4:'400',rent5:'550'},
 	{name:'Connecticut Avenue',pricetext:'$120',color:'#87CEEB',groupNumber:'4',price:'120',baserent:'8',rent1:'40',rent2:'100',rent3:'300',rent4:'450',rent5:'600'},
 	{name:'Just Visiting',color:'#FFFFFF'},
-	{name:'St. Charles Place',pricetext:'$140',color:'#FF0080',groupNumber:'5',price:'140',baserent:'10',rent1:'50',rent2:'150',rent3:'450',rent4:'625',rent5:'750'},
+	{name:'St. Charles Place',pricetext:'$140',color:'#FF0080',groupNumber:'5',price:'140',baserent:'10',rent1:'50',rent2:'150',rent3:'450',rent4:'625',rent5:'750', owner:1},
 	{name:'Electric Company',pricetext:'$150',color:'#FFFFFF',groupNumber:'2',price:'150'},
-	{name:'States Avenue',pricetext:'$140',color:'#FF0080',groupNumber:'5',price:'140',baserent:'10',rent1:'50',rent2:'150',rent3:'450',rent4:'625',rent5:'750'},
-	{name:'Virginia Avenue',pricetext:'$160',color:'#FF0080',groupNumber:'5',price:'160',baserent:'12',rent1:'60',rent2:'180',rent3:'500',rent4:'700',rent5:'900'},
+	{name:'States Avenue',pricetext:'$140',color:'#FF0080',groupNumber:'5',price:'140',baserent:'10',rent1:'50',rent2:'150',rent3:'450',rent4:'625',rent5:'750', owner:1},
+	{name:'Virginia Avenue',pricetext:'$160',color:'#FF0080',groupNumber:'5',price:'160',baserent:'12',rent1:'60',rent2:'180',rent3:'500',rent4:'700',rent5:'900', owner:1},
 	{name:'Pennsylvania Railroad',pricetext:'$200',color:'#FFFFFF',groupNumber:'1',price:'200'},
 	{name:'St. James Place',pricetext:'$180',color:'#FFA500',groupNumber:'6',price:'180',baserent:'14',rent1:'70',rent2:'200',rent3:'550',rent4:'750',rent5:'950'},
 	{name:'Community Chest',pricetext:'FOLLOW INSTRUCTIONS ON TOP CARD',color:'#FFFFFF'},
