@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07df4cf0-88d4-4ca2-a149-c7e3fb0a99d5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/Board/Auction/index.jsx" afterPath="$PROJECT_DIR$/src/components/Game/Board/Auction/index.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx" afterPath="$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/redux/actions/auctionActions.js" afterPath="$PROJECT_DIR$/src/redux/actions/auctionActions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/redux/reducers/auctionReducer.js" afterPath="$PROJECT_DIR$/src/redux/reducers/auctionReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/redux/reducers/playerRowReducer.js" afterPath="$PROJECT_DIR$/src/redux/reducers/playerRowReducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/redux/reducers/squareReducer.js" afterPath="$PROJECT_DIR$/src/redux/reducers/squareReducer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -41,14 +35,14 @@
           <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Auction/index.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="465">
-                  <caret line="97" column="71" lean-forward="true" selection-start-line="97" selection-start-column="71" selection-end-line="97" selection-end-column="71" />
+                <state relative-caret-position="382">
+                  <caret line="174" column="33" lean-forward="false" selection-start-line="174" selection-start-column="33" selection-end-line="174" selection-end-column="33" />
                   <folding>
                     <element signature="e#0#52#0" expanded="true" />
-                    <marker date="1488295858905" expanded="true" signature="7828:8039" ph="..." />
-                    <marker date="1488295858905" expanded="true" signature="8551:8755" ph="..." />
-                    <marker date="1488295858905" expanded="true" signature="8816:8889" ph="..." />
-                    <marker date="1488295858905" expanded="true" signature="8943:8986" ph="..." />
+                    <marker date="1488296105084" expanded="true" signature="7417:7628" ph="..." />
+                    <marker date="1488296105084" expanded="true" signature="8140:8344" ph="..." />
+                    <marker date="1488296105084" expanded="true" signature="8405:8478" ph="..." />
+                    <marker date="1488296105084" expanded="true" signature="8532:8575" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -798,12 +792,12 @@
       <workItem from="1488183197377" duration="26637000" />
       <workItem from="1488222117801" duration="5900000" />
       <workItem from="1488267763646" duration="14107000" />
-      <workItem from="1488285361448" duration="10488000" />
+      <workItem from="1488285361448" duration="11252000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57132000" />
+    <option name="totallyTimeSpent" value="57896000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1333" y="24" width="1867" height="1056" extended-state="6" />
@@ -855,10 +849,10 @@
           <caret line="52" column="5" lean-forward="false" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
-            <marker date="1488295858905" expanded="true" signature="7828:8039" ph="..." />
-            <marker date="1488295858905" expanded="true" signature="8551:8755" ph="..." />
-            <marker date="1488295858905" expanded="true" signature="8816:8889" ph="..." />
-            <marker date="1488295858905" expanded="true" signature="8943:8986" ph="..." />
+            <marker date="1488296105084" expanded="true" signature="7417:7628" ph="..." />
+            <marker date="1488296105084" expanded="true" signature="8140:8344" ph="..." />
+            <marker date="1488296105084" expanded="true" signature="8405:8478" ph="..." />
+            <marker date="1488296105084" expanded="true" signature="8532:8575" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1435,14 +1429,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Auction/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="97" column="71" lean-forward="true" selection-start-line="97" selection-start-column="71" selection-end-line="97" selection-end-column="71" />
+        <state relative-caret-position="382">
+          <caret line="174" column="33" lean-forward="false" selection-start-line="174" selection-start-column="33" selection-end-line="174" selection-end-column="33" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
-            <marker date="1488295858905" expanded="true" signature="7828:8039" ph="..." />
-            <marker date="1488295858905" expanded="true" signature="8551:8755" ph="..." />
-            <marker date="1488295858905" expanded="true" signature="8816:8889" ph="..." />
-            <marker date="1488295858905" expanded="true" signature="8943:8986" ph="..." />
+            <marker date="1488296105084" expanded="true" signature="7417:7628" ph="..." />
+            <marker date="1488296105084" expanded="true" signature="8140:8344" ph="..." />
+            <marker date="1488296105084" expanded="true" signature="8405:8478" ph="..." />
+            <marker date="1488296105084" expanded="true" signature="8532:8575" ph="..." />
           </folding>
         </state>
       </provider>

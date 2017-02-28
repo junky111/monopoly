@@ -19,9 +19,7 @@ class Auction extends Component {
         if(this.props.auction.show && newProps.auction.playersAuction.length > 0) {
             //check if finalize auction
             let biddingCount = 0;
-            console.log('newProps', newProps)
             newProps.auction.playersAuction.map((player) => player.bidding ? biddingCount++ : null)
-            console.log('biddingCount', biddingCount);
             if (biddingCount <= 1)
                 this.finalizeAuction();
         }
@@ -94,22 +92,17 @@ class Auction extends Component {
             if(tryId > 50) break;
             let currentPlayer = id++;
             tryId++;
-            console.log('this.props.playersConfig.players.length',this.props.playersConfig.players.length)
             if(currentPlayer >= this.props.playersConfig.players.length) {
                 for(let i in this.props.playersConfig.players) {
                     console.log('i',i)
                     currentPlayer = this.props.playersConfig.players[i].id;
                     break;
                 }
-                id = currentPlayer;
-                console.log('currentPlayer', currentPlayer)
             }
             if (this.props.auction.playersAuction[currentPlayer] &&
                 this.props.auction.playersAuction[currentPlayer].bidding &&
                 this.props.auction.playersAuction[currentPlayer].id != player.id) {
 
-
-                console.log('player', currentPlayer)
                 this.props.dispatch(auctionActions.updateCurrentPlayersAuction(currentPlayer));
 
                 /*if (this.props.auction.highestBid.playerId == currentPlayer) {
@@ -204,7 +197,6 @@ class Auction extends Component {
     }
 
     render() {
-        console.log('Auction this.props',this.props)
         let sq = this.props.squareConfig.squares[this.props.auction.currentPropertyAuction];
         let player=this.props.playersConfig.players[this.props.auction.currentPlayerAuction];
         let playerBid = this.props.auction.highestBid.playerId > -1 ? `$(Player ${this.props.auction.highestBid.playerId})` : '(N/A)';
