@@ -450,6 +450,7 @@ console.log('auction');
 
     auction = () => {
         this.props.dispatch(auctionActions.showWindow());
+        this.props.dispatch(gameActions.setLanded({show:false}));
     }
 
     rollDice = () => {

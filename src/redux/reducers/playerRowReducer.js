@@ -61,9 +61,9 @@ export default function(state=initialState, action){
             let index=-1;
             let arr = [];
             for(let i in state.players) {
-                if(state.players[i].player == action.player) {
+                if(i == action.player) {
                     index = i;
-                    arr[i] = Object.assign({},action.player)
+                    arr[i] = Object.assign({},action.entity);
                 } else {
                     arr[i] = Object.assign({},state.players[i])
                 }

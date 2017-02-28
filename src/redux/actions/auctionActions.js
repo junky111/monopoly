@@ -7,6 +7,8 @@ export const EXIT_PLAYERS_AUCTION 				= 'EXIT_PLAYERS_AUCTION';
 export const RESET_STATE 						= 'RESET_STATE';
 export const SET_C_P_AUCTION					= 'SET_C_P_AUCTION';
 export const UPDATE_CURRENT_PLAYERS_AUCTION		= 'UPDATE_CURRENT_PLAYERS_AUCTION';
+export const UPDATE_PLAYERS_AUCTION				= 'UPDATE_PLAYERS_AUCTION';
+export const UPDATE_PLAYERS_AUCTION_BIDDING		= 'UPDATE_PLAYERS_AUCTION_BIDDING';
 
 
 export function showWindow(){
@@ -41,6 +43,13 @@ export function updateCurrentPlayersAuction(current){
     return { type: UPDATE_CURRENT_PLAYERS_AUCTION, current:current }
 }
 
+export function updatePlayersAuction(player){
+    return { type: UPDATE_PLAYERS_AUCTION, data:player }
+}
+
+export function updatePlayersAuctionBidding(){
+    return { type: UPDATE_PLAYERS_AUCTION_BIDDING }
+}
 export function resetState(){
 	return { type: RESET_STATE }
 }
