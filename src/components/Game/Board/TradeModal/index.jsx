@@ -14,8 +14,17 @@ class TradeModal extends Component{
         this.state={selection: {}, selection2: {}};
     }
 
+    componentDidMount() {
+        this.setDefaultSecondPlayer()
+	}
+
     componentWillReceiveProps(newProps) {
-    	if(this.props.trade.secondPlayer < 0) {
+    	this.setDefaultSecondPlayer()
+	}
+
+	setDefaultSecondPlayer() {
+        if(this.props.trade.secondPlayer < 0) {
+            console.log('second player')
             for (let i in this.props.playersConfig.players) {
                 if (i != this.props.game.currentPlayer) {
                     this.props.dispatch(tradeActions.setSecondPlayer(i));
