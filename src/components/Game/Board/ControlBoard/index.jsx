@@ -8,6 +8,8 @@ import  * as popupActions  from 'redux/actions/popupActions';
 import  * as squareActions from 'redux/actions/squareActions';
 import  * as tradeActions from 'redux/actions/tradeActions';
 import  * as auctionActions  from 'redux/actions/auctionActions';
+import  * as chanceCardActions  from 'redux/actions/chanceCardActions';
+import  * as communityChestCardActions  from 'redux/actions/communityChestCardActions';
 
 import Dice from '../Dice';
 import {Player} from 'components/Game/Player';
@@ -332,7 +334,7 @@ class ControlBoard extends Component {
                     component:true
                 }));
             }
-console.log('auction');
+
             this.props.dispatch(auctionActions.addPropertyToAuctionQueue(p.position));
         }
 
@@ -440,12 +442,155 @@ console.log('auction');
         this.updateOwned();
 
         if (!p.human) {
+            //@todo AI
             //popup(p.AI.alertList, chanceCommunityChest);
             //p.AI.alertList = "";
         } else {
-            //@todo
-            // chanceCommunityChest();
+             this.chanceCommunityChest();
         }
+    }
+
+    chanceCommunityChest = () => {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+
+        // Community Chest
+        if (p.position === 2 || p.position === 17 || p.position === 33) {
+            let communityChestCards = this.props.communityChestCard;
+
+            let communityChestIndex = communityChestCards.deck[communityChestCards.index];
+
+            // Remove the get out of jail free card from the deck.
+            if (communityChestIndex === 0) {
+                communityChestCards.deck.splice(communityChestCards.index, 1);
+            }
+
+            this.popup("<img src='images/community_chest_icon.png' style='height: 50px; width: 53px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Community Chest:</div><div style='text-align: justify;'>" + communityChestCards.cards[communityChestIndex].text + "</div>", ()=>this.communityChestAction(communityChestIndex));
+
+            communityChestCards.index++;
+
+            if (communityChestCards.index >= communityChestCards.deck.length) {
+                communityChestCards.index = 0;
+            }
+
+            this.props.dispatch(communityChestCardActions.updateIndex(communityChestCards.index));
+
+            // Chance
+        } else if (p.position === 7 || p.position === 22 || p.position === 36) {
+            let chanceCards = this.props.chanceCard;
+
+            let chanceIndex = chanceCards.deck[chanceCards.index];
+
+            // Remove the get out of jail free card from the deck.
+            if (chanceIndex === 0) {
+                chanceCards.deck.splice(chanceCards.index, 1);
+            }
+
+            this.popup("<img src='images/chance_icon.png' style='height: 50px; width: 26px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Chance:</div><div style='text-align: justify;'>" + chanceCards.cards[chanceIndex].text + "</div>", ()=>this.chanceAction(chanceIndex));
+
+            chanceCards.index++;
+
+            if (chanceCards.index >= chanceCards.deck.length) {
+                chanceCards.index = 0;
+            }
+
+            this.props.dispatch(chanceCardActions.updateIndex(chanceCards.index));
+        } else {
+            //@todo AI
+           /* if (!p.human) {
+                p.AI.alertList = "";
+
+                    game.next();
+                }
+            }*/
+        }
+    }
+
+    communityChestAction(communityChestIndex) {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+
+        this.props.communityChestCard.cards[communityChestIndex].action(p);
+
+        this.updateMoney();
+
+        //@todo AI
+        /*if (communityChestIndex !== 15 && !p.human) {
+            p.AI.alertList = "";
+            game.next();
+        }*/
+    }
+
+    chanceAction(chanceIndex) {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+
+        this.props.chanceCard.cards[chanceIndex].action(p);
+
+        this.updateMoney();
+
+        //@todo AI
+        // if (chanceIndex !== 15 && !p.human) {
+        //     p.AI.alertList = "";
+        //     game.next();
+        // }
+    }
+
+    streetrepairs = (houseprice, hotelprice) => {
+        let cost = 0;
+        for (let i = 0; i < 40; i++) {
+            let s = this.props.squareConfig.squares[i];
+            if (s.owner == turn) {
+                if (s.hotel == 1)
+                    cost += hotelprice;
+                else
+                    cost += s.house * houseprice;
+            }
+        }
+
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+
+        if (cost > 0) {
+            p.pay(cost, 0);
+
+            // If function was called by Community Chest.
+            if (houseprice === 40) {
+                this.addAlert(p.name + " lost $" + cost + " to Community Chest.");
+            } else {
+                this.addAlert(p.name + " lost $" + cost + " to Chance.");
+            }
+            this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+        }
+    }
+
+    advance = (destination, pass) => {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+
+        if (typeof pass === "number") {
+            if (p.position < pass) {
+                p.position = pass;
+            } else {
+                p.position = pass;
+                p.money += 200;
+                this.addAlert(p.name + " collected a $200 salary for passing GO.");
+            }
+        }
+        if (p.position < destination) {
+            p.position = destination;
+        } else {
+            p.position = destination;
+            p.money += 200;
+            this.addAlert(p.name + " collected a $200 salary for passing GO.");
+        }
+
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+
+        this.land();
+    }
+
+    subtractamount(amount, cause) {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+        p.pay(amount, 0);
+        this.addAlert(p.name + " lost $" + amount + " from " + cause + ".");
+
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
     }
 
     auction = () => {
@@ -463,7 +608,7 @@ console.log('auction');
         config.buy      = true;
         config.manage   = false;
 
-        //берем отсюда текущего игрока
+        //get current player Object
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
 
         let die1 = dice.first;
@@ -603,6 +748,7 @@ console.log('auction');
     }
 
     render() {
+        console.log('chanceCard', this.props)
         let landed;
         if(this.props.game.landed.show)
             landed = (
@@ -678,13 +824,15 @@ console.log('auction');
 
 function mapStateToProps(state) {
     return {
-                playersConfig   : state.playersConfig,
-                squareConfig    : state.squareConfig,
-                game            : state.gameFunctionality,
-                popupConfig     : state.popupConfig,
-                trade           : state.trade,
-                auction         : state.auction,
-                setup           : state.setup
+                playersConfig           : state.playersConfig,
+                squareConfig            : state.squareConfig,
+                game                    : state.gameFunctionality,
+                popupConfig             : state.popupConfig,
+                trade                   : state.trade,
+                auction                 : state.auction,
+                setup                   : state.setup,
+                chanceCard              : state.chanceCard,
+                communityChestCard     : state.communityChestCard
     };
 }
 

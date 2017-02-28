@@ -6,5 +6,7 @@ import gameFunctionality from './gameReducer';
 import popupConfig from './popupReducer';
 import trade from './tradeReducer';
 import auction from './auctionReducer';
+import chanceCard from './chanceCardReducer';
+import communityChestCard from './communityChestCardReducer';
 
-export { counter, setup, playersConfig, squareConfig, gameFunctionality, popupConfig, trade, auction };
+export { counter, setup, playersConfig, squareConfig, gameFunctionality, popupConfig, trade, auction, chanceCard, communityChestCard };
