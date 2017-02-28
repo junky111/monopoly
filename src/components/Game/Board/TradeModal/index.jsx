@@ -202,7 +202,7 @@ class TradeModal extends Component{
     	}
 
 		const modalInstance = (
-			<Modal show={this.props.trade.show} onHide={()=>this.onHide()}>
+			<Modal show={this.props.trade.show} onHide={()=>this.onHide()} backdrop="static">
 			    <Modal.Body>
 					{this.props.trade.proposeMode && <Row>
 						<Col md={6}>{currentPlayer.name}</Col>
@@ -334,10 +334,6 @@ class TradeModal extends Component{
         }
 	}
 }
-
-
-
-
 
 function mapStateToProps(state) {
     return { 

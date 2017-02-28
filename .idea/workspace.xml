@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07df4cf0-88d4-4ca2-a149-c7e3fb0a99d5" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/Game/Board/Auction/index.jsx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/redux/actions/auctionActions.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/redux/reducers/auctionReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx" afterPath="$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/Board/Manage/index.jsx" afterPath="$PROJECT_DIR$/src/components/Game/Board/Manage/index.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Game/Board/TradeModal/index.jsx" afterPath="$PROJECT_DIR$/src/components/Game/Board/TradeModal/index.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/redux/configureStore.js" afterPath="$PROJECT_DIR$/src/redux/configureStore.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/redux/reducers/index.jsx" afterPath="$PROJECT_DIR$/src/redux/reducers/index.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/redux/reducers/playerRowReducer.js" afterPath="$PROJECT_DIR$/src/redux/reducers/playerRowReducer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,152 +28,178 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9195">
-              <caret line="628" column="40" lean-forward="false" selection-start-line="628" selection-start-column="40" selection-end-line="628" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/Game/Board/TradeModal/index.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="61" lean-forward="true" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
-              <folding>
-                <element signature="e#0#52#0" expanded="true" />
-                <element signature="n#!!block;n#getData#0;n#TradeModal#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Square/index.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="38" column="22" lean-forward="false" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#52#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="squareReducer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/redux/reducers/squareReducer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="22" column="26" lean-forward="false" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tradeActions.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/redux/actions/tradeActions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="29" lean-forward="false" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tradeReducer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/redux/reducers/tradeReducer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="36" column="54" lean-forward="false" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="54" />
-              <folding>
-                <element signature="e#0#211#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Manage/index.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
-              <caret line="189" column="5" lean-forward="false" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#52#0" expanded="true" />
-                <element signature="n#!!block;n#componentWillReceiveProps#0;n#Manage#0" expanded="false" />
-                <element signature="e#1083#1782#0" expanded="false" />
-                <element signature="e#1203#1240#0" expanded="false" />
-                <element signature="e#1809#2499#0" expanded="false" />
-                <element signature="e#2042#2079#0" expanded="false" />
-                <element signature="e#2909#3143#0" expanded="false" />
-                <element signature="e#2979#3030#0" expanded="false" />
-                <element signature="e#3036#3129#0" expanded="false" />
-                <element signature="e#3175#3426#0" expanded="false" />
-                <element signature="e#3213#3266#0" expanded="false" />
-                <element signature="e#3272#3412#0" expanded="false" />
-                <element signature="e#3432#3659#0" expanded="false" />
-                <element signature="e#3469#3645#0" expanded="false" />
-                <element signature="e#4003#4669#0" expanded="false" />
-                <element signature="e#4133#4277#0" expanded="false" />
-                <element signature="e#4283#4397#0" expanded="false" />
-                <element signature="e#4697#5881#0" expanded="false" />
-                <element signature="e#4885#5266#0" expanded="false" />
-                <element signature="e#4918#5084#0" expanded="false" />
-                <element signature="e#5090#5256#0" expanded="false" />
-                <element signature="e#5305#5515#0" expanded="false" />
-                <element signature="e#5371#5414#0" expanded="false" />
-                <element signature="e#5420#5505#0" expanded="false" />
-                <element signature="e#5560#5679#0" expanded="false" />
-                <element signature="e#5722#5841#0" expanded="false" />
-                <element signature="e#5910#5943#0" expanded="false" />
-                <element signature="e#5971#6757#0" expanded="false" />
-                <element signature="e#6120#6553#0" expanded="false" />
-                <element signature="e#6179#6333#0" expanded="false" />
-                <element signature="e#6339#6543#0" expanded="false" />
-                <element signature="e#6559#6751#0" expanded="false" />
-                <element signature="e#7052#11100#0" expanded="false" />
-                <element signature="e#7570#7738#0" expanded="false" />
-                <element signature="e#7770#8003#0" expanded="false" />
-                <element signature="e#8161#8347#0" expanded="false" />
-                <element signature="e#8239#8333#0" expanded="false" />
-                <element signature="e#8391#9150#0" expanded="false" />
-                <element signature="e#8506#8757#0" expanded="false" />
-                <element signature="e#8763#9136#0" expanded="false" />
-                <element signature="e#9190#9383#0" expanded="false" />
-                <element signature="e#9457#10083#0" expanded="false" />
-                <element signature="e#9542#9707#0" expanded="false" />
-                <element signature="e#9732#9890#0" expanded="false" />
-                <element signature="e#9896#10069#0" expanded="false" />
-                <element signature="e#10121#10561#0" expanded="false" />
-                <element signature="e#10207#10366#0" expanded="false" />
-                <element signature="e#10372#10547#0" expanded="false" />
-                <element signature="e#10613#10674#0" expanded="false" />
-                <element signature="e#10680#10741#0" expanded="false" />
-                <element signature="e#10894#11090#0" expanded="false" />
-                <element signature="e#11185#11393#0" expanded="false" />
-                <element signature="e#11455#11669#0" expanded="false" />
-                <element signature="e#11730#12076#0" expanded="false" />
-                <element signature="e#12426#12536#0" expanded="false" />
-                <element signature="e#12462#12526#0" expanded="false" />
-                <element signature="e#13388#13403#0" expanded="false" />
-                <element signature="e#14196#14347#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.505257">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="456">
+                  <caret line="664" column="22" lean-forward="false" selection-start-line="664" selection-start-column="22" selection-end-line="664" selection-end-column="22" />
+                  <folding>
+                    <element signature="e#0#52#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Auction/index.jsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="321">
+                  <caret line="52" column="5" lean-forward="true" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+                  <folding>
+                    <element signature="e#0#52#0" expanded="true" />
+                    <marker date="1488282860169" expanded="true" signature="4254:4465" ph="..." />
+                    <marker date="1488282860169" expanded="true" signature="4977:5181" ph="..." />
+                    <marker date="1488282860169" expanded="true" signature="5242:5315" ph="..." />
+                    <marker date="1488282860169" expanded="true" signature="5369:5412" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Player.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/redux/reducers/entities/Player.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="15">
+                  <caret line="1" column="16" lean-forward="true" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="playerRowReducer.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/redux/reducers/playerRowReducer.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="345">
+                  <caret line="23" column="52" lean-forward="true" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+                  <folding>
+                    <element signature="e#1#115#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="auctionActions.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/redux/actions/auctionActions.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="330">
+                  <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="auctionReducer.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/redux/reducers/auctionReducer.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="15">
+                  <caret line="1" column="27" lean-forward="false" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="27" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Game/Board/TradeModal/index.jsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="306">
+                  <caret line="84" column="32" lean-forward="false" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="32" />
+                  <folding>
+                    <element signature="e#0#52#0" expanded="true" />
+                    <element signature="n#!!block;n#getData#0;n#TradeModal#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.jsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Manage/index.jsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="501">
+                  <caret line="321" column="0" lean-forward="true" selection-start-line="321" selection-start-column="0" selection-end-line="321" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#52#0" expanded="true" />
+                    <element signature="n#!!block;n#componentWillReceiveProps#0;n#Manage#0" expanded="false" />
+                    <element signature="e#1083#1782#0" expanded="false" />
+                    <element signature="e#1203#1240#0" expanded="false" />
+                    <element signature="e#1809#2499#0" expanded="false" />
+                    <element signature="e#2042#2079#0" expanded="false" />
+                    <element signature="e#2909#3143#0" expanded="false" />
+                    <element signature="e#2979#3030#0" expanded="false" />
+                    <element signature="e#3036#3129#0" expanded="false" />
+                    <element signature="e#3175#3426#0" expanded="false" />
+                    <element signature="e#3213#3266#0" expanded="false" />
+                    <element signature="e#3272#3412#0" expanded="false" />
+                    <element signature="e#3432#3659#0" expanded="false" />
+                    <element signature="e#3469#3645#0" expanded="false" />
+                    <element signature="e#4003#4669#0" expanded="false" />
+                    <element signature="e#4133#4277#0" expanded="false" />
+                    <element signature="e#4283#4397#0" expanded="false" />
+                    <element signature="e#4697#5881#0" expanded="false" />
+                    <element signature="e#4885#5266#0" expanded="false" />
+                    <element signature="e#4918#5084#0" expanded="false" />
+                    <element signature="e#5090#5256#0" expanded="false" />
+                    <element signature="e#5305#5515#0" expanded="false" />
+                    <element signature="e#5371#5414#0" expanded="false" />
+                    <element signature="e#5420#5505#0" expanded="false" />
+                    <element signature="e#5560#5679#0" expanded="false" />
+                    <element signature="e#5722#5841#0" expanded="false" />
+                    <element signature="e#5910#5943#0" expanded="false" />
+                    <element signature="e#5971#6757#0" expanded="false" />
+                    <element signature="e#6120#6553#0" expanded="false" />
+                    <element signature="e#6179#6333#0" expanded="false" />
+                    <element signature="e#6339#6543#0" expanded="false" />
+                    <element signature="e#6559#6751#0" expanded="false" />
+                    <element signature="e#7052#11100#0" expanded="false" />
+                    <element signature="e#7570#7738#0" expanded="false" />
+                    <element signature="e#7770#8003#0" expanded="false" />
+                    <element signature="e#8161#8347#0" expanded="false" />
+                    <element signature="e#8239#8333#0" expanded="false" />
+                    <element signature="e#8391#9150#0" expanded="false" />
+                    <element signature="e#8506#8757#0" expanded="false" />
+                    <element signature="e#8763#9136#0" expanded="false" />
+                    <element signature="e#9190#9383#0" expanded="false" />
+                    <element signature="e#9457#10083#0" expanded="false" />
+                    <element signature="e#9542#9707#0" expanded="false" />
+                    <element signature="e#9732#9890#0" expanded="false" />
+                    <element signature="e#9896#10069#0" expanded="false" />
+                    <element signature="e#10121#10561#0" expanded="false" />
+                    <element signature="e#10207#10366#0" expanded="false" />
+                    <element signature="e#10372#10547#0" expanded="false" />
+                    <element signature="e#10613#10674#0" expanded="false" />
+                    <element signature="e#10680#10741#0" expanded="false" />
+                    <element signature="e#10894#11090#0" expanded="false" />
+                    <element signature="e#11185#11393#0" expanded="false" />
+                    <element signature="e#11455#11669#0" expanded="false" />
+                    <element signature="e#11730#12076#0" expanded="false" />
+                    <element signature="e#12342#12452#0" expanded="false" />
+                    <element signature="e#12378#12442#0" expanded="false" />
+                    <element signature="e#13304#13319#0" expanded="false" />
+                    <element signature="e#14112#14263#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Javascript JSX" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>popup</find>
-      <find>var</find>
-      <find>mortgagebutton</find>
       <find>#FF0080</find>
       <find>'button'</find>
       <find>updateMoney</find>
@@ -182,6 +217,19 @@
       <find>cardUI</find>
       <find>money</find>
       <find>handlePlayerChange</find>
+      <find>end</find>
+      <find>land</find>
+      <find>updateCurrentPlayer</find>
+      <find>auctionActions</find>
+      <find>showWindow</find>
+      <find>showButtons</find>
+      <find>&lt;Deed</find>
+      <find>=== 4</find>
+      <find>popup</find>
+      <find>SET_PLAYERS_AUCTION</find>
+      <find>setPlayersAuction</find>
+      <find>bid</find>
+      <find>UPDATE_CURRENT_PLAYERS_AUCTION</find>
     </findStrings>
     <replaceStrings>
       <replace>let</replace>
@@ -198,19 +246,24 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/components/Game/Board/Popup/index.jsx" />
-        <option value="$PROJECT_DIR$/src/redux/reducers/entities/Player.js" />
         <option value="$PROJECT_DIR$/src/components/Game/Board/Deed/index.jsx" />
         <option value="$PROJECT_DIR$/src/redux/reducers/entities/Square.js" />
-        <option value="$PROJECT_DIR$/src/components/Game/Board/Manage/index.jsx" />
         <option value="$PROJECT_DIR$/src/config/squareConfig.js" />
         <option value="$PROJECT_DIR$/src/redux/actions/tradeActions.js" />
         <option value="$PROJECT_DIR$/src/redux/reducers/tradeReducer.js" />
-        <option value="$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx" />
         <option value="$PROJECT_DIR$/src/redux/reducers/gameReducer.js" />
-        <option value="$PROJECT_DIR$/src/redux/reducers/playerRowReducer.js" />
         <option value="$PROJECT_DIR$/src/redux/reducers/squareReducer.js" />
         <option value="$PROJECT_DIR$/src/components/Game/Board/Square/index.jsx" />
         <option value="$PROJECT_DIR$/src/components/Game/Board/TradeModal/index.jsx" />
+        <option value="$PROJECT_DIR$/src/redux/configureStore.js" />
+        <option value="$PROJECT_DIR$/src/redux/reducers/index.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx" />
+        <option value="$PROJECT_DIR$/src/redux/reducers/entities/Player.js" />
+        <option value="$PROJECT_DIR$/src/redux/reducers/playerRowReducer.js" />
+        <option value="$PROJECT_DIR$/src/redux/actions/auctionActions.js" />
+        <option value="$PROJECT_DIR$/src/redux/reducers/auctionReducer.js" />
+        <option value="$PROJECT_DIR$/src/components/Game/Board/Manage/index.jsx" />
+        <option value="$PROJECT_DIR$/src/components/Game/Board/Auction/index.jsx" />
       </list>
     </option>
   </component>
@@ -310,6 +363,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="reducers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monopoly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monopoly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="redux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="reducers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entities" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -599,6 +678,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monopoly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monopoly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Board" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Auction" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -613,6 +722,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/redux/reducers" />
+      <recent name="$PROJECT_DIR$/src/redux/actions" />
       <recent name="$PROJECT_DIR$/src/config" />
     </key>
   </component>
@@ -689,18 +800,18 @@
       <updated>1488183192173</updated>
       <workItem from="1488183197377" duration="26637000" />
       <workItem from="1488222117801" duration="5900000" />
-      <workItem from="1488267763646" duration="186000" />
+      <workItem from="1488267763646" duration="14107000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32723000" />
+    <option name="totallyTimeSpent" value="46644000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1333" y="24" width="1867" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17407605" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08302089" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -726,7 +837,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -734,7 +847,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -742,7 +857,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8910">
           <caret line="594" column="5" lean-forward="false" selection-start-line="594" selection-start-column="5" selection-end-line="594" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -834,10 +951,10 @@
             <element signature="e#11185#11393#0" expanded="false" />
             <element signature="e#11455#11669#0" expanded="false" />
             <element signature="e#11730#12076#0" expanded="false" />
-            <element signature="e#12426#12536#0" expanded="false" />
-            <element signature="e#12462#12526#0" expanded="false" />
-            <element signature="e#13388#13403#0" expanded="false" />
-            <element signature="e#14196#14347#0" expanded="false" />
+            <element signature="e#12342#12452#0" expanded="false" />
+            <element signature="e#12378#12442#0" expanded="false" />
+            <element signature="e#13304#13319#0" expanded="false" />
+            <element signature="e#14112#14263#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -874,13 +991,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/reducers/entities/Player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -888,6 +999,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -902,14 +1014,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/bundle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="30" column="5960" lean-forward="false" selection-start-line="30" selection-start-column="5960" selection-end-line="30" selection-end-column="5960" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -931,6 +1035,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -939,20 +1044,6 @@
         <state relative-caret-position="135">
           <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/configureStore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/reducers/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="7" lean-forward="false" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -984,14 +1075,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9195">
-          <caret line="628" column="40" lean-forward="false" selection-start-line="628" selection-start-column="40" selection-end-line="628" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/redux/actions/squareActions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1003,31 +1086,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="34" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/reducers/gameReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="50" column="42" lean-forward="true" selection-start-line="50" selection-start-column="42" selection-end-line="50" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/redux/reducers/playerRowReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="60" column="41" lean-forward="true" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/TradeModal/index.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="61" lean-forward="true" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-            <element signature="n#!!block;n#getData#0;n#TradeModal#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1051,6 +1110,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="37" column="50" lean-forward="true" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/counterActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#39#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/configureStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#70#140#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/bundle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="30" column="7408" lean-forward="false" selection-start-line="30" selection-start-column="7408" selection-end-line="30" selection-end-column="7408" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/redux/actions/tradeActions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -1061,18 +1167,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/redux/reducers/tradeReducer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="36" column="54" lean-forward="false" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="54" />
+        <state relative-caret-position="420">
+          <caret line="28" column="45" lean-forward="true" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
           <folding>
             <element signature="e#0#211#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/gameReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="72" column="18" lean-forward="false" selection-start-line="69" selection-start-column="12" selection-end-line="72" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="677">
+          <caret line="635" column="9" lean-forward="false" selection-start-line="635" selection-start-column="9" selection-end-line="635" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/playerRowReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="52" lean-forward="true" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+          <folding>
+            <element signature="e#1#115#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Manage/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="189" column="5" lean-forward="false" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
+        <state relative-caret-position="501">
+          <caret line="321" column="0" lean-forward="true" selection-start-line="321" selection-start-column="0" selection-end-line="321" selection-end-column="0" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
             <element signature="n#!!block;n#componentWillReceiveProps#0;n#Manage#0" expanded="false" />
@@ -1128,10 +1260,69 @@
             <element signature="e#11185#11393#0" expanded="false" />
             <element signature="e#11455#11669#0" expanded="false" />
             <element signature="e#11730#12076#0" expanded="false" />
-            <element signature="e#12426#12536#0" expanded="false" />
-            <element signature="e#12462#12526#0" expanded="false" />
-            <element signature="e#13388#13403#0" expanded="false" />
-            <element signature="e#14196#14347#0" expanded="false" />
+            <element signature="e#12342#12452#0" expanded="false" />
+            <element signature="e#12378#12442#0" expanded="false" />
+            <element signature="e#13304#13319#0" expanded="false" />
+            <element signature="e#14112#14263#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/ControlBoard/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="664" column="22" lean-forward="false" selection-start-line="664" selection-start-column="22" selection-end-line="664" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/TradeModal/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="84" column="32" lean-forward="false" selection-start-line="84" selection-start-column="27" selection-end-line="84" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+            <element signature="n#!!block;n#getData#0;n#TradeModal#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/entities/Player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="16" lean-forward="true" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/actions/auctionActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/redux/reducers/auctionReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="27" lean-forward="false" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Game/Board/Auction/index.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="52" column="5" lean-forward="true" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+            <marker date="1488282860169" expanded="true" signature="4254:4465" ph="..." />
+            <marker date="1488282860169" expanded="true" signature="4977:5181" ph="..." />
+            <marker date="1488282860169" expanded="true" signature="5242:5315" ph="..." />
+            <marker date="1488282860169" expanded="true" signature="5369:5412" ph="..." />
           </folding>
         </state>
       </provider>

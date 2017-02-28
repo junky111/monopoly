@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import {Button, Col, Row, Tabs, Tab} from 'react-bootstrap';
+import { connect } from 'react-redux';
+
 import  * as playerActions  from 'redux/actions/playerRowActions';
 import  * as gameActions  from 'redux/actions/gameActions';
 import  * as popupActions  from 'redux/actions/popupActions';
 import  * as squareActions from 'redux/actions/squareActions';
 import  * as tradeActions from 'redux/actions/tradeActions';
-import { connect } from 'react-redux';
+import  * as auctionActions  from 'redux/actions/auctionActions';
 
 import Dice from '../Dice';
 import {Player} from 'components/Game/Player';
@@ -14,6 +16,7 @@ import Alert from '../Alert';
 import TradeModal from '../TradeModal';
 import Landed from '../Landed';
 import Manage from '../Manage';
+import Auction from '../Auction';
 
 class ControlBoard extends Component {
 
@@ -71,6 +74,10 @@ class ControlBoard extends Component {
         nextButton.show = false;
         this.props.dispatch(gameActions.setNextButton(nextButton));
 
+        if(this.props.auction.propertyAuction.length > 0) {
+            console.log('propertyAuction', this.props.auction.propertyAuction.length)
+            this.auction();
+        }
         // this.props.dispatch(
         //     squareActions.updateSquare(
         //         this.props.playersConfig.players[this.props.game.currentPlayer].position,
@@ -325,9 +332,8 @@ class ControlBoard extends Component {
                     component:true
                 }));
             }
-
-//@todo auction - later
-            //game.addPropertyToAuctionQueue(p.position);
+console.log('auction');
+            this.props.dispatch(auctionActions.addPropertyToAuctionQueue(p.position));
         }
 
         // Collect rent
@@ -440,6 +446,10 @@ class ControlBoard extends Component {
             //@todo
             // chanceCommunityChest();
         }
+    }
+
+    auction = () => {
+        this.props.dispatch(auctionActions.showWindow());
     }
 
     rollDice = () => {
@@ -580,10 +590,7 @@ class ControlBoard extends Component {
 
         //обновление позиции чувака
         this.updatePosition();
-
         this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
-
-
 
         this.setState(config);
     }   
@@ -635,7 +642,7 @@ class ControlBoard extends Component {
                                     updateOwned={this.updateOwned}
                                     updateMoney={this.updateMoney}/>
                             </Tab>
-                            <Tab eventKey={3} title="Trade"  onEnter={()=>this.props.dispatch(tradeActions.showWindow())}>
+                            <Tab eventKey={3} title="Trade">
                                 <TradeModal
                                     popup={this.popup}
                                     addAlert={this.addAlert}
@@ -657,16 +664,16 @@ class ControlBoard extends Component {
                         <Dice diceNumber={this.props.game.dice.second}/>
                         <Popup />
                     </Col>
+                    <Auction
+                        popup={this.popup}
+                        addAlert={this.addAlert}
+                    />
                 </Row>
                 {nextButton}
             </div>
         );
     }
 }
-
-
-
-
 
 function mapStateToProps(state) {
     return {
@@ -675,6 +682,7 @@ function mapStateToProps(state) {
                 game            : state.gameFunctionality,
                 popupConfig     : state.popupConfig,
                 trade           : state.trade,
+                auction         : state.auction,
                 setup           : state.setup
     };
 }

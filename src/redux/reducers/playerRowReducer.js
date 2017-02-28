@@ -8,7 +8,9 @@ const initialState = { players: changePlayerNumber([], 4) };
 function changePlayerNumber(players, number){
 	if(players.length < Number(number)){
 		for(let i = players.length ; i < Number(number); i ++){
-			players.push(new Player('Player '+i, colors[i], 1));
+			let p = new Player('Player '+i, colors[i], 1)
+			p.id = i;
+			players.push(p);
 		}
 	} else { 
 		let prevLength = players.length;

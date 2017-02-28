@@ -310,7 +310,6 @@ class Manage extends Component {
 
     getData(){
         let index=this.props.game.currentPlayer;
-        let player=this.props.playersConfig.players[this.props.game.currentPlayer];
         let square=this.props.squareConfig.squares;
 
         let squareOwner = [];
