@@ -9,7 +9,9 @@ function getCards() {
 function shuffleCard() {
     let deck = [];
     for (let i = 0; i < 16; i++)
-        deck[i] = i;
+        //@todo return
+        //deck[i] = i;
+        deck[i] = 0;
     return deck.sort(function() {return Math.random() - 0.5;});
 }
 

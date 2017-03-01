@@ -24,7 +24,6 @@ class TradeModal extends Component{
 
 	setDefaultSecondPlayer() {
         if(this.props.trade.secondPlayer < 0) {
-            console.log('second player')
             for (let i in this.props.playersConfig.players) {
                 if (i != this.props.game.currentPlayer) {
                     this.props.dispatch(tradeActions.setSecondPlayer(i));
@@ -51,7 +50,6 @@ class TradeModal extends Component{
     handleBidOneChange =(e)=>{
     	let value = parseInt(e.target.value, 10);
     	if(!isNaN(value)) {
-    		console.log('value',value)
 			this.props.dispatch(tradeActions.setBidOne({amount: value}))
         } else {
             this.props.dispatch(tradeActions.setBidOne({amount: 0}))
@@ -61,7 +59,6 @@ class TradeModal extends Component{
     handleBidTwoChange =(e)=>{
         let value = parseInt(e.target.value, 10);
         if(!isNaN(value)) {
-            console.log('value',value)
             this.props.dispatch(tradeActions.setBidTwo({amount: value}))
         } else {
             this.props.dispatch(tradeActions.setBidTwo({amount: 0}))
@@ -75,7 +72,6 @@ class TradeModal extends Component{
 
     onClickProposeTrade = () => {
     	//@todo add validation
-    	console.log('this.props', this.props)
 		if(Object.keys(this.props.trade.selectionOne).length > 0 || Object.keys(this.props.trade.selectionTwo).length > 0) {
             let player = this.props.playersConfig.players[this.props.game.currentPlayer];
             let recipient = this.props.playersConfig.players[this.props.trade.secondPlayer];
@@ -97,8 +93,6 @@ class TradeModal extends Component{
 
     onClickAcceptTrade = () => {
         //@todo add validation
-    	console.log('this.props', this.props);
-
         if(Object.keys(this.props.trade.selectionOne).length > 0 || Object.keys(this.props.trade.selectionTwo).length > 0) {
             let player = this.props.playersConfig.players[this.props.game.currentPlayer];
             let recipient = this.props.playersConfig.players[this.props.trade.secondPlayer];

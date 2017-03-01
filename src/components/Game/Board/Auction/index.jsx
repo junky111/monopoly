@@ -94,7 +94,6 @@ class Auction extends Component {
             tryId++;
             if(currentPlayer >= this.props.playersConfig.players.length) {
                 for(let i in this.props.playersConfig.players) {
-                    console.log('i',i)
                     currentPlayer = this.props.playersConfig.players[i].id;
                     break;
                 }
@@ -149,14 +148,12 @@ class Auction extends Component {
     }
 
     finalizeAuction() {
-        console.log('final auction')
         let p = this.props.playersConfig.players[this.props.auction.highestBid.playerId];
         let sq = this.props.squareConfig.squares[this.props.auction.currentPropertyAuction];
 
         if (this.props.auction.highestBid.bid > 0) {
             p.pay(this.props.auction.highestBid.bid, 0);
             sq.owner = this.props.auction.highestBid.playerId;
-            console.log('sq',sq)
             this.props.addAlert(p.name + " bought " + sq.name + " for $" + this.props.auction.highestBid.bid + ".");
         }
 

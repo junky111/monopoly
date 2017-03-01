@@ -34,7 +34,7 @@ class Board extends Component {
                             class="cell board-corner"
                                 playerToSquare={playerToSquare}
                                 index={i}
-                                key={i}/>
+                                key={`bottom-${i}`}/>
                     )
                 )
             else
@@ -44,7 +44,7 @@ class Board extends Component {
                                 class="cell board-bottom"
                                 playerToSquare={playerToSquare}
                                 index={i}
-                                key={i}/>
+                                key={`bottom-${i}`}/>
                     )
                 )
         }
@@ -65,7 +65,7 @@ class Board extends Component {
                             class="cell board-corner"
                                 playerToSquare={playerToSquare}
                                 index={i}
-                                key={i}/>
+                                key={`top-${i}`}/>
                 )
             else
                  top.push(
@@ -73,7 +73,7 @@ class Board extends Component {
                                 class="cell board-top"
                                 playerToSquare={playerToSquare}
                                 index={i}
-                                key={i}/>
+                                key={`top-${i}`}/>
                 )
         }
 
@@ -92,12 +92,12 @@ class Board extends Component {
             });
 
             middle.push(
-                <tr>
+                <tr key={`board-middle-${i}`}>
                         <Square {...sqLeft}
                                 class="cell board-left"
                                 playerToSquare={playerToSquare}
                                 index={i}
-                                key={i}/>
+                                key={`middle-${i}`}/>
                     <td colSpan={9} className="board-center">
                         <div id="jail"></div>
                     </td>
@@ -105,7 +105,7 @@ class Board extends Component {
                                 class="cell board-right"
                                 playerToSquare={playerToSquare1}  
                                 index={this.props.squareConfig.squares.length-i+this.props.squareConfig.squares.length/4}
-                                key={this.props.squareConfig.squares.length-i+this.props.squareConfig.squares.length/4}/>
+                                key={`middle-${this.props.squareConfig.squares.length-i+this.props.squareConfig.squares.length/4}`}/>
                 </tr>
             )
         }
@@ -116,9 +116,9 @@ class Board extends Component {
             <div>
                 <table id="board">
                         <tbody>
-                            <tr>{top}</tr>
+                            <tr key={`board-top`}>{top}</tr>
                             {middle}
-                            <tr>{bottom}</tr>
+                            <tr key={`board-bottom`}>{bottom}</tr>
                         </tbody>
                     </table>
                 <div id="control">

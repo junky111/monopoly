@@ -31,7 +31,7 @@ class Deed extends Component {
                         </div>
                         <table id="deed-table">
                             <tbody><tr>
-                                <td colspan="2">
+                                <td colSpan={2}>
                                     RENT $<span id="deed-baserent">{this.props.square.baserent}</span>.
                                 </td>
                             </tr>
@@ -53,7 +53,7 @@ class Deed extends Component {
                                 <td style={{textAlign: "right"}}><span id="deed-rent4">{this.props.square.rent4}</span>.</td>
                             </tr>
                             <tr>
-                                <td colspan="2">
+                                <td colSpan={2}>
                                     <div style={{marginBottom: "8px"}}>With HOTEL $<span id="deed-rent5">{this.props.square.rent5}</span>.</div>
                                     <div>Mortgage Value $<span id="deed-mortgage">{this.props.square.price / 2}</span>.</div>
                                     <div>Houses cost $<span id="deed-houseprice">{this.props.square.houseprice}</span>. each</div>

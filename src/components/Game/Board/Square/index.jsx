@@ -49,7 +49,7 @@ class Square extends Component {
     render() {
         //@todo change UI...
         const cardData = (
-              <Popover title="" id={"square-"+this.props.index}>
+              <Popover title="" id={"square-"+this.props.index} key={"square-"+this.props.index}>
                     <div className="row" style={{backgroundColor:this.props.color, height: "10px"}}></div>
                     <div className="row"><strong>{this.props.name}</strong></div>
                     <div className="row"><span>{`$ ${this.props.price}`||''}</span></div>
@@ -59,7 +59,7 @@ class Square extends Component {
         if(this.props.playerToSquare.length)
             players=this.props.playerToSquare.map((item,index) => {
                 return (
-                    <PlayerSquare index={index}  player={item} playersConfig={this.props.playersConfig}/>
+                    <PlayerSquare index={index} key={index}  player={item} playersConfig={this.props.playersConfig}/>
                 )
             });
 
@@ -69,7 +69,7 @@ class Square extends Component {
                         <div>
                             {players}
                             <p>{this.props.name}</p>
-                            <PlayerSquareOwner  squareConfig={this.props.squareConfig} playersConfig={this.props.playersConfig} index={this.props.index}/>
+                            <PlayerSquareOwner key={this.props.index}  squareConfig={this.props.squareConfig} playersConfig={this.props.playersConfig} index={this.props.index}/>
                         </div>
                     </td>
                 </OverlayTrigger>

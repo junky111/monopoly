@@ -21,11 +21,9 @@ export default function(state = initialState, action){
 		case HIDE_WINDOW_AUCTION:
 			return Object.assign({...state, show: false });
 		case SET_HIGHEST_BID:
-		    console.log('high',action)
 			return Object.assign({...state, highestBid: action.highestBid});
 
 		case ADD_PROPERTY_TO_AUCTION_QUEUE:
-		    console.log('add property', action)
             let arr = [];
             let index =-1;
             for(let i in state.propertyAuction)
@@ -34,7 +32,6 @@ export default function(state = initialState, action){
                     arr[i] = Object.assign({}, action.data);
                 } else
                     arr[i] = Object.assign({}, state.propertyAuction[i]);
-                console.log('propertyAuction',state.propertyAuction)
             if(index == -1) {
                 state.propertyAuction.push(action.data);
                 state.currentPropertyAuction = action.data;

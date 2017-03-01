@@ -35,6 +35,7 @@ class ControlBoard extends Component {
     }
 
     rollDiceAction(){
+        //@todo return
         let first  = Math.floor(Math.random() * 6) + 1;
         let second = Math.floor(Math.random() * 6) + 1;
 
@@ -68,6 +69,12 @@ class ControlBoard extends Component {
 
     updateCurrentPlayer = () => {
         let currentPlayer = this.props.game.currentPlayer;
+
+        if(this.props.auction.propertyAuction.length > 0 &&
+            this.props.squareConfig.squares[this.props.playersConfig.players[currentPlayer].position].owner < 0) {
+            this.auction();
+        }
+
         currentPlayer++;
         if(currentPlayer >= this.props.setup.playersNumber) currentPlayer = 0;
 
@@ -76,10 +83,6 @@ class ControlBoard extends Component {
         nextButton.show = false;
         this.props.dispatch(gameActions.setNextButton(nextButton));
 
-        if(this.props.auction.propertyAuction.length > 0) {
-            console.log('propertyAuction', this.props.auction.propertyAuction.length)
-            this.auction();
-        }
         // this.props.dispatch(
         //     squareActions.updateSquare(
         //         this.props.playersConfig.players[this.props.game.currentPlayer].position,
@@ -245,14 +248,15 @@ class ControlBoard extends Component {
         this.updateOwned();
 
         if (!p.human) {
-            //@TODO !!!
+            //@TODO AI!!!
             this.popup(p.AI.alertList, game.next);
             p.AI.alertList = "";
         }
+
+        this.props.dispatch(playerActions.updatePlayer({playerNumber:this.props.game.currentPlayer, playerEntity: p}));
     }
 
     buy = () => {
-        console.log('buy')
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
         let s = this.props.squareConfig.squares[p.position];
         let cost = s.price;
@@ -464,7 +468,8 @@ class ControlBoard extends Component {
                 communityChestCards.deck.splice(communityChestCards.index, 1);
             }
 
-            this.popup("<img src='images/community_chest_icon.png' style='height: 50px; width: 53px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Community Chest:</div><div style='text-align: justify;'>" + communityChestCards.cards[communityChestIndex].text + "</div>", ()=>this.communityChestAction(communityChestIndex));
+            this.popup("<img src='images/community_chest_icon.png' style='height: 50px; width: 53px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Community Chest:</div><div style='text-align: justify;'>" + communityChestCards.cards[communityChestIndex].text + "</div>",
+                ()=>{this.communityChestAction(communityChestIndex)});
 
             communityChestCards.index++;
 
@@ -485,7 +490,8 @@ class ControlBoard extends Component {
                 chanceCards.deck.splice(chanceCards.index, 1);
             }
 
-            this.popup("<img src='images/chance_icon.png' style='height: 50px; width: 26px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Chance:</div><div style='text-align: justify;'>" + chanceCards.cards[chanceIndex].text + "</div>", ()=>this.chanceAction(chanceIndex));
+            this.popup("<img src='images/chance_icon.png' style='height: 50px; width: 26px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Chance:</div><div style='text-align: justify;'>" + chanceCards.cards[chanceIndex].text + "</div>"
+                , ()=>{this.chanceAction(chanceIndex)});
 
             chanceCards.index++;
 
@@ -505,11 +511,10 @@ class ControlBoard extends Component {
         }
     }
 
-    communityChestAction(communityChestIndex) {
+    communityChestAction=(communityChestIndex) => {
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
-
-        this.props.communityChestCard.cards[communityChestIndex].action(p);
-
+        this.props.communityChestCard.cards[communityChestIndex].action.bind(this)(p);
+console.log('communityChestAction p',p);
         this.updateMoney();
 
         //@todo AI
@@ -519,10 +524,9 @@ class ControlBoard extends Component {
         }*/
     }
 
-    chanceAction(chanceIndex) {
+    chanceAction = (chanceIndex) => {
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
-
-        this.props.chanceCard.cards[chanceIndex].action(p);
+        this.props.chanceCard.cards[chanceIndex].action.bind(this)(p);
 
         this.updateMoney();
 
@@ -591,6 +595,128 @@ class ControlBoard extends Component {
         this.addAlert(p.name + " lost $" + amount + " from " + cause + ".");
 
         this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+    }
+
+    addamount = (amount, cause) => {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+        p.money += amount;
+        this.addAlert(p.name + " received $" + amount + " from " + cause + ".");
+
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+    }
+
+    collectfromeachplayer = (amount, cause) => {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+        let total = 0;
+
+        for (let i in this.props.playersConfig.players) {
+            if (i != this.props.game.currentPlayer) {
+                let money = this.props.playersConfig.players[i].money;
+                if (money < amount) {
+                    p.money += money;
+                    total += money;
+                    player[i].money = 0;
+                } else {
+                    player[i].pay(amount, this.props.game.currentPlayer);
+                    p.money += amount;
+                    total += amount;
+                }
+            }
+        }
+        this.addAlert(p.name + " received $" + total + " from " + cause + ".");
+
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+    }
+
+    payeachplayer = (amount, cause) => {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+        let total = 0;
+
+        for (let i in this.props.playersConfig.players) {
+            if (i != this.props.game.currentPlayer) {
+                let player = this.props.playersConfig.players[i];
+                player.money += amount;
+                total += amount;
+                creditor = p.money >= 0 ? i : creditor;
+
+                p.pay(amount, creditor);
+                this.props.dispatch(playerActions.updatePlayer({playerNumber: i, playerEntity: player}))
+            }
+        }
+
+        this.addAlert(p.name + " lost $" + total + " from " + cause + ".");
+
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}))
+    }
+
+    gobackthreespaces = () => {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+        p.position -= 3;
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+
+        this.land();
+    }
+
+    advanceToNearestUtility = () => {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+
+        if (p.position < 12) {
+            p.position = 12;
+        } else if (p.position >= 12 && p.position < 28) {
+            p.position = 28;
+        } else if (p.position >= 28) {
+            p.position = 12;
+            p.money += 200;
+            this.addAlert(p.name + " collected a $200 salary for passing GO.");
+        }
+
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+
+        this.land(true);
+    }
+
+    advanceToNearestRailroad = () => {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+
+        this.updatePosition();
+
+        if (p.position < 15) {
+            p.position = 15;
+        } else if (p.position >= 15 && p.position < 25) {
+            p.position = 25;
+        } else if (p.position >= 35) {
+            p.position = 5;
+            p.money += 200;
+            this.addAlert(p.name + " collected a $200 salary for passing GO.");
+        }
+
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+
+        this.land(true);
+    }
+
+    payfifty = () => {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+        let config = this.state;
+
+        /*document.getElementById("jail").style.border = '1px solid black';
+        document.getElementById("cell11").style.border = '2px solid ' + p.color;*/
+
+        this.props.dispatch(gameActions.setLanded({show:false}));
+        config.doublecount = 0;
+
+        p.jail = false;
+        p.jailroll = 0;
+        p.position = 10;
+        p.pay(50, 0);
+
+        this.addAlert(p.name + " paid the $50 fine to get out of jail.");
+
+        // updateMoney();
+
+        this.updatePosition();
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+        this.setState(config);
     }
 
     auction = () => {
@@ -691,15 +817,15 @@ class ControlBoard extends Component {
 
                     if (p.human) {
                         this.popup("<p>You must pay the $50 fine.</p>", function() {
-                            payFifty();
-                            payfifty();
+                            this.payfifty();
                             p.position =10 + die1 + die2;
-                            land();
+                            this.land();
                         });
                     } else {
-                        payfifty();
+                        //@todo AI
+                        this.payfifty();
                         p.position = 10 + die1 + die2;
-                        land();
+                        this.land();
                     }
                 } else {
 
@@ -711,6 +837,7 @@ class ControlBoard extends Component {
 
 
                     if (!p.human) {
+                        //@todo AI
                         this.popup(p.AI.alertList, game.next);
                         p.AI.alertList = "";
                     }
@@ -748,7 +875,6 @@ class ControlBoard extends Component {
     }
 
     render() {
-        console.log('chanceCard', this.props)
         let landed;
         if(this.props.game.landed.show)
             landed = (
@@ -761,13 +887,22 @@ class ControlBoard extends Component {
             );
 
         let nextButton;
-        if(this.props.game.nextButton.show)
+        if(this.props.game.nextButton.show) {
+            let functionClick = () => {
+                this.updateCurrentPlayer();
+                this.setState({key: 1})
+            };
+            if (this.props.game.nextButton.text === "Roll again")
+                functionClick = () => {
+                    this.rollDice();
+                    this.setState({key: 1});
+                };
             nextButton = (
-                <Button title={this.props.game.nextButton.title} onClick={()=>{this.updateCurrentPlayer();this.setState({key:1})}}>
+                <Button title={this.props.game.nextButton.title} onClick={()=>functionClick()}>
                     {this.props.game.nextButton.text}
                 </Button>
             );
-        else
+        } else
             nextButton = (
                 <Button className="btn btn-info" onClick={()=>{this.rollDice();this.setState({key:1});}}>Roll dice</Button>
             );
@@ -811,6 +946,7 @@ class ControlBoard extends Component {
                         <Dice diceNumber={this.props.game.dice.second}/>
                         <Popup />
                     </Col>
+                    {/*@todo retun auction*/}
                     <Auction
                         popup={this.popup}
                         addAlert={this.addAlert}

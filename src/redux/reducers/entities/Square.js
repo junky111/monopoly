@@ -1,6 +1,5 @@
 class Square {
 	constructor({name, pricetext, color, price, groupNumber, baserent, rent1, rent2, rent3, rent4, rent5, owner, group}) {
-		console.log('owner',owner)
 		groupNumber = parseInt(groupNumber);
 		this.name = name;
 		this.pricetext = pricetext;
