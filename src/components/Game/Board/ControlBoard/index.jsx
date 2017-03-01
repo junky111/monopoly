@@ -235,6 +235,7 @@ class ControlBoard extends Component {
         this.props.dispatch(gameActions.setNextButton(nextButton));
 
         p.jail = true;
+        p.position = 10;
         this.setState({doublecount: 0});
 
         // document.getElementById("nextbutton").value = "End turn";
@@ -244,6 +245,8 @@ class ControlBoard extends Component {
         //     document.getElementById("nextbutton").focus();
         // }
 
+        this.props.dispatch(playerActions.updatePlayer({playerNumber:this.props.game.currentPlayer, playerEntity: p}));
+
         this.updatePosition();
         this.updateOwned();
 
@@ -252,8 +255,6 @@ class ControlBoard extends Component {
             this.popup(p.AI.alertList, game.next);
             p.AI.alertList = "";
         }
-
-        this.props.dispatch(playerActions.updatePlayer({playerNumber:this.props.game.currentPlayer, playerEntity: p}));
     }
 
     buy = () => {
@@ -428,7 +429,7 @@ class ControlBoard extends Component {
             this.updatePosition();
 
             if (p.human) {
-                this.popup("<div>Go to jail. Go directly to Jail. Do not pass GO. Do not collect $200.</div>", goToJail);
+                this.popup("<div>Go to jail. Go directly to Jail. Do not pass GO. Do not collect $200.</div>", ()=>this.gotojail());
             } else {
                 this.gotojail();
             }

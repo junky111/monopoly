@@ -133,3 +133,13 @@ p {
     background-color: #FFFFFF;
     overflow-y: scroll;
 }
+
+#jail {
+    border: 1px solid black;
+    height: 65px;
+    width: 65px;
+    position: relative;
+    top: 73px;
+    left: -73px;
+    z-index: 2;
+}

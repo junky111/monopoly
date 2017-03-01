@@ -79,6 +79,7 @@ class Board extends Component {
 
 
         let middle=[];
+        let jail = true;
         for(let i=this.props.squareConfig.squares.length/4+1;i<this.props.squareConfig.squares.length/2; i++){
             let sqLeft=this.props.squareConfig.squares[i];
             let sqRight=this.props.squareConfig.squares[this.props.squareConfig.squares.length-i+this.props.squareConfig.squares.length/4];
@@ -99,7 +100,7 @@ class Board extends Component {
                                 index={i}
                                 key={`middle-${i}`}/>
                     <td colSpan={9} className="board-center">
-                        <div id="jail"></div>
+                        {jail && <div id="jail"></div>}
                     </td>
                         <Square {...sqRight}
                                 class="cell board-right"
@@ -108,6 +109,7 @@ class Board extends Component {
                                 key={`middle-${this.props.squareConfig.squares.length-i+this.props.squareConfig.squares.length/4}`}/>
                 </tr>
             )
+            jail = false;
         }
 
         middle=middle.reverse();
