@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {Button, Col, Row, Tabs, Tab, ButtonToolbar} from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 import  * as playerActions  from 'redux/actions/playerRowActions';
 import  * as gameActions  from 'redux/actions/gameActions';
@@ -34,6 +35,15 @@ class ControlBoard extends Component {
         }
     }
 
+    componentWillReceiveProps(newProps) {
+        let pcount = 0;
+        newProps.playersConfig.players.map((itemp)=> pcount++);
+        console.log('pcount',pcount)
+        if (pcount <= 1) {
+            browserHistory.push('/win');
+        }
+    }
+
     rollDiceAction(){
         //@todo return
         let first  = Math.floor(Math.random() * 6) + 1;
@@ -50,7 +60,6 @@ class ControlBoard extends Component {
     updateMoney  = () => {
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
         if(p.money < 0 ) {
-            console.log('p',p)
             let nextButton={show:false};
             this.props.dispatch(gameActions.setNextButton(nextButton));
             this.setState({showResignbutton: true});
@@ -74,14 +83,24 @@ class ControlBoard extends Component {
         let currentPlayer = this.props.game.currentPlayer;
 
         if(this.props.auction.propertyAuction.length > 0 &&
+            this.props.playersConfig.players[currentPlayer] &&
             this.props.squareConfig.squares[this.props.playersConfig.players[currentPlayer].position].owner < 0) {
             this.auction();
         }
 
-        currentPlayer++;
-        if(currentPlayer >= this.props.setup.playersNumber) currentPlayer = 0;
+        //@todo fix in future
+        let tries = 0;
+        while(true) {
+            //check if user exit with index
+            currentPlayer++;
+            if (currentPlayer >= this.props.setup.playersNumber) currentPlayer = 0;
+            if (this.props.playersConfig.players[currentPlayer]) break;
+            tries++;
+            if (tries > 50) break;
+        }
 
         this.props.dispatch(gameActions.updatePlayerCurrent(currentPlayer));
+
         let nextButton={};
         nextButton.show = false;
         this.props.dispatch(gameActions.setNextButton(nextButton));
@@ -459,7 +478,7 @@ class ControlBoard extends Component {
             p.pay(rent, s.owner);
 
             ////@todo dispatch
-            this.props.playersConfig.players[s.owner].money += rent;
+            this.props.playersConfig.players[s.owner].money += parseInt(rent);
             this.props.dispatch(playerActions.updatePlayer({playerNumber: s.owner, playerEntity: this.props.playersConfig.players[s.owner]}));
             this.props.dispatch(gameActions.setLanded({
                 text:"You landed on " + s.name + ". " +this.props.playersConfig.players[s.owner].name + " collected $" + rent + " rent.", show:true,
@@ -654,7 +673,7 @@ class ControlBoard extends Component {
 
     addamount = (amount, cause) => {
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
-        p.money += amount;
+        p.money += parseInt(amount);
         this.addAlert(p.name + " received $" + amount + " from " + cause + ".");
 
         this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
@@ -668,13 +687,13 @@ class ControlBoard extends Component {
             if (i != this.props.game.currentPlayer) {
                 let money = this.props.playersConfig.players[i].money;
                 if (money < amount) {
-                    p.money += money;
-                    total += money;
+                    p.money += parseInt(money);
+                    total += parseInt(money);
                     player[i].money = 0;
                 } else {
                     player[i].pay(amount, this.props.game.currentPlayer);
-                    p.money += amount;
-                    total += amount;
+                    p.money += parseInt(amount);
+                    total += parseInt(amount);
                 }
             }
         }
@@ -690,8 +709,8 @@ class ControlBoard extends Component {
         for (let i in this.props.playersConfig.players) {
             if (i != this.props.game.currentPlayer) {
                 let player = this.props.playersConfig.players[i];
-                player.money += amount;
-                total += amount;
+                player.money += parseInt(amount);
+                total += parseInt(amount);
                 creditor = p.money >= 0 ? i : creditor;
 
                 p.pay(amount, creditor);
@@ -949,7 +968,7 @@ class ControlBoard extends Component {
     }
 
     bankruptcy = () => {
-        console.log('bankruptcy')
+        console.log('bankruptcy');
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
         let pcredit = this.props.playersConfig.players[p.creditor];
         let bankruptcyUnmortgageFee = 0;
@@ -960,8 +979,8 @@ class ControlBoard extends Component {
 
         this.addAlert(p.name + " is bankrupt.");
 
-        if (p.creditor !== -1) {
-            pcredit.money += p.money;
+        if (pcredit && p.creditor !== -1) {
+            pcredit.money += parseInt(p.money);
         }
 
         for (let i = 0; i < 40; i++) {
@@ -976,7 +995,7 @@ class ControlBoard extends Component {
 
                 if (sq.house > 0) {
                     if (p.creditor !== -1) {
-                        pcredit.money += sq.houseprice * 0.5 * sq.house;
+                        pcredit.money += parseInt(sq.houseprice * 0.5 * sq.house);
                     }
                     sq.hotel = 0;
                     sq.house = 0;
@@ -1015,7 +1034,7 @@ class ControlBoard extends Component {
     }
 
     eliminatePlayer () {
-        console.log('eliminate player')
+        console.log('eliminate player');
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
         let square = this.props.squareConfig.squares;
 
@@ -1031,22 +1050,49 @@ class ControlBoard extends Component {
         //pcount--;
         //turn--;
 
-        this.updateCurrentPlayer();
-
-        if (this.props.playersConfig.players.length === 1) {
-            this.updateMoney();
-
-            this.popup("<p>Congratulations, " + this.props.playersConfig.players.shift().name + ", you have won the game.</p><div>");
-
-        }
-
         let config = this.state;
         config.showResignbutton = false;
         this.setState(config);
+        this.updateCurrentPlayer();
     }
 
     bankruptcyUnmortgage = () => {
+        console.log('bankruptcyUnmortgage');
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
 
+        if (p.creditor === -1) {
+            this.eliminatePlayer();
+            return;
+        }
+
+        //@todo finish when logic will be expected
+       /* var HTML = "<p>" + player[p.creditor].name + ", you may unmortgage any of the following properties, interest free, by clicking on them. Click OK when finished.</p><table>";
+        var price;
+
+        for (var i = 0; i < 40; i++) {
+            sq = square[i];
+            if (sq.owner == p.index && sq.mortgage) {
+                price = Math.round(sq.price * 0.5);
+
+                HTML += "<tr><td class='propertycellcolor' style='background: " + sq.color + ";";
+
+                if (sq.groupNumber == 1 || sq.groupNumber == 2) {
+                    HTML += " border: 1px solid grey;";
+                } else {
+                    HTML += " border: 1px solid " + sq.color + ";";
+                }
+
+                // Player already paid interest, so they can unmortgage for the mortgage price.
+                HTML += "' onmouseover='showdeed(" + i + ");' onmouseout='hidedeed();'></td><td class='propertycellname'><a href='javascript:void(0);' title='Unmortgage " + sq.name + " for $" + price + ".' onclick='if (" + price + " <= player[" + p.creditor + "].money) {player[" + p.creditor + "].pay(" + price + ", 0); square[" + i + "].mortgage = false; addAlert(\"" + player[p.creditor].name + " unmortgaged " + sq.name + " for $" + price + ".\");} this.parentElement.parentElement.style.display = \"none\";'>Unmortgage " + sq.name + " ($" + price + ")</a></td></tr>";
+
+                sq.owner = p.creditor;
+
+            }
+        }
+
+        HTML += "</table>";*/
+
+        this.eliminatePlayer();
     }
 
     //control buttons

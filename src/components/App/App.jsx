@@ -22,7 +22,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Navbar>
+                {/*<Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
                             <Link to='/'>1</Link>
@@ -39,7 +39,7 @@ class App extends Component {
                             </LinkContainer>
                         </Nav>
                     </Navbar.Collapse>
-                </Navbar>
+                </Navbar>*/}
                 <Grid>
                     {this.props.children}
                     {/*<HelloWorldPage />*/}

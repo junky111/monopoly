@@ -29,10 +29,6 @@ class Game extends Component {
     }
 }
 
-
-
-
-
 function mapStateToProps(state) {
     return {playersConfig: state.playersConfig};
 }

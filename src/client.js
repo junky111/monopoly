@@ -24,5 +24,4 @@ const component = (
         </Router>
     </Provider>
 );
-console.log('render');
 ReactDOM.render(component, document.getElementById('react-view'));

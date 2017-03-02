@@ -17,6 +17,7 @@ import { IndexRoute, Route }  from 'react-router';
 import App from 'components/App';
 import Game from 'components/Game';
 import Setup from 'components/Game/Setup';
+import Win from 'components/Game/Win';
 
 
 export default (
@@ -26,5 +27,6 @@ export default (
         {/*<Route component={CounterPage} path='counters' />
             <Route component={TimePage} path='time' />*/}
             <Route component={Setup} path='setup' />
+            <Route component={Win} path='win' />
     </Route>
 );

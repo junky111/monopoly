@@ -15,6 +15,7 @@ class Player {
 		this.human = true;
 
         this.pay = function (amount, creditor, updateMoney) {
+            amount = parseInt(amount);
             if (amount <= this.money) {
                 this.money -= amount;
 
