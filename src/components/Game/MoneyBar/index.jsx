@@ -9,11 +9,8 @@ class MoneyBar extends Component {
     }
 
     render() {
-
-
-        
         let players=[];
-        //@todo refactor
+
         for(let i in this.props.playersConfig.players)
             players.push(<Player key={i} index={i} player={this.props.playersConfig.players[i]}/>);
         

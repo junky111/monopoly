@@ -48,7 +48,6 @@ class Square extends Component {
     }
 
     render() {
-        //@todo change UI...
         const cardData = (
               <Popover title="" id={"square-"+this.props.index} key={"square-"+this.props.index}>
                     <div className="row" style={{backgroundColor:this.props.color, height: "10px"}}></div>

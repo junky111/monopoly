@@ -11,9 +11,7 @@ const initialState = { players: changePlayerNumber([], 4) };
 function changePlayerNumber(players, number){
 	if(players.length < Number(number)){
 		for(let i = players.length ; i < Number(number); i ++){
-			let p = new Player('Player '+i, colors[i], 1)
-			//@todo delete after debug
-			if(i != 1) p.money = -5;
+			let p = new Player('Player '+i, colors[i], 1);
 			p.id = i;
 			players.push(p);
 		}

@@ -2,9 +2,7 @@ class Player {
 	constructor(name, color, type){
 		this.name = name;
 		this.color = color;
-		//@todo return after test
 		this.position = 0;
-        // this.position = 28;
 		this.money = 1500;
 		this.creditor = -1;
 		this.jail = false;

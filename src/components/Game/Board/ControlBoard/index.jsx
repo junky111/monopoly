@@ -45,11 +45,8 @@ class ControlBoard extends Component {
     }
 
     rollDiceAction(){
-        //@todo return
         let first  = Math.floor(Math.random() * 6) + 1;
         let second = Math.floor(Math.random() * 6) + 1;
-        // let first   = 4;
-        // let second  = 3;
 
         return { first, second };
     }
@@ -477,7 +474,6 @@ class ControlBoard extends Component {
             this.addAlert(p.name + " paid $" + rent + " rent to " + this.props.playersConfig.players[s.owner].name + ".");
             p.pay(rent, s.owner);
 
-            ////@todo dispatch
             this.props.playersConfig.players[s.owner].money += parseInt(rent);
             this.props.dispatch(playerActions.updatePlayer({playerNumber: s.owner, playerEntity: this.props.playersConfig.players[s.owner]}));
             this.props.dispatch(gameActions.setLanded({
@@ -1181,7 +1177,6 @@ class ControlBoard extends Component {
                         <Dice diceNumber={this.props.game.dice.second}/>
                         <Popup />
                     </Col>
-                    {/*@todo retun auction*/}
                     <Auction
                         popup={this.popup}
                         addAlert={this.addAlert}
