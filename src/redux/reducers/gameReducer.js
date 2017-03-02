@@ -1,16 +1,19 @@
 import { ROLL_DICE, ADD_ALERT,
 	SET_NEXT_BUTTON, SET_LANDED,
 	UPDATE_P_S, UPDATE_P_C,
-	SET_P_S,SET_LANDED_USE_CARD} from '../actions/gameActions';
+	SET_P_S,SET_LANDED_USE_CARD,
+	CHANCE_J_CARD, COMMUNITY_CHANCE_J_CARD} from '../actions/gameActions';
 
 const initialState = { 
-	playerToSquare	: [],
-	currentPlayer	: 0,
-	dice			: {},
-	gameLog			: [],
-	nextButton		: {title:'', text:'', show: false},
-	landed			: {text:'', show: false, component: false, linkValue:"", onclick:()=>null, value:"", title:"",
-						text2:'', show2: false, component2: false, onclick2:()=>null, value2:"", title2:""}
+	playerToSquare				: [],
+	currentPlayer				: 0,
+	dice						: {},
+	gameLog						: [],
+	nextButton					: {title:'', text:'', show: false},
+	landed						: {text:'', show: false, component: false, linkValue:"", onclick:()=>null, value:"", title:"",
+									text2:'', show2: false, component2: false, onclick2:()=>null, value2:"", title2:""},
+	chanceJailCard      		: false,
+	communityChanceJailCard 	: false
 };
 
 export default function(state=initialState, action){
@@ -93,6 +96,10 @@ export default function(state=initialState, action){
 			    		Object.assign({}, action.playerToSquare)
   					]
 				});
+		case CHANCE_J_CARD:
+			return Object.assign({...state, chanceJailCard:action.owner});
+        case COMMUNITY_CHANCE_J_CARD:
+            return Object.assign({...state, communityChanceJailCard:action.owner});
 		default:
 			return state;
 	}

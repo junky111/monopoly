@@ -34,16 +34,12 @@ class ControlBoard extends Component {
         }
     }
 
-    componentWillReceiveProps(newProps) {
-
-    }
-
     rollDiceAction(){
         //@todo return
         let first  = Math.floor(Math.random() * 6) + 1;
         let second = Math.floor(Math.random() * 6) + 1;
-        // let first   = 1;
-        // let second  = 1;
+        // let first   = 4;
+        // let second  = 3;
 
         return { first, second };
     }
@@ -53,14 +49,15 @@ class ControlBoard extends Component {
 
     updateMoney  = () => {
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
-        if(p.money < 0 ) {   
-            this.setState({showResignbutton: true});
+        if(p.money < 0 ) {
+            console.log('p',p)
             let nextButton={show:false};
-            this.props.dispatch(gameActions.setNextButton(nextButton)); 
-        } else {                
-            this.setState({showResignbutton: false});
+            this.props.dispatch(gameActions.setNextButton(nextButton));
+            this.setState({showResignbutton: true});
+        } else {
             let nextButton={show:true};
-            this.props.dispatch(gameActions.setNextButton(nextButton));  
+            this.props.dispatch(gameActions.setNextButton(nextButton));
+            this.setState({showResignbutton: false});
         }
 
         if(this.props.game.landed.text == "") this.props.dispatch(gameActions.setLanded({show:false}));
@@ -116,8 +113,6 @@ class ControlBoard extends Component {
                     ...payFiftyButton
                 }));
             }
-
-            console.log('this props game', this.props)
 
             let nextButton = {};
             nextButton.text = "Roll Dice";
@@ -327,7 +322,7 @@ class ControlBoard extends Component {
             this.updateMoney();
             this.addAlert(p.name + " bought " + s.name + " for " + s.pricetext + ".");
 
-            this.updateOwned();
+           // this.updateOwned();
 
             this.props.dispatch(gameActions.setLanded({text:"",show:false}));
             this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
@@ -381,7 +376,6 @@ class ControlBoard extends Component {
 
         // Allow player to buy the property on which he landed.
         if (s.price !== 0 && s.owner === -1) {
-
             if (!p.human) {
 
                /* if (p.AI.buyProperty(p.position)) {
@@ -519,12 +513,11 @@ class ControlBoard extends Component {
         // Community Chest
         if (p.position === 2 || p.position === 17 || p.position === 33) {
             let communityChestCards = this.props.communityChestCard;
-
             let communityChestIndex = communityChestCards.deck[communityChestCards.index];
 
-            // Remove the get out of jail free card from the deck.
-            if (communityChestIndex === 0) {
-                communityChestCards.deck.splice(communityChestCards.index, 1);
+            if (communityChestIndex === 0 && this.props.game.communityChanceJailCard) {
+                communityChestIndex++;
+                communityChestCards.index++;
             }
 
             this.popup("<img src='images/community_chest_icon.png' style='height: 50px; width: 53px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Community Chest:</div><div style='text-align: justify;'>" + communityChestCards.cards[communityChestIndex].text + "</div>",
@@ -541,12 +534,11 @@ class ControlBoard extends Component {
             // Chance
         } else if (p.position === 7 || p.position === 22 || p.position === 36) {
             let chanceCards = this.props.chanceCard;
-
             let chanceIndex = chanceCards.deck[chanceCards.index];
 
-            // Remove the get out of jail free card from the deck.
-            if (chanceIndex === 0) {
-                chanceCards.deck.splice(chanceCards.index, 1);
+            if (chanceIndex === 0 && this.props.game.chanceJailCard) {
+                chanceIndex++;
+                chanceCards.index++;
             }
 
             this.popup("<img src='images/chance_icon.png' style='height: 50px; width: 26px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Chance:</div><div style='text-align: justify;'>" + chanceCards.cards[chanceIndex].text + "</div>"
@@ -574,6 +566,8 @@ class ControlBoard extends Component {
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
         this.props.communityChestCard.cards[communityChestIndex].action.bind(this)(p);
 
+        if(communityChestIndex == 0) this.props.dispatch(gameActions.updateComunityChanceJailCard(true));
+
         this.updateMoney();
 
         //@todo AI
@@ -587,6 +581,8 @@ class ControlBoard extends Component {
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
         this.props.chanceCard.cards[chanceIndex].action.bind(this)(p);
 
+        if(chanceIndex == 0) this.props.dispatch(gameActions.updateChanceJailCard(true));
+
         this.updateMoney();
 
         //@todo AI
@@ -597,18 +593,18 @@ class ControlBoard extends Component {
     }
 
     streetrepairs = (houseprice, hotelprice) => {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
         let cost = 0;
+
         for (let i = 0; i < 40; i++) {
             let s = this.props.squareConfig.squares[i];
-            if (s.owner == turn) {
+            if (s.owner == this.props.game.currentPlayer) {
                 if (s.hotel == 1)
                     cost += hotelprice;
                 else
                     cost += s.house * houseprice;
             }
         }
-
-        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
 
         if (cost > 0) {
             p.pay(cost, 0);
@@ -689,7 +685,7 @@ class ControlBoard extends Component {
 
     payeachplayer = (amount, cause) => {
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
-        let total = 0;
+        let total = 0, creditor = 0;
 
         for (let i in this.props.playersConfig.players) {
             if (i != this.props.game.currentPlayer) {
@@ -771,7 +767,7 @@ class ControlBoard extends Component {
 
         this.addAlert(p.name + " paid the $50 fine to get out of jail.");
 
-        // updateMoney();
+        this.updateMoney();
 
         this.updatePosition();
         this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
@@ -792,28 +788,10 @@ class ControlBoard extends Component {
 
         if (p.communityChestJailCard) {
             p.communityChestJailCard = false;
-
-            // Insert the get out of jail free card back into the community chest deck.
-            //@todo add card come back
-            //communityChestCards.deck.splice(communityChestCards.index, 0, 0);
-
-            //communityChestCards.index++;
-
-            //if (communityChestCards.index >= communityChestCards.deck.length) {
-                //communityChestCards.index = 0;
-            //}
+            this.props.dispatch(gameActions.updateComunityChanceJailCard(false));
         } else if (p.chanceJailCard) {
             p.chanceJailCard = false;
-
-            // Insert the get out of jail free card back into the chance deck.
-            //@todo add card come back
-            // chanceCards.deck.splice(chanceCards.index, 0, 0);
-            //
-            // chanceCards.index++;
-            //
-            // if (chanceCards.index >= chanceCards.deck.length) {
-            //     chanceCards.index = 0;
-            // }
+            this.props.dispatch(gameActions.chanceCard(false));
         }
 
         this.addAlert(p.name + " used a \"Get Out of Jail Free\" card.");
@@ -942,6 +920,7 @@ class ControlBoard extends Component {
 
 
         } else {
+            console.log('roll dice first')
             // updateDice(die1, die2);
 
             // Move player
@@ -957,17 +936,167 @@ class ControlBoard extends Component {
             this.land();
         }
 
-        //обновление позиции чувака
-        this.updatePosition();
-        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
-
         this.setState(config);
+        this.updatePosition();
+        this.updateMoney();
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
     }   
 
     //select tab function
     handleSelect = (key) => {
         if(key === 3) this.props.dispatch(tradeActions.showWindow());
         this.setState({key:key})
+    }
+
+    bankruptcy = () => {
+        console.log('bankruptcy')
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+        let pcredit = this.props.playersConfig.players[p.creditor];
+        let bankruptcyUnmortgageFee = 0;
+
+        if (p.money >= 0) {
+            return;
+        }
+
+        this.addAlert(p.name + " is bankrupt.");
+
+        if (p.creditor !== -1) {
+            pcredit.money += p.money;
+        }
+
+        for (let i = 0; i < 40; i++) {
+            let sq = this.props.squareConfig.squares[i];
+            if (sq.owner == p.index) {
+                // Mortgaged properties will be tranfered by bankruptcyUnmortgage();
+                if (!sq.mortgage) {
+                    sq.owner = p.creditor;
+                } else {
+                    bankruptcyUnmortgageFee += Math.round(sq.price * 0.1);
+                }
+
+                if (sq.house > 0) {
+                    if (p.creditor !== -1) {
+                        pcredit.money += sq.houseprice * 0.5 * sq.house;
+                    }
+                    sq.hotel = 0;
+                    sq.house = 0;
+                }
+
+                if (p.creditor === -1) {
+                    sq.mortgage = false;
+                    this.props.dispatch(auctionActions.addPropertyToAuctionQueue(i));
+                    sq.owner = 0;
+                }
+
+                this.props.dispatch(squareActions.updateSquare(p.position, s));
+            }
+        }
+
+        this.updateMoney();
+
+        if (p.chanceJailCard) {
+            p.chanceJailCard = false;
+            pcredit.chanceJailCard = true;
+        }
+
+        if (p.communityChestJailCard) {
+            p.communityChestJailCard = false;
+            pcredit.communityChestJailCard = true;
+        }
+
+        if ( this.props.playersConfig.players.length === 2 || bankruptcyUnmortgageFee === 0 || p.creditor === -1) {
+            this.eliminatePlayer();
+        } else {
+            this.addAlert(pcredit.name + " paid $" + bankruptcyUnmortgageFee + " interest on the mortgaged properties received from " + p.name + ".");
+            this.popup("<p>" + pcredit.name + ", you must pay $" + bankruptcyUnmortgageFee + " interest on the mortgaged properties you received from " + p.name + ".</p>", () => {this.props.playersConfig.players[pcredit.index].pay(bankruptcyUnmortgageFee, 0); this.bankruptcyUnmortgage();}, "yes/no");
+        }
+
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+    }
+
+    eliminatePlayer () {
+        console.log('eliminate player')
+        var p = player[turn];
+
+        for (var i = p.index; i < pcount; i++) {
+            player[i] = player[i + 1];
+            player[i].index = i;
+
+        }
+
+        for (var i = 0; i < 40; i++) {
+            if (square[i].owner >= p.index) {
+                square[i].owner--;
+            }
+        }
+
+        pcount--;
+        turn--;
+
+        if (pcount === 2) {
+            document.getElementById("stats").style.width = "454px";
+        } else if (pcount === 3) {
+            document.getElementById("stats").style.width = "686px";
+        }
+
+        if (pcount === 1) {
+            updateMoney();
+            $("#control").hide();
+            $("#board").hide();
+            $("#refresh").show();
+
+            // // Display land counts for survey purposes.
+            // var text;
+            // for (var i = 0; i < 40; i++) {
+            // if (i === 0)
+            // text = square[i].landcount;
+            // else
+            // text += " " + square[i].landcount;
+            // }
+            // document.getElementById("refresh").innerHTML += "<br><br><div><textarea type='text' style='width: 980px;' onclick='javascript:select();' />" + text + "</textarea></div>";
+
+            popup("<p>Congratulations, " + player[1].name + ", you have won the game.</p><div>");
+
+        } else {
+            play();
+        }
+    }
+
+    bankruptcyUnmortgage = () => {
+
+    }
+
+    //control buttons
+    showButtons() {
+        let nextButton;
+        if(this.props.game.nextButton.show) {
+            let functionClick = () => {
+                this.updateCurrentPlayer();
+                this.setState({key: 1})
+            };
+            if (this.props.game.nextButton.text === "Roll Dice" ||
+                this.props.game.nextButton.text === "Roll again")
+                functionClick = () => {
+                    this.rollDice();
+                    this.setState({key: 1});
+                };
+            nextButton = (
+                <Button title={this.props.game.nextButton.title} onClick={()=>functionClick()}>
+                    {this.props.game.nextButton.text}
+                </Button>
+            );
+        } else if(this.state.showResignbutton) {
+            nextButton = (
+                <Button className="btn btn-info" onClick={()=>{
+                    this.popup("<p>Are you sure you want to resign?</p>", ()=>this.bankruptcy(), "yes/no")
+                }}>Resign</Button>
+            );
+        } else
+            nextButton = (
+                <Button className="btn btn-info" onClick={()=>{this.rollDice();this.setState({key:1});}}>Roll dice</Button>
+            );
+
+        return nextButton;
     }
 
     render() {
@@ -981,31 +1110,6 @@ class ControlBoard extends Component {
                     {this.props.game.landed.text}    
                 </div>*/
             );
-
-        let nextButton;
-        if(this.props.game.nextButton.show) {
-            let functionClick = () => {
-                this.updateCurrentPlayer();
-                this.setState({key: 1})
-            };
-            if (this.props.game.nextButton.text === "Roll Dice" ||
-                this.props.game.nextButton.text === "Roll again")
-                functionClick = () => {
-                    this.rollDice();
-                    this.setState({key: 1});
-                };
-            console.log('functionClick',functionClick)
-            nextButton = (
-                <Button title={this.props.game.nextButton.title} onClick={()=>functionClick()}>
-                    {this.props.game.nextButton.text}
-                </Button>
-            );
-        } else
-            nextButton = (
-                <Button className="btn btn-info" onClick={()=>{this.rollDice();this.setState({key:1});}}>Roll dice</Button>
-            );
-
-
 
         return (
             <div className="container" style={{maxWidth:"460px"}}>
@@ -1028,6 +1132,7 @@ class ControlBoard extends Component {
                                 <TradeModal
                                     popup={this.popup}
                                     addAlert={this.addAlert}
+                                    updateMoney={this.updateMoney}
                                 />
                             </Tab>
                             {/*nextButton*/}
@@ -1053,7 +1158,7 @@ class ControlBoard extends Component {
                     />
                 </Row>
                 <ButtonToolbar>
-                    {nextButton}
+                    {this.showButtons()}
                 </ButtonToolbar>
             </div>
         );

@@ -1,9 +1,12 @@
 
-import { SET_COLOR, SET_NAME, SET_TYPE, CHANGE_PLAYERS_NUMBER, UPDATE_PLAYER } from '../actions/playerRowActions';
+import { SET_COLOR, SET_NAME,
+	SET_TYPE, CHANGE_PLAYERS_NUMBER,
+	UPDATE_PLAYER, ELIMINATE_PLAYER } from '../actions/playerRowActions';
+
 import {colors} from 'config/playerConfig';
 import {Player} from './entities/Player';
-const initialState = { players: changePlayerNumber([], 4) };
 
+const initialState = { players: changePlayerNumber([], 4) };
 
 function changePlayerNumber(players, number){
 	if(players.length < Number(number)){
@@ -68,14 +71,14 @@ export default function(state=initialState, action){
                     arr[i] = Object.assign({},state.players[i])
                 }
             }
-			return Object.assign({},{
-					...state,
-					players:Object.assign([], arr)
-						// ...state.players.slice(0, action.player),
-			    		// Object.assign({}, {...state.players[action.player], ...action.entity}),
-			    		// ...state.players.slice(action.player + 1)
-  					// ]
-				});
+			return Object.assign({},{ ...state, players:Object.assign([], arr)});
+        case ELIMINATE_PLAYER:
+            let arr2 = [];
+            for(let i in state.players)
+                if (state.players[i].id != action.index) {
+                    arr2[i] = Object.assign({}, state.players[i]);
+                }
+            return Object.assign({ ...state, players: Object.assign([], arr2)});
 		default:
 			return state;
 	}
