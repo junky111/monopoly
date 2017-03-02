@@ -39,15 +39,17 @@ class PlayerRow extends Component {
         let type_options = [];
         for( let i in player_types ) 
                 type_options.push(
-                    (<option 
+                    (<option
+                        disabled={true}
                             key={i} 
-                            value={player_types[i].type} 
+                            value={player_types[i].type}
+                            selected={0}
                             /*selected={this.props.players.length && player_types[i].type == this.props.players[this.props.index].type}*/    
                         >
                             {player_types[i].name}
                     </option>)
                 ) 
-        let name=this.props.players.length?this.props.players[this.props.index].name:'';
+        let name = this.props.players.length?this.props.players[this.props.index].name:'';
 
         return (
            <div className="row">

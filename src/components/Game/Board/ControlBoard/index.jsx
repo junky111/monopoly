@@ -21,6 +21,9 @@ import Landed from '../Landed';
 import Manage from '../Manage';
 import Auction from '../Auction';
 
+// import ChanceIcon from 'components/imgs/chance_icon.png';
+// import CommunityChestIcon from 'components/imgs/community_chest_icon.png';
+
 class ControlBoard extends Component {
 
     constructor(props) {
@@ -38,7 +41,6 @@ class ControlBoard extends Component {
     componentWillReceiveProps(newProps) {
         let pcount = 0;
         newProps.playersConfig.players.map((itemp)=> pcount++);
-        console.log('pcount',pcount)
         if (pcount <= 1) {
             browserHistory.push('/win');
         }
@@ -275,12 +277,13 @@ class ControlBoard extends Component {
     }
 
 
-    popup = (text, action, option) => {
+    popup = (text, action, option, image) => {
         let popupConfig = { show: true } ;
 
         if(text)    popupConfig.text    =   text;
         if(action)  popupConfig.action  =   action;
         if(option)  popupConfig.option  =   option;
+        if(image)   popupConfig.image   =   image;
 
         this.props.dispatch(popupActions.setPopupConfig(popupConfig));
 
@@ -535,7 +538,7 @@ class ControlBoard extends Component {
                 communityChestCards.index++;
             }
 
-            this.popup("<img src='images/community_chest_icon.png' style='height: 50px; width: 53px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Community Chest:</div><div style='text-align: justify;'>" + communityChestCards.cards[communityChestIndex].text + "</div>",
+            this.popup("<div style='font-weight: bold; font-size: 16px; '>Community Chest:</div><div style='text-align: justify;'>" + communityChestCards.cards[communityChestIndex].text + "</div>",
                 ()=>{this.communityChestAction(communityChestIndex)});
 
             communityChestCards.index++;
@@ -556,7 +559,7 @@ class ControlBoard extends Component {
                 chanceCards.index++;
             }
 
-            this.popup("<img src='images/chance_icon.png' style='height: 50px; width: 26px; float: left; margin: 8px 8px 8px 0px;' /><div style='font-weight: bold; font-size: 16px; '>Chance:</div><div style='text-align: justify;'>" + chanceCards.cards[chanceIndex].text + "</div>"
+            this.popup("<div style='font-weight: bold; font-size: 16px; '>Chance:</div><div style='text-align: justify;'>" + chanceCards.cards[chanceIndex].text + "</div>"
                 , ()=>{this.chanceAction(chanceIndex)});
 
             chanceCards.index++;
@@ -685,9 +688,9 @@ class ControlBoard extends Component {
                 if (money < amount) {
                     p.money += parseInt(money);
                     total += parseInt(money);
-                    player[i].money = 0;
+                    this.props.playersConfig.players[i].money = 0;
                 } else {
-                    player[i].pay(amount, this.props.game.currentPlayer);
+                    this.props.playersConfig.players[i].pay(amount, this.props.game.currentPlayer);
                     p.money += parseInt(amount);
                     total += parseInt(amount);
                 }
@@ -1125,7 +1128,6 @@ class ControlBoard extends Component {
     }
 
     render() {
-        console.log('this.props', this.props);
         let landed;
         if(this.props.game.landed.show)
             landed = (
@@ -1173,8 +1175,14 @@ class ControlBoard extends Component {
                                 />
                             </tbody>
                         </table>
-                        <Dice diceNumber={this.props.game.dice.first}/>
-                        <Dice diceNumber={this.props.game.dice.second}/>
+                        <Row>
+                            <Col md={6}>
+                                <Dice diceNumber={this.props.game.dice.first}/>
+                            </Col>
+                            <Col md={6}>
+                                <Dice diceNumber={this.props.game.dice.second}/>
+                            </Col>
+                        </Row>
                         <Popup />
                     </Col>
                     <Auction

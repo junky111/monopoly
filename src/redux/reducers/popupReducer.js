@@ -1,6 +1,6 @@
 import { SET_TEXT, SET_SHOW, SET_ACTION, SET_OPTION, SET_POPUP_CONFIG } from '../actions/popupActions';
 
-const initialState = { text: '', show: false , action: '', option: '' };
+const initialState = { text: '', show: false , action: '', option: '', image: '' };
 
 export default function(state=initialState, action){
 	switch (action.type) {

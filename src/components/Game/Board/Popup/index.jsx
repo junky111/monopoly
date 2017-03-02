@@ -44,7 +44,6 @@ class Popup extends Component{
 
 		// Ok
 		} else if (option === "") {
-
 			buttons=(
 				<div> 
 						<Button onClick={()=>{
@@ -77,12 +76,13 @@ class Popup extends Component{
 		if(typeof this.props.action == 'function')
 			action=this.props.action;
 
-
+console.log('popup props',this.props);
 
 		const modalInstance = (
 			 <Modal show={this.props.show} onHide={action}>
 			      <Modal.Body>
-			        <div  dangerouslySetInnerHTML={{__html:this.props.text}} />
+					  {/*this.props.image && <img src={this.props.image} style='height: 50px; width: 53px; float: left; margin: 8px 8px 8px 0px;' />*/}
+					  <div  dangerouslySetInnerHTML={{__html:this.props.text}} />
 			      </Modal.Body>
 
 			      <Modal.Footer>
