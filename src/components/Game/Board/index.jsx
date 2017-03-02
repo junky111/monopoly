@@ -100,7 +100,12 @@ class Board extends Component {
                                 index={i}
                                 key={`middle-${i}`}/>
                     <td colSpan={9} className="board-center">
-                        {jail && <div id="jail"></div>}
+                        {jail && <Square
+                            playerToSquare={playerToSquare}
+                            index={i}
+                            key={`jail-${i}`}
+                            jail="true"
+                        />}
                     </td>
                         <Square {...sqRight}
                                 class="cell board-right"

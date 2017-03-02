@@ -1,19 +1,17 @@
-import { ROLL_DICE, ADD_ALERT, SET_NEXT_BUTTON, SET_LANDED, UPDATE_P_S, UPDATE_P_C, SET_P_S } from '../actions/gameActions';
-
+import { ROLL_DICE, ADD_ALERT,
+	SET_NEXT_BUTTON, SET_LANDED,
+	UPDATE_P_S, UPDATE_P_C,
+	SET_P_S,SET_LANDED_USE_CARD} from '../actions/gameActions';
 
 const initialState = { 
-	playerToSquare: [],
-	//@todo rewrite
-	// playerToOwned: [{player: 0, owned:[3,5,12]}],
-    // playerToOwned: [],
-	currentPlayer: 0,
-	dice: {},
-	gameLog:[],
-	nextButton:{title:'', text:'', show: false},
-	landed: {text:'', show: false, component: false, linkValue:"", onclick:()=>null, value:"", title:""}
+	playerToSquare	: [],
+	currentPlayer	: 0,
+	dice			: {},
+	gameLog			: [],
+	nextButton		: {title:'', text:'', show: false},
+	landed			: {text:'', show: false, component: false, linkValue:"", onclick:()=>null, value:"", title:"",
+						text2:'', show2: false, component2: false, onclick2:()=>null, value2:"", title2:""}
 };
-
-
 
 export default function(state=initialState, action){
 	switch (action.type) {
@@ -36,6 +34,12 @@ export default function(state=initialState, action){
 				...state,
 			 	landed: action.landed
 			})
+        case SET_LANDED_USE_CARD:
+            if(!action.landed.component2) action.landed.component2 = false;
+            return Object.assign({}, {
+                ...state,
+                landed: action.landed
+            })
 		case UPDATE_P_C:
             state.currentPlayer = action.currentPlayer;
 			return Object.assign({}, {...state})

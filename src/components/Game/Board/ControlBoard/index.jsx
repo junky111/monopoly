@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import {Button, Col, Row, Tabs, Tab} from 'react-bootstrap';
+import {Button, Col, Row, Tabs, Tab, ButtonToolbar} from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import  * as playerActions  from 'redux/actions/playerRowActions';
@@ -34,10 +34,16 @@ class ControlBoard extends Component {
         }
     }
 
+    componentWillReceiveProps(newProps) {
+
+    }
+
     rollDiceAction(){
         //@todo return
         let first  = Math.floor(Math.random() * 6) + 1;
         let second = Math.floor(Math.random() * 6) + 1;
+        // let first   = 1;
+        // let second  = 1;
 
         return { first, second };
     }
@@ -83,16 +89,68 @@ class ControlBoard extends Component {
         nextButton.show = false;
         this.props.dispatch(gameActions.setNextButton(nextButton));
 
-        // this.props.dispatch(
-        //     squareActions.updateSquare(
-        //         this.props.playersConfig.players[this.props.game.currentPlayer].position,
-        //         {owner:this.props.game.currentPlayer}
-        //     )
-        // );
+        let p =this.props.playersConfig.players[currentPlayer];
+        if(p.jail) {
+            // let landed={};
+            // landed.text="You are in jail.";
+            // landed.show=true;
+            let payFiftyButton = {
+                text: "You are in jail", show: true,
+                value: "Pay $50 fine",
+                title: "Pay $50 fine to get out of jail immediately.",
+                onclick: () => this.payfifty,
+                component: true,
+            };
 
-        //
+            this.props.dispatch(gameActions.setLanded({
+                ...payFiftyButton
+            }));
 
+            if (p.communityChestJailCard || p.chanceJailCard) {
+                this.props.dispatch(gameActions.setLandedUseCard({
+                    text2: "You are in jail", show2: true,
+                    value2: "Use card",
+                    title2: "Use &quot;Get Out of Jail Free&quot; card.",
+                    onclick2: () => this.useJailCard,
+                    component2: true,
+                    ...payFiftyButton
+                }));
+            }
+
+            console.log('this props game', this.props)
+
+            let nextButton = {};
+            nextButton.text = "Roll Dice";
+            nextButton.title = "Roll the dice. If you throw doubles, you will get out of jail.";
+            nextButton.show = true;
+
+            this.props.dispatch(gameActions.setNextButton(nextButton));
+
+            if (p.jailroll === 0)
+                this.addAlert("This is " + p.name + "'s first turn in jail.");
+            else if (p.jailroll === 1)
+                this.addAlert("This is " + p.name + "'s second turn in jail.");
+            else if (p.jailroll === 2) {
+                // this.props.dispatch(gameActions.setLanded({
+                //     component: true,
+                //     text: "<div>NOTE: If you do not throw doubles after this roll, you <i>must</i> pay the $50 fine.</div>",
+                //     show: true
+                // }));
+                this.addAlert("This is " + p.name + "'s third turn in jail.");
+            }
+
+            //@todo AI
+            // if (!p.human && p.AI.postBail()) {
+            //     if (p.communityChestJailCard || p.chanceJailCard) {
+            //         useJailCard();
+            //     } else {
+            //         payfifty();
+            //     }
+            // }
+        }
     }
+
+
 
     updateOwned = () => {
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
@@ -248,7 +306,7 @@ class ControlBoard extends Component {
         this.props.dispatch(playerActions.updatePlayer({playerNumber:this.props.game.currentPlayer, playerEntity: p}));
 
         this.updatePosition();
-        this.updateOwned();
+        //this.updateOwned();
 
         if (!p.human) {
             //@TODO AI!!!
@@ -515,7 +573,7 @@ class ControlBoard extends Component {
     communityChestAction=(communityChestIndex) => {
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
         this.props.communityChestCard.cards[communityChestIndex].action.bind(this)(p);
-console.log('communityChestAction p',p);
+
         this.updateMoney();
 
         //@todo AI
@@ -720,6 +778,51 @@ console.log('communityChestAction p',p);
         this.setState(config);
     }
 
+    useJailCard = () => {
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+        let config = this.state;
+
+        this.props.dispatch(gameActions.setLanded({show:false}));
+        p.jail = false;
+        p.jailroll = 0;
+
+        p.position = 10;
+
+        config.doublecount = 0;
+
+        if (p.communityChestJailCard) {
+            p.communityChestJailCard = false;
+
+            // Insert the get out of jail free card back into the community chest deck.
+            //@todo add card come back
+            //communityChestCards.deck.splice(communityChestCards.index, 0, 0);
+
+            //communityChestCards.index++;
+
+            //if (communityChestCards.index >= communityChestCards.deck.length) {
+                //communityChestCards.index = 0;
+            //}
+        } else if (p.chanceJailCard) {
+            p.chanceJailCard = false;
+
+            // Insert the get out of jail free card back into the chance deck.
+            //@todo add card come back
+            // chanceCards.deck.splice(chanceCards.index, 0, 0);
+            //
+            // chanceCards.index++;
+            //
+            // if (chanceCards.index >= chanceCards.deck.length) {
+            //     chanceCards.index = 0;
+            // }
+        }
+
+        this.addAlert(p.name + " used a \"Get Out of Jail Free\" card.");
+        this.updateOwned();
+        this.updatePosition();
+        this.props.dispatch(playerActions.updatePlayer({playerNumber: this.props.game.currentPlayer, playerEntity: p}));
+        this.setState(config);
+    }
+
     auction = () => {
         this.props.dispatch(auctionActions.showWindow());
         this.props.dispatch(gameActions.setLanded({show:false}));
@@ -751,7 +854,7 @@ console.log('communityChestAction p',p);
         } else {
             this.addAlert(p.name + " rolled " + (die1 + die2) + ".");
         }
-
+        console.log('p1',p)
         if (die1 == die2 && !p.jail) {
             //@view обновление костей
             // updateDice(die1, die2);
@@ -788,21 +891,15 @@ console.log('communityChestAction p',p);
             config.doublecount = 0;
         }
 
-        //@view обновление денег визуально
-        this.updateMoney();
-        //окно обновления имущества игрока
-        this.updateOwned();
+        //this.updateOwned();
 
         if (p.jail === true) {
             p.jailroll++;
 
             //@view обновление костей
             // updateDice(die1, die2);
-            if (die1 == die2) {
-                // document.getElementById("jail").style.border = "1px solid black";
-                // document.getElementById("cell11").style.border = "2px solid " + p.color;
-        
 
+            if (die1 == die2) {
                 this.props.dispatch(gameActions.setLanded({show:false}));
 
                 p.jail = false;
@@ -811,7 +908,6 @@ console.log('communityChestAction p',p);
                 config.doublecount = 0;
 
                 this.addAlert(p.name + " rolled doubles to get out of jail.");
-
                 this.land();
             } else {
                 if (p.jailroll === 3) {
@@ -835,7 +931,6 @@ console.log('communityChestAction p',p);
                     landed.show=true;
 
                     this.props.dispatch(gameActions.setLanded(landed));
-
 
                     if (!p.human) {
                         //@todo AI
@@ -893,11 +988,13 @@ console.log('communityChestAction p',p);
                 this.updateCurrentPlayer();
                 this.setState({key: 1})
             };
-            if (this.props.game.nextButton.text === "Roll again")
+            if (this.props.game.nextButton.text === "Roll Dice" ||
+                this.props.game.nextButton.text === "Roll again")
                 functionClick = () => {
                     this.rollDice();
                     this.setState({key: 1});
                 };
+            console.log('functionClick',functionClick)
             nextButton = (
                 <Button title={this.props.game.nextButton.title} onClick={()=>functionClick()}>
                     {this.props.game.nextButton.text}
@@ -907,6 +1004,8 @@ console.log('communityChestAction p',p);
             nextButton = (
                 <Button className="btn btn-info" onClick={()=>{this.rollDice();this.setState({key:1});}}>Roll dice</Button>
             );
+
+
 
         return (
             <div className="container" style={{maxWidth:"460px"}}>
@@ -953,7 +1052,9 @@ console.log('communityChestAction p',p);
                         addAlert={this.addAlert}
                     />
                 </Row>
-                {nextButton}
+                <ButtonToolbar>
+                    {nextButton}
+                </ButtonToolbar>
             </div>
         );
     }
@@ -969,7 +1070,7 @@ function mapStateToProps(state) {
                 auction                 : state.auction,
                 setup                   : state.setup,
                 chanceCard              : state.chanceCard,
-                communityChestCard     : state.communityChestCard
+                communityChestCard      : state.communityChestCard
     };
 }
 

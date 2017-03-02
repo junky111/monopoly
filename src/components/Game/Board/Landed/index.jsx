@@ -18,6 +18,9 @@ class Landed extends Component {
         } else {
             result =  <div>{this.props.text}
                 <Deed square={s} linkValue={this.props.linkValue}/>.
+                {this.props.show2 && this.props.component2 && <Button onClick={this.props.onclick2()} title={this.props.title2}>
+                    {this.props.value2}
+                </Button>}
                 <Button onClick={this.props.onclick()} title={this.props.title}>
                     {this.props.value}
                 </Button>

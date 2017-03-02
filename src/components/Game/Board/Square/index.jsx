@@ -58,22 +58,32 @@ class Square extends Component {
         let players="";
         if(this.props.playerToSquare.length)
             players=this.props.playerToSquare.map((item,index) => {
+                if(this.props.jail && !item.jail) return null;
                 return (
                     <PlayerSquare index={index} key={index}  player={item} playersConfig={this.props.playersConfig}/>
                 )
             });
-
-        return (
-                <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={cardData}>
-                    <td key={this.props.key} className={this.props.class}>
-                        <div>
-                            {players}
-                            <p>{this.props.name}</p>
-                            <PlayerSquareOwner key={this.props.index}  squareConfig={this.props.squareConfig} playersConfig={this.props.playersConfig} index={this.props.index}/>
-                        </div>
-                    </td>
-                </OverlayTrigger>
-        );
+        if(this.props.jail) {
+            return (
+                <div
+                    id="jail"
+                    key="jail">
+                    {players}
+                    <span>Jail</span>
+                </div>
+            )
+        } else
+            return (
+                    <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={cardData}>
+                        <td key={this.props.key} className={this.props.class}>
+                            <div>
+                                {players}
+                                <p>{this.props.name}</p>
+                                <PlayerSquareOwner key={this.props.index}  squareConfig={this.props.squareConfig} playersConfig={this.props.playersConfig} index={this.props.index}/>
+                            </div>
+                        </td>
+                    </OverlayTrigger>
+            );
     }
 }
 
