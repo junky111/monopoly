@@ -21,8 +21,8 @@ import Landed from '../Landed';
 import Manage from '../Manage';
 import Auction from '../Auction';
 
-// import ChanceIcon from 'components/imgs/chance_icon.png';
-// import CommunityChestIcon from 'components/imgs/community_chest_icon.png';
+import ChanceIcon from 'components/imgs/chance_icon.png';
+import CommunityChestIcon from 'components/imgs/community_chest_icon.png';
 
 class ControlBoard extends Component {
 
@@ -277,13 +277,13 @@ class ControlBoard extends Component {
     }
 
 
-    popup = (text, action, option) => {
+    popup = (text, action, option, image) => {
         let popupConfig = { show: true } ;
 
         if(text)    popupConfig.text    =   text;
         if(action)  popupConfig.action  =   action;
         if(option)  popupConfig.option  =   option;
-        // if(image)   popupConfig.image   =   image;
+        if(image)   popupConfig.image   =   image;
 
         this.props.dispatch(popupActions.setPopupConfig(popupConfig));
 
@@ -539,7 +539,7 @@ class ControlBoard extends Component {
             }
 
             this.popup("<div style='font-weight: bold; font-size: 16px; '>Community Chest:</div><div style='text-align: justify;'>" + communityChestCards.cards[communityChestIndex].text + "</div>",
-                ()=>{this.communityChestAction(communityChestIndex)});
+                ()=>{this.communityChestAction(communityChestIndex)}, "", CommunityChestIcon);
 
             communityChestCards.index++;
 
@@ -560,7 +560,7 @@ class ControlBoard extends Component {
             }
 
             this.popup("<div style='font-weight: bold; font-size: 16px; '>Chance:</div><div style='text-align: justify;'>" + chanceCards.cards[chanceIndex].text + "</div>"
-                , ()=>{this.chanceAction(chanceIndex)});
+                , ()=>{this.chanceAction(chanceIndex)}, "", ChanceIcon);
 
             chanceCards.index++;
 
@@ -1176,12 +1176,14 @@ class ControlBoard extends Component {
                             </tbody>
                         </table>
                         <Row>
-                            <Col md={6}>
-                                <Dice diceNumber={this.props.game.dice.first}/>
-                            </Col>
-                            <Col md={6}>
-                                <Dice diceNumber={this.props.game.dice.second}/>
-                            </Col>
+                            <div style={{width:"300px"}}>
+                                <Col md={1} xs={1}>
+                                    <Dice diceNumber={this.props.game.dice.first}/>
+                                </Col>
+                                <Col md={1} xs={1}>
+                                    <Dice diceNumber={this.props.game.dice.second}/>
+                                </Col>
+                            </div>
                         </Row>
                         <Popup />
                     </Col>

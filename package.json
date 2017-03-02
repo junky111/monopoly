@@ -19,6 +19,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "bluebird": "^3.4.7",
     "express": "^4.14.0",
+    "image-webpack-loader": "^3.2.0",
     "nodemon": "^1.11.0",
     "postcss-smart-import": "^0.6.7",
     "precss": "^1.4.0",

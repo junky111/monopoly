@@ -24,7 +24,7 @@ var plugins = [
     }),
     new ExtractTextPlugin(cssName)
 ];
-
+console.log('process.env.NODE_ENV',process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'production') {
     plugins.push(
         new CleanWebpackPlugin([ 'public/assets/' ], {
@@ -61,8 +61,8 @@ module.exports = {
         loaders: [
             {
                 test: /\.css$/,
-                loader: 'style!css!'
-                //loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
+                // loader: 'style!css!'
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
             },
             {
                 test: /\.less$/,
