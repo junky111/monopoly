@@ -988,7 +988,7 @@ class ControlBoard extends Component {
                     sq.owner = 0;
                 }
 
-                this.props.dispatch(squareActions.updateSquare(p.position, s));
+                this.props.dispatch(squareActions.updateSquare(p.position, sq));
             }
         }
 
@@ -1016,50 +1016,33 @@ class ControlBoard extends Component {
 
     eliminatePlayer () {
         console.log('eliminate player')
-        var p = player[turn];
+        let p = this.props.playersConfig.players[this.props.game.currentPlayer];
+        let square = this.props.squareConfig.squares;
 
-        for (var i = p.index; i < pcount; i++) {
-            player[i] = player[i + 1];
-            player[i].index = i;
-
-        }
-
-        for (var i = 0; i < 40; i++) {
-            if (square[i].owner >= p.index) {
-                square[i].owner--;
+        this.props.dispatch(playerActions.eliminatePlayer(p.id));
+        for (let i = 0; i < 40; i++) {
+            if (square[i].owner == p.id) {
+                square[i].owner = -1;
+                this.props.dispatch(squareActions.updateSquare(i, square[i]));
             }
         }
 
-        pcount--;
-        turn--;
+        /*@rodo finish*/
+        //pcount--;
+        //turn--;
 
-        if (pcount === 2) {
-            document.getElementById("stats").style.width = "454px";
-        } else if (pcount === 3) {
-            document.getElementById("stats").style.width = "686px";
+        this.updateCurrentPlayer();
+
+        if (this.props.playersConfig.players.length === 1) {
+            this.updateMoney();
+
+            this.popup("<p>Congratulations, " + this.props.playersConfig.players.shift().name + ", you have won the game.</p><div>");
+
         }
 
-        if (pcount === 1) {
-            updateMoney();
-            $("#control").hide();
-            $("#board").hide();
-            $("#refresh").show();
-
-            // // Display land counts for survey purposes.
-            // var text;
-            // for (var i = 0; i < 40; i++) {
-            // if (i === 0)
-            // text = square[i].landcount;
-            // else
-            // text += " " + square[i].landcount;
-            // }
-            // document.getElementById("refresh").innerHTML += "<br><br><div><textarea type='text' style='width: 980px;' onclick='javascript:select();' />" + text + "</textarea></div>";
-
-            popup("<p>Congratulations, " + player[1].name + ", you have won the game.</p><div>");
-
-        } else {
-            play();
-        }
+        let config = this.state;
+        config.showResignbutton = false;
+        this.setState(config);
     }
 
     bankruptcyUnmortgage = () => {
@@ -1100,6 +1083,7 @@ class ControlBoard extends Component {
     }
 
     render() {
+        console.log('this.props', this.props);
         let landed;
         if(this.props.game.landed.show)
             landed = (

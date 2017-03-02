@@ -12,6 +12,7 @@ function changePlayerNumber(players, number){
 	if(players.length < Number(number)){
 		for(let i = players.length ; i < Number(number); i ++){
 			let p = new Player('Player '+i, colors[i], 1)
+			if(i == 0) p.money = 5;
 			p.id = i;
 			players.push(p);
 		}

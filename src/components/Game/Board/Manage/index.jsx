@@ -344,10 +344,7 @@ class Manage extends Component {
             return null;
         }
 
-        // let data = [
-        //     {id:1, color: "#FFFFFF" ,name: "Select1"},
-        //     {id:2, color: "#453586" ,name: "Select2"}
-        // ];
+        if(!this.props.playersConfig.players[this.props.game.currentPlayer]) return null;
 
         return <div>
                 {buttons()}

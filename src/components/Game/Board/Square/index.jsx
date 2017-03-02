@@ -9,6 +9,7 @@ class PlayerSquare extends Component {
     }
 
     render() {
+        if(!this.props.playersConfig.players[this.props.player.player]) return null;
         return (
             <div
                 className="cell-position"
@@ -28,7 +29,7 @@ class PlayerSquareOwner extends Component {
     render() {
         let s = this.props.squareConfig.squares[this.props.index];
         let result = <div></div>;
-        if(s.owner > -1) {
+        if(s.owner > -1 && this.props.playersConfig.players[s.owner]) {
             result =  <div
                 id={"cell" + s.owner + "owner"}
                 className="cell-owner"

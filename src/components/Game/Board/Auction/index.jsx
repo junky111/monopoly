@@ -196,6 +196,7 @@ class Auction extends Component {
     render() {
         let sq = this.props.squareConfig.squares[this.props.auction.currentPropertyAuction];
         let player=this.props.playersConfig.players[this.props.auction.currentPlayerAuction];
+        if(!player) return null;
         let playerBid = this.props.auction.highestBid.playerId > -1 ? `$(Player ${this.props.auction.highestBid.playerId})` : '(N/A)';
 
         // console.log('player',player)

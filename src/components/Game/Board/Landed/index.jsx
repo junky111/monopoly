@@ -9,11 +9,12 @@ class Landed extends Component {
     }
 
     render() {
-        let result;
+        let result, s;
         let p = this.props.playersConfig.players[this.props.game.currentPlayer];
-        let s = this.props.squareConfig.squares[p.position];
+        if(p)
+            s = this.props.squareConfig.squares[p.position];
 
-        if(!this.props.component) {
+        if(s && !this.props.component) {
             result = <div>{this.props.text}</div>
         } else {
             result =  <div>{this.props.text}

@@ -5,7 +5,7 @@ class Player {
 		//@todo return after test
 		this.position = 0;
         // this.position = 28;
-		this.money = -10;
+		this.money = 1500;
 		this.creditor = -1;
 		this.jail = false;
 		this.jailroll = 0;

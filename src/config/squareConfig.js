@@ -28,7 +28,7 @@ export const squares = [
 	{name:'B&O Railroad',pricetext:'$200',color:'#FFFFFF',groupNumber:'1',price:'200'},
 	{name:'Atlantic Avenue',pricetext:'$260',color:'#FFFF00',groupNumber:'8',price:'260',baserent:'22',rent1:'110',rent2:'330',rent3:'800',rent4:'975',rent5:'1150'},
 	{name:'Ventnor Avenue',pricetext:'$260',color:'#FFFF00',groupNumber:'8',price:'260',baserent:'22',rent1:'110',rent2:'330',rent3:'800',rent4:'975',rent5:'1150'},
-	{name:'Water Works',pricetext:'$150',color:'#FFFFFF',groupNumber:'2',price:'150'},
+	{name:'Water Works',pricetext:'$150',color:'#FFFFFF',groupNumber:'2',price:'150',owner:0},
 	{name:'Marvin Gardens',pricetext:'$280',color:'#FFFF00',groupNumber:'8',price:'280',baserent:'24',rent1:'120',rent2:'360',rent3:'850',rent4:'1025',rent5:'1200'},
 	{name:'Go to Jail',pricetext:'Go directly to Jail. Do not pass GO. Do not collect $200.',color:'#FFFFFF'},
 	{name:'Pacific Avenue',pricetext:'$300',color:'#008000',groupNumber:'9',price:'300',baserent:'26',rent1:'130',rent2:'390',rent3:'900',rent4:'110',rent5:'1275'},
