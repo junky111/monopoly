@@ -277,13 +277,13 @@ class ControlBoard extends Component {
     }
 
 
-    popup = (text, action, option, image) => {
+    popup = (text, action, option) => {
         let popupConfig = { show: true } ;
 
         if(text)    popupConfig.text    =   text;
         if(action)  popupConfig.action  =   action;
         if(option)  popupConfig.option  =   option;
-        if(image)   popupConfig.image   =   image;
+        // if(image)   popupConfig.image   =   image;
 
         this.props.dispatch(popupActions.setPopupConfig(popupConfig));
 
